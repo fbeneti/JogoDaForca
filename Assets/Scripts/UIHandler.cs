@@ -8,8 +8,6 @@ public class UIHandler : MonoBehaviour
 {
     public static UIHandler instance;
 
-    private DataService _ds;
-
     public Animator GameOverPanel; //ID 1
     public Animator SettingsPanel; //ID 2
     public Animator StatsPanel;    //ID 3
