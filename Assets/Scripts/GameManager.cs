@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
 
     bool gameOver;
 
+    public DatabaseBuilder databaseBuilder;
+
     void Awake()
     {
         instance = this;
@@ -55,13 +57,33 @@ public class GameManager : MonoBehaviour
 
     void Initialize()
     {
-        //PICK A CATEGORY FIRST
-        int cIndex = Random.Range(0, categories.Length);
-        categoryText.text = categories[cIndex].name;
-        int wIndex = Random.Range(0, categories[cIndex].wordList.Length);
+        //LOAD CATEGORIES FROM DATABASE
+        List<Dictionary<string, string>> categories = databaseBuilder.ReadTable("Categories");
+        if (categories.Count == 0)
+        {
+            Debug.LogError("Nenhuma categoria encontrada no banco de dados.");
+            return;
+        }
 
-        //PICK A WORD FROM A LIST OR CATEGORY 
-        string pickedWord = categories[cIndex].wordList[wIndex];
+        //PICK A CATEGORY FROM THE LIST
+        int cIndex = Random.Range(0, categories.Count);
+        var selectedCategory = categories[cIndex];
+        categoryText.text = selectedCategory["Categoria"];
+
+        //LOAD WORDS FROM SELECTED CATEGORY 
+        int categoryId = int.Parse(selectedCategory["Id"]);
+        Debug.Log("Categoria Id = " + selectedCategory["Id"]);
+        List<Dictionary<string, string>> words = databaseBuilder.ReadTable("Words", $"Categoria = {categoryId}");
+        if (words.Count == 0)
+        {
+            Debug.LogError("Nenhuma palavra encontrada para a categoria selecionada.");
+            return;
+        }
+
+        //PICK A WORD FROM THE LIST
+        int wIndex = Random.Range(0, words.Count);
+        string pickedWord = words[wIndex]["Nome"];
+        Debug.Log("Palavra: " + pickedWord);
 
         //SPLIT THE WORD INTO SINGLE LETTERS
         string[] splittedWord = pickedWord.Select(l => l.ToString()).ToArray();
@@ -103,7 +125,7 @@ public class GameManager : MonoBehaviour
         //FIND THE LETTER IN THE SOLVED LIST
         for (int i = 0;i < solvedList.Count;i++)
         {
-            if (solvedList[i] == requestedLetter)
+            if (solvedList[i].Equals(requestedLetter, System.StringComparison.OrdinalIgnoreCase))
             {
                 letterHolderList[i].text = requestedLetter;
                 unsolvedWord[i] = requestedLetter;
@@ -143,7 +165,7 @@ public class GameManager : MonoBehaviour
         //CHECK MECHANICK
         for (int i = 0; i < unsolvedWord.Length; i++)
         {
-            if (unsolvedWord[i] != solvedList[i])
+            if (string.IsNullOrEmpty(unsolvedWord[i]) || !unsolvedWord[i].Equals(solvedList[i], System.StringComparison.OrdinalIgnoreCase))
             {
                 return false;
             }
