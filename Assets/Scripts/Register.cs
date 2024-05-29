@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class Register : MonoBehaviour
 {
+    public static Register instance;
     public DatabaseBuilder databaseBuilder;
-
-    [Header("Paineis")]
-    public Animator VrfFieldsPanel; //ID 1
-    public Animator VrfPswPanel;    //ID 2
-    public Animator SuccessPanel;    //ID 3
 
     [Header("Entrada de Dados:")]
     public TMP_InputField UsernameField;
@@ -17,7 +13,21 @@ public class Register : MonoBehaviour
     public TMP_InputField PasswordField;
     public TMP_InputField PasswordVrfField;
 
-    public void BotaoRegistrar()
+    private UIHandler uiHandler;
+
+    void Awake()
+    {
+        instance = this;
+    }
+
+
+    void Start()
+    {
+        uiHandler = UIHandler.instance;
+    }
+
+    
+    public void RegisterPlayer()
     {
         string username = UsernameField.text;
         string email = EmailField.text;
@@ -26,7 +36,7 @@ public class Register : MonoBehaviour
 
         if ((username == "") || (email == "") || (password == "") || (passwordVrf == ""))
         {
-            VrfFieldsPanel.SetTrigger("open");
+            uiHandler.WarningCondition("Favor preencher todos os campos!");
             Debug.Log("Favor preencher todos os campos!");
             return;
         }
@@ -34,16 +44,26 @@ public class Register : MonoBehaviour
 
         if (password != passwordVrf)
         {
-            VrfPswPanel.SetTrigger("open");
+            uiHandler.WarningCondition("As senhas não coincidem!");
             Debug.Log("As senhas não coincidem!");
             return;
         }
 
-        List<Dictionary<string, string>> existingUsers = databaseBuilder.ReadTable("Players", $"Username='{username}'");
+        List<Dictionary<string, string>> existingUsersByUsername = databaseBuilder.ReadTable("Players", $"Username='{username}'");
 
-        if (existingUsers.Count > 0)
+        if (existingUsersByUsername.Count > 0)
         {
-            Debug.Log("Nome de usuário já existe.");
+            uiHandler.WarningCondition("Nome de usuário já cadastrado!");
+            Debug.Log("Nome de usuário já cadastrado!");
+            return;
+        }
+
+        List<Dictionary<string, string>> existingUsersByEmail = databaseBuilder.ReadTable("Players", $"Email='{email}'");
+
+        if (existingUsersByEmail.Count > 0)
+        {
+            uiHandler.WarningCondition("E-mail já cadastrado!");
+            Debug.Log("E-mail já cadastrado!");
             return;
         }
 
@@ -53,30 +73,8 @@ public class Register : MonoBehaviour
             { "Email", email },
             { "Password", password }
         };
-
         databaseBuilder.InsertIntoTable("Players", newUser);
-        Debug.Log("Usuário registrado com sucesso!");
-    }
-
-    public void ClosePanelButton(int buttonId)
-    {
-        switch(buttonId)
-        {
-            case 1:
-                VrfFieldsPanel.SetTrigger("close");
-                break;
-            case 2:
-                PasswordField.text = "";
-                PasswordVrfField.text = "";
-                VrfPswPanel.SetTrigger("close");
-                break;
-            case 3:
-                UsernameField.text = "";
-                EmailField.text = "";
-                PasswordField.text = "";
-                PasswordVrfField.text = "";
-                SuccessPanel.SetTrigger("close");
-                break;
-        }
+        uiHandler.SuccessCondition();
+        Debug.Log("Usuário cadastrado com sucesso!");
     }
 }

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using TMPro;
 using System.Security.Cryptography;
 
@@ -77,7 +76,7 @@ public class ButtonCreator : MonoBehaviour
     {
         if (GameManager.instance.GameOver() || GameManager.instance.maxHints <= 0)
         {
-            Debug.Log("Você não tem mais dicas!");
+            Debug.Log("Voc� n�o tem mais dicas!");
             return;
         }
 

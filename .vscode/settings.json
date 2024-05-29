@@ -56,7 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "JogoDaForca.sln",
-    "workbench.preferredLightColorTheme": "Default Dark Modern",
-    "workbench.preferredHighContrastColorTheme": "Default Dark Modern"
+    "dotnet.defaultSolution": "JogoDaForca.sln"
 }

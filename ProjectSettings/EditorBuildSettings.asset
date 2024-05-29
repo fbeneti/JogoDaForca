@@ -7,18 +7,18 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Login.unity
-    guid: 0109ad026c392ef4e91dc253e1e70dec
+    guid: 2343390e43d19e44a94d5c5ea8501622
   - enabled: 1
     path: Assets/Scenes/Register.unity
-    guid: 31bf7a4f127bc7146abe740c3ba45176
+    guid: 79dc9dcd3f826a9449304782de359c35
   - enabled: 1
-    path: Assets/Scenes/GameMenu.unity
-    guid: bd7339b20af5bbd42b02e3761ef54933
+    path: Assets/Scenes/Menu.unity
+    guid: 861119b564722bc43b43407e6da7fbdc
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: 27df760fb825e1545a2209a63d2be3f7
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/Animals.unity
-    guid: 7b8dc117bce7687409d4c97e30320dde
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

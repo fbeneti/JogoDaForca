@@ -1,4 +1,0 @@
-repository "JogoDaForca@fbeneti@cloud"
-  path "/"
-    br "/main"
-    co "/main"

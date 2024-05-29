@@ -4,17 +4,29 @@ using UnityEngine;
 
 public class Login : MonoBehaviour
 {
+    public static Login instance;
     public DatabaseBuilder databaseBuilder;
-
-    [Header("Paineis")]
-    public Animator WrongPanel;      //ID 1
-    public Animator SuccessPanel;    //ID 2
     
     [Header("Entrada de Dados:")]
     public TMP_InputField UsernameField;
     public TMP_InputField PasswordField;
 
-    public void BotaoJogar()
+    private UIHandler uiHandler;
+
+
+    void Awake()
+    {
+        instance = this;
+    }
+
+
+    void Start()
+    {
+        uiHandler = UIHandler.instance;
+    }
+
+
+    public void CheckPlayerLogin()
     {
         string username = UsernameField.text;
         string password = PasswordField.text;
@@ -29,34 +41,21 @@ public class Login : MonoBehaviour
             if (currentPlayer.ContainsKey("Password") && currentPlayer["Password"] == password)
             {
                 Debug.Log("Usuário logado com sucesso!");
-                SuccessPanel.SetTrigger("open");
+                uiHandler.SuccessCondition();
+                uiHandler.SetLoginSuccess(true);
             }
             else
             {
                 Debug.Log("Senha incorreta.");
-                WrongPanel.SetTrigger("open");
+                uiHandler.WrongCondition("Senha incorreta");
+                uiHandler.SetLoginSuccess(false);
             }
         }
         else
         {
             Debug.Log("Nenhum jogador encontrado com o nome de usuário especificado.");
-            WrongPanel.SetTrigger("open");
-        }
-    }
-
-        public void ClosePanelButton(int buttonId)
-    {
-        switch(buttonId)
-        {
-            case 1:
-                PasswordField.text = "";
-                WrongPanel.SetTrigger("close");
-                break;
-            case 2:
-                UsernameField.text = "";
-                PasswordField.text = "";
-                SuccessPanel.SetTrigger("close");
-                break;
+            uiHandler.WrongCondition("Nenhum jogador encontrado com o nome de usuário especificado.");
+            uiHandler.SetLoginSuccess(false);
         }
     }
 }

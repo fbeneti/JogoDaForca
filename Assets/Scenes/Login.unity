@@ -119,7 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &66240157
+--- !u!1 &28689682
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,8 +127,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 66240158}
-  - component: {fileID: 66240159}
+  - component: {fileID: 28689684}
+  - component: {fileID: 28689683}
   m_Layer: 0
   m_Name: UIHandler
   m_TagString: Untagged
@@ -136,28 +136,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &66240158
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 66240157}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &66240159
+--- !u!114 &28689683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 66240157}
+  m_GameObject: {fileID: 28689682}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a396868bdfd8da41be100227caba7f8, type: 3}
@@ -167,10 +152,28 @@ MonoBehaviour:
   SettingsPanel: {fileID: 0}
   StatsPanel: {fileID: 0}
   WinPanel: {fileID: 0}
-  LoginPanel: {fileID: 0}
-  RegisterPanel: {fileID: 0}
-  statsText: {fileID: 830333196}
+  WrongPanel: {fileID: 725475002}
+  WrongText: {fileID: 713165113}
+  SuccessPanel: {fileID: 1966581728}
+  WarningPanel: {fileID: 0}
+  WarningText: {fileID: 0}
+  statsText: {fileID: 0}
   saveFile: {fileID: 11400000, guid: c9279facb85698340b4a1d9d86b86d14, type: 2}
+--- !u!4 &28689684
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28689682}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 70.35595, y: 167.16328, z: -3.9440618}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &113438150
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,14 +885,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 398455597}
-        m_TargetAssemblyTypeName: Login, Assembly-CSharp
-        m_MethodName: ClosePanelButton
-        m_Mode: 3
+      - m_Target: {fileID: 28689683}
+        m_TargetAssemblyTypeName: UIHandler, Assembly-CSharp
+        m_MethodName: LoginSuccessOkButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: Menu
           m_BoolArgument: 0
@@ -1015,14 +1018,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 398455597}
-        m_TargetAssemblyTypeName: Login, Assembly-CSharp
+      - m_Target: {fileID: 28689683}
+        m_TargetAssemblyTypeName: UIHandler, Assembly-CSharp
         m_MethodName: ClosePanelButton
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1262,7 +1265,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 398455595}
-  - component: {fileID: 398455597}
+  - component: {fileID: 398455598}
   m_Layer: 0
   m_Name: Login
   m_TagString: Untagged
@@ -1285,7 +1288,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &398455597
+--- !u!114 &398455598
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1294,12 +1297,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 398455594}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1157de1349d923943abaf98ece2630d0, type: 3}
+  m_Script: {fileID: 11500000, guid: bbdd13d7fe04a4c498496ebca11f10b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   databaseBuilder: {fileID: 576309070}
-  WrongPanel: {fileID: 725475002}
-  SuccessPanel: {fileID: 1966581728}
   UsernameField: {fileID: 113438152}
   PasswordField: {fileID: 779927779}
 --- !u!1 &509174263
@@ -1464,7 +1465,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 576309069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e8a00b2d99cb244aaad9aaf524f2da, type: 3}
+  m_Script: {fileID: 11500000, guid: bfc65404c45857e4cb9c659cdbca56c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   databaseName: existing.db
@@ -1631,7 +1632,7 @@ GameObject:
   - component: {fileID: 713165114}
   - component: {fileID: 713165113}
   m_Layer: 0
-  m_Name: StatsText
+  m_Name: WrongText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2070,8 +2071,8 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -2524,7 +2525,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 66240159}
+      - m_Target: {fileID: 28689683}
         m_TargetAssemblyTypeName: UIHandler, Assembly-CSharp
         m_MethodName: ExitGame
         m_Mode: 1
@@ -2556,7 +2557,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -9118310139287289446, guid: 635e4a18ca9486244bb27c755f6328e1, type: 3}
+  m_Sprite: {fileID: -9118310139287289446, guid: b1f762fb31a96ca4cb4d23dfeb927f5c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3228,14 +3229,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 398455597}
-        m_TargetAssemblyTypeName: Login, Assembly-CSharp
+      - m_Target: {fileID: 28689683}
+        m_TargetAssemblyTypeName: UIHandler, Assembly-CSharp
         m_MethodName: ClosePanelButton
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: Menu
           m_BoolArgument: 0
@@ -3617,14 +3618,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 398455597}
-        m_TargetAssemblyTypeName: Login, Assembly-CSharp
-        m_MethodName: ClosePanelButton
-        m_Mode: 3
+      - m_Target: {fileID: 28689683}
+        m_TargetAssemblyTypeName: UIHandler, Assembly-CSharp
+        m_MethodName: LoginSuccessOkButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3724,7 +3725,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7577567188110096667, guid: 2963e3263ee9f5e45a97024dd0da68b7, type: 3}
+  m_Sprite: {fileID: -1955448553306655712, guid: 5d938ccbd64a54949b0752ed90e91ecf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4099,7 +4100,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 66240159}
+      - m_Target: {fileID: 28689683}
         m_TargetAssemblyTypeName: UIHandler, Assembly-CSharp
         m_MethodName: BackToMenu
         m_Mode: 5
@@ -4880,9 +4881,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 398455597}
-        m_TargetAssemblyTypeName: Login, Assembly-CSharp
-        m_MethodName: BotaoJogar
+      - m_Target: {fileID: 28689683}
+        m_TargetAssemblyTypeName: UIHandler, Assembly-CSharp
+        m_MethodName: PlayGameButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5325,6 +5326,6 @@ SceneRoots:
   - {fileID: 1086886910}
   - {fileID: 752281702}
   - {fileID: 997398004}
-  - {fileID: 66240158}
   - {fileID: 398455595}
   - {fileID: 576309071}
+  - {fileID: 28689684}
