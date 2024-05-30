@@ -1,5 +1,5 @@
-using Photon.Realtime;
 using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     string[] unsolvedWord;
     
     [Header("Letters")]
+    [Space]
     public GameObject letterPrefab;
     public Transform letterHolder;
     List<TMP_Text> letterHolderList = new List<TMP_Text>();
@@ -26,10 +27,14 @@ public class GameManager : MonoBehaviourPunCallbacks
     public TMP_Text categoryText;
 
     [Header("Timer")]
+    [Space]
     public TMP_Text timerText;
+    public TMP_Text playerTurnText;
     int playTime;
+    int maxTurnTime = 15;
 
     [Header("Hints")]
+    [Space]
     public int maxHints = 3;
 
     [Header("Mistakes")]
@@ -41,12 +46,25 @@ public class GameManager : MonoBehaviourPunCallbacks
     int currentMistakes;
 
     private bool gameOver;
+    private Coroutine timerCoroutine;
 
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        TurnManager.OnTurnChanged += () => UpdateTurnUI();
     }
+
 
     // Start is called before the first frame update
     private void Start()
@@ -54,11 +72,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         maxMistakes = petalList.Length;
         Initialize();
         StartCoroutine(Timer());
-
-        if (PhotonNetwork.IsConnectedAndReady)
-        {
-            StartCoroutine(TimerSync());
-        }
     }
 
 
@@ -67,6 +80,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient || !PhotonNetwork.IsConnectedAndReady)
         {
             SetInitialWord();
+            Timer();
         }
     }
     
@@ -176,18 +190,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
 
-    private IEnumerator TimerSync()
+    private void ResetAndSyncTimer()
     {
-        while (!gameOver)
-        {
-            // Check if it is the master client (host) before sending updates
-            if (PhotonNetwork.IsMasterClient && photonView != null)
-            {
-                photonView.RPC("SyncTime", RpcTarget.AllBuffered, playTime);
-            }
-
-            yield return new WaitForSeconds(1f); // Update every second
-        }
+        playTime = maxTurnTime;
+        UpdateTimerUI(playTime);
+        photonView.RPC("SyncTime", RpcTarget.AllBuffered, playTime);
     }
 
 
@@ -198,17 +205,14 @@ public class GameManager : MonoBehaviourPunCallbacks
         playTime = time;
 
         // Update the time counter on the user interface
-        UpdateTimerUI();
+        UpdateTimerUI(playTime);
     }
 
 
-    private void UpdateTimerUI()
+    private void UpdateTimerUI(int seconds)
     {
-        int seconds = playTime % 60;
-        int minutes = playTime / 60 % 60;
-        timerText.text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
+        timerText.text = seconds.ToString("D2");
     }
-
 
 
     private void SetInitialWord()
@@ -284,6 +288,58 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
                 letterHolderList.Add(letterText);
             }
+        }
+    }
+
+
+    [PunRPC]
+    private void SyncPlayerNickname(string newNickname)
+    {
+        playerTurnText.text = "Vez do Jogador: " + newNickname;
+
+
+    }
+
+
+    public void UpdateTurnUI()
+    {
+        int currentTurnActorNumber = TurnManager.instance.GetCurrentPlayer();
+        Player currentPlayer = PhotonNetwork.CurrentRoom.GetPlayer(currentTurnActorNumber);
+        if (currentPlayer != null)
+        {
+            photonView.RPC("SyncPlayerNickname", RpcTarget.AllBuffered, currentPlayer.NickName);
+        }
+    }
+
+
+    [PunRPC]
+    private void SyncGameOver()
+    {
+        if (TurnManager.instance.IsMyTurn())
+        {
+            playerTurnText.gameObject.SetActive(false);
+            UIHandler.instance.WinCondition(playTime);
+        }
+        else
+        {
+            playerTurnText.gameObject.SetActive(false);
+            UIHandler.instance.LoseCondition(playTime);
+        }
+    }
+
+
+    [PunRPC]
+    private void SyncGameOverLose()
+    {
+        if (!TurnManager.instance.IsMyTurn())
+        {
+            playerTurnText.gameObject.SetActive(false);
+            UIHandler.instance.WinCondition(playTime);
+        }
+        else
+        {
+            playerTurnText.gameObject.SetActive(false);
+            UIHandler.instance.LoseCondition(playTime);
         }
     }
 

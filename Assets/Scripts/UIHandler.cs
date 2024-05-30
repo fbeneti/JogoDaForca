@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
+
 
 public class UIHandler : MonoBehaviour
 {
@@ -85,10 +86,10 @@ public class UIHandler : MonoBehaviour
     {
         List<int> statsList = saveFile.GetStats();
         statsText.text =
-            "N� de Vit�rias:    " + statsList[0] + "\n" +
-            "N� de Derrotas:    " + statsList[1] + "\n" +
+            "No de Vitórias:    " + statsList[0] + "\n" +
+            "No de Derrotas:    " + statsList[1] + "\n" +
             "Total de Jogos:    " + statsList[3] + "\n" +
-            "Taxa de Vit�ria:   " + statsList[2] + "% \n" +
+            "Taxa de Vitória:   " + statsList[2] + "% \n" +
             "Menor Tempo:       " + statsList[4] + "segundos \n";
     }
 

@@ -1,11 +1,10 @@
+using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
-using Photon.Realtime;
 using UnityEngine.UI;
 using Unity.Mathematics;
-
 
 
 public class Conn : MonoBehaviourPunCallbacks
@@ -21,13 +20,11 @@ public class Conn : MonoBehaviourPunCallbacks
     private GameObject jogador;
 
 
-
-
     void Start()
     {
 
-
     }
+
 
     public void Login()
     {
@@ -38,9 +35,13 @@ public class Conn : MonoBehaviourPunCallbacks
         painelS.SetActive(true);
     }
 
+
     public void CriarSala()
     {
-        PhotonNetwork.JoinOrCreateRoom(nomeSala.text, new RoomOptions(), TypedLobby.Default);
+        if (PhotonNetwork.IsConnected && PhotonNetwork.InLobby)
+            PhotonNetwork.JoinOrCreateRoom(nomeSala.text, new RoomOptions(), TypedLobby.Default);
+        else
+            Debug.LogError("O cliente Photon não está pronto para operações. Aguardando conexão...");
     }
 
 
@@ -50,21 +51,22 @@ public class Conn : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinLobby();  // Entrar no Lobby
     }
 
+
     public override void OnJoinedLobby()
     {
         Debug.Log("Conectado");
-
     }
+
+
     public override void OnDisconnected(DisconnectCause cause) // verificar se esta disconectado
     {
         Debug.Log("Conexão perdida");
     }
 
+
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-
         Debug.Log("Não entrou em nenhuma sala");  //se nao estiver nenhuma sala
-
     }
 
     private bool aguardandoSegundoJogador = false;
@@ -93,28 +95,26 @@ public class Conn : MonoBehaviourPunCallbacks
             PhotonNetwork.Instantiate("Player", posicaoSegundoJogador, Quaternion.identity, 0);
         }
         StartCoroutine(IniciarJogo());
-
-
-
     }
-        private IEnumerator IniciarJogo()
+
+
+    private IEnumerator IniciarJogo()
+    {
+        // Aguarda até que o segundo jogador entre na sala
+        while (PhotonNetwork.CurrentRoom.PlayerCount < 2)
         {
-            // Aguarda até que o segundo jogador entre na sala
-            while (PhotonNetwork.CurrentRoom.PlayerCount < 2)
-            {
-                Debug.Log("Aguardando Segundo Jogador");
-                yield return null;
-            }
-
-            // Quando o segundo jogador entrar na sala, aguarda 10 segundos antes de iniciar o jogo
-            if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
-            {
-                yield return new WaitForSeconds(5f);
-
-                // Inicia o jogo e carrega a cena "Game"
-                Debug.Log("Iniciando o jogo e carregando a cena 'Game'...");
-                PhotonNetwork.LoadLevel("Game");
-            }
+            Debug.Log("Aguardando Segundo Jogador");
+            yield return null;
         }
-    
+
+        // Quando o segundo jogador entrar na sala, aguarda 10 segundos antes de iniciar o jogo
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        {
+            yield return new WaitForSeconds(5f);
+
+            // Inicia o jogo e carrega a cena "Game"
+            Debug.Log("Iniciando o jogo e carregando a cena 'Game'...");
+            PhotonNetwork.LoadLevel("Game");
+        }
+    }
 }

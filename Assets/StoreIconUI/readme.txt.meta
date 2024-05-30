@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c2f02ce71d5d19846ab44480119f111c
+timeCreated: 1532615625
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 124152
+  packageName: StoreIconUI
+  packageVersion: 1.0
+  assetPath: Assets/StoreIconUI/readme.txt
+  uploadId: 257798

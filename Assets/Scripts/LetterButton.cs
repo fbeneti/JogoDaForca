@@ -16,9 +16,17 @@ public class LetterButton : MonoBehaviour
     //BUTTON INPUT OR HINT
     public void Sendletter(bool isThatAHint)
     {
-        Debug.Log("My letter is: " + letter);
-        GameManager.instance.InputFromButton(letter, isThatAHint);
-        ButtonCreator.instance.RemoveLetter(this);
-        GetComponent<Button>().interactable = false;
+        if (TurnManager.instance.IsMyTurn())
+        {
+            Debug.Log("My letter is: " + letter);
+            GameManager.instance.InputFromButton(letter, isThatAHint);
+            ButtonCreator.instance.RemoveLetter(this);
+            GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            return;
+
+        }
     }
 }
