@@ -23,6 +23,7 @@ public class TurnManager : MonoBehaviourPunCallbacks
         else
         {
             Destroy(gameObject);
+            return;
         }
     }
 

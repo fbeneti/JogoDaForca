@@ -18,27 +18,31 @@ public class GameManager : MonoBehaviourPunCallbacks
     string[] unsolvedWord;
     
     [Header("Letters")]
-    [Space]
     public GameObject letterPrefab;
     public Transform letterHolder;
     List<TMP_Text> letterHolderList = new List<TMP_Text>();
 
+    [Space]
     [Header("Categories")]
     public TMP_Text categoryText;
 
-    [Header("Timer")]
     [Space]
+    [Header("Dificulties")]
+    public TMP_Text difficultyText;
+
+    [Space]
+    [Header("Timer")]
     public TMP_Text timerText;
     public TMP_Text playerTurnText;
     int playTime;
     int maxTurnTime = 15;
 
-    [Header("Hints")]
     [Space]
+    [Header("Free Hints")]
     public int maxHints = 3;
 
-    [Header("Mistakes")]
     [Space]
+    [Header("Mistakes")]
     public Animator[] petalList;
 
     [SerializeField]
@@ -87,8 +91,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     
     public void InputFromButton(string requestedLetter, bool isThatAHint)
     {
-        // check if the game is not over yet
-
         // Search mechanic for solved list
         CheckLetter(requestedLetter, isThatAHint);
     }
@@ -100,6 +102,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             return;
         }
+
+//        if (!TurnManager.instance.IsMyTurn() && PhotonNetwork.IsConnectedAndReady)
+//        {
+//            return;
+//        }
 
         bool letterFound = false;
         string normalizedRequestedLetter = RemoveAccents(requestedLetter.ToLower());
@@ -243,7 +250,23 @@ public class GameManager : MonoBehaviourPunCallbacks
         //Pick a word from the list
         int wIndex = Random.Range(0, words.Count);
         string pickedWord = words[wIndex]["Nome"];
+        int difficultyId = int.Parse(words[wIndex]["Dificuldade"]);
         Debug.Log("Palavra: " + pickedWord);
+
+        //Load dificulty with the selected Id
+        List<Dictionary<string, string>> difficulties = databaseBuilder.ReadTable("Dificulties", $"Id = {difficultyId}");
+        if (difficulties.Count == 0)
+        {
+            Debug.LogError("Nenhuma dificuldade encontrada para o Id selecionado.");
+            return;
+        }
+
+        //Pick a dificulty from the list
+        int dIndex = Random.Range(0, difficulties.Count);
+        var selectedDifficulty = difficulties[dIndex];
+        string difficultyName = selectedDifficulty["Dificuldade"];
+        difficultyText.text = CapitalizeFirstLetter(difficultyName);
+        Debug.Log($"Dificuldade: {difficultyText.text}");
 
         if (PhotonNetwork.IsConnectedAndReady)
         {
@@ -262,8 +285,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.Log($"SyncInitialWord called with categoryName: {categoryName} and pickedWord: {pickedWord}");
 
         categoryText.text = CapitalizeFirstLetter(categoryName);
-        Debug.Log($"Formatted categoryName: {categoryText.text}");
+        Debug.Log($"Categoria: {categoryText.text}");
 
+        pickedWord = pickedWord.ToUpper();
         string[] splittedWord = pickedWord.Select(l => l.ToString()).ToArray();
         unsolvedWord = new string[splittedWord.Length];
         solvedList = new List<string>(splittedWord);

@@ -76,7 +76,7 @@ public class ButtonCreator : MonoBehaviour
     {
         if (GameManager.instance.GameOver() || GameManager.instance.maxHints <= 0)
         {
-            Debug.Log("Voc� n�o tem mais dicas!");
+            Debug.Log("Voce não tem mais dicas!");
             return;
         }
 
