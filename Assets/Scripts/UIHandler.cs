@@ -1,3 +1,5 @@
+using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,13 +7,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class UIHandler : MonoBehaviour
+public class UIHandler : MonoBehaviourPun
 {
     public static UIHandler instance;
     private Login login;
     private Register register;
     private bool loginSuccess = false;  
 
+    [Header("PANELS")]
     public Animator GameOverPanel;  //ID 1
     public Animator SettingsPanel;  //ID 2
     public Animator StatsPanel;     //ID 3
@@ -21,7 +24,6 @@ public class UIHandler : MonoBehaviour
     public Animator SuccessPanel;   //ID 6
     public Animator WarningPanel;   //ID 7
     public TMP_Text WarningText;    //Texto do painel
-    
 
     [Header("STATS")]
     public TMP_Text statsText;
@@ -62,7 +64,7 @@ public class UIHandler : MonoBehaviour
     //Go to check login. If thats OK, enter the game
     public void PlayGameButton()
     {
-        login.CheckPlayerLogin();
+        Login.instance.CheckPlayerLogin();
     }
 
 
@@ -77,7 +79,7 @@ public class UIHandler : MonoBehaviour
     {
         if (loginSuccess)
         { 
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("4-Menu");
         }
     }
 
@@ -91,6 +93,35 @@ public class UIHandler : MonoBehaviour
             "Total de Jogos:    " + statsList[3] + "\n" +
             "Taxa de Vitória:   " + statsList[2] + "% \n" +
             "Menor Tempo:       " + statsList[4] + "segundos \n";
+    }
+
+
+        public void ClosePanelButton(int buttonId)
+    {
+        switch(buttonId)
+        {
+            case 1:
+                GameOverPanel.SetTrigger("close");
+                break;
+            case 2:
+                SettingsPanel.SetTrigger("close");
+                break;
+            case 3:
+                StatsPanel.SetTrigger("close");
+                break;
+            case 4:
+                WinPanel.SetTrigger("close");
+                break;
+            case 5:
+                WrongPanel.SetTrigger("close");
+                break;
+            case 6:
+                SuccessPanel.SetTrigger("close");
+                break;
+            case 7:
+                WarningPanel.SetTrigger("close");
+                break;
+        }
     }
 
 
@@ -147,42 +178,33 @@ public class UIHandler : MonoBehaviour
 
     public void RestartGame()
     {
-        //RELOAD THE CURRENT OPEN SCENE
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // Check if PhotonView are found and log a message
+        if (photonView != null)
+        {
+            Debug.Log("PhotonView encontrado. Enviando RPC para reiniciar o jogo para todos os jogadores.");
+            photonView.RPC("RPC_RestartGame", RpcTarget.All);
+        }
+        else
+        {
+            Debug.LogError("PhotonView não encontrado! Certifique-se de que o componente PhotonView está anexado ao objeto.");
+            //Reload the current open scene
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
+
+    [PunRPC]
+    public IEnumerator RPC_RestartGame()
+    {
+        Debug.Log("RPC_RestartGame chamado. Recarregando a cena.");
+        yield return new WaitForSeconds(1f);
+        // Adiciona um atraso de 1 segundo
+        SceneManager.LoadScene("Game");
     }
 
 
     public void ExitGame()
     {
         Application.Quit();
-    }
-
-
-        public void ClosePanelButton(int buttonId)
-    {
-        switch(buttonId)
-        {
-            case 1:
-                GameOverPanel.SetTrigger("close");
-                break;
-            case 2:
-                SettingsPanel.SetTrigger("close");
-                break;
-            case 3:
-                StatsPanel.SetTrigger("close");
-                break;
-            case 4:
-                WinPanel.SetTrigger("close");
-                break;
-            case 5:
-                WrongPanel.SetTrigger("close");
-                break;
-            case 6:
-                SuccessPanel.SetTrigger("close");
-                break;
-            case 7:
-                WarningPanel.SetTrigger("close");
-                break;
-        }
     }
 }

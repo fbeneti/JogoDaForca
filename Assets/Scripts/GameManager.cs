@@ -17,29 +17,31 @@ public class GameManager : MonoBehaviourPunCallbacks
     List<string> solvedList = new List<string>();
     string[] unsolvedWord;
     
-    [Header("Letters")]
-    public GameObject letterPrefab;
-    public Transform letterHolder;
-    List<TMP_Text> letterHolderList = new List<TMP_Text>();
-
-    [Space]
-    [Header("Categories")]
-    public TMP_Text categoryText;
-
     [Space]
     [Header("Dificulties")]
     public TMP_Text difficultyText;
 
     [Space]
+    [Header("Categories")]
+    public TMP_Text categoryText;
+
+    [Header("Letters")]
+    public GameObject keyboardSection;
+    public GameObject letterPrefab;
+    public Transform letterHolder;
+    List<TMP_Text> letterHolderList = new List<TMP_Text>();
+
+    [Space]
     [Header("Timer")]
     public TMP_Text timerText;
     public TMP_Text playerTurnText;
+    public TMP_Text feedbackText;
     int playTime;
     int maxTurnTime = 15;
 
     [Space]
     [Header("Free Hints")]
-    public int maxHints = 3;
+    public int maxHints = 1;
 
     [Space]
     [Header("Mistakes")]
@@ -81,7 +83,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void Initialize()
     {
-        if (PhotonNetwork.IsMasterClient || !PhotonNetwork.IsConnectedAndReady)
+        if (PhotonNetwork.IsMasterClient)
         {
             SetInitialWord();
             Timer();
@@ -98,17 +100,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void CheckLetter(string requestedLetter, bool isThatAHint)
     {
-        if (gameOver)
-        {
-            return;
-        }
-
-//        if (!TurnManager.instance.IsMyTurn() && PhotonNetwork.IsConnectedAndReady)
-//        {
-//            return;
-//        }
+        if (gameOver) return;
 
         bool letterFound = false;
+
+        // remove accents from the word
         string normalizedRequestedLetter = RemoveAccents(requestedLetter.ToLower());
 
         // find the letter in the solved list
@@ -126,33 +122,40 @@ public class GameManager : MonoBehaviourPunCallbacks
                 letterHolderList[i].text = solvedList[i];
                 unsolvedWord[i] = solvedList[i];
                 letterFound = true;
+                string hitMessage = PhotonNetwork.LocalPlayer.NickName + " Acertou!";
+                photonView.RPC("ShowFeedbackMessage", RpcTarget.All, hitMessage);
+                ResetAndSyncTimer();
             }
         }
-
 
         if (!letterFound && !isThatAHint)
         {
             //Mistake stuff - Graphical representation
             petalList[currentMistakes].SetTrigger("miss");
             currentMistakes++;
+            string mistakeMessage = PhotonNetwork.LocalPlayer.NickName + " errou!";
+            photonView.RPC("ShowFeedbackMessage", RpcTarget.All, mistakeMessage);
 
             if (currentMistakes == maxMistakes)
             {
                 //Do game over
-                UIHandler.instance.LoseCondition(playTime);
+                photonView.RPC("SyncGameOverLose", RpcTarget.All);
                 gameOver = true;
                 return;
             }
+
+            TurnManager.instance.EndTurn();
+            ResetAndSyncTimer();
         }
 
         //Check if game won
-        gameOver = CheckIfWon();
-        if (gameOver)
+        if (!gameOver && CheckIfWon())
         {
-            // SHOW UI
-            UIHandler.instance.WinCondition(playTime);
+            gameOver = true;
+            photonView.RPC("SyncGameOver", RpcTarget.All);
         }
     }
+
 
     private bool CheckIfWon()
     {
@@ -176,23 +179,23 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private IEnumerator Timer()
     {
-        int seconds = 0;
-        int minutes = 0;
-        timerText.text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
+        playTime = maxTurnTime;
+        UpdateTimerUI(playTime);
 
-        // Wait for 5 seconds before starting the timer
         yield return new WaitForSeconds(5);
 
-        // Start the timer after 5 seconds
         while (!gameOver)
         {
-            yield return new WaitForSeconds(1);
-            playTime++;
-
-            seconds = playTime % 60;
-            minutes = playTime / 60 % 60;
-
-            timerText.text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
+            yield return new WaitForSeconds(1f);
+            playTime--;
+            UpdateTimerUI(playTime);
+            if (playTime <= 0)
+            {
+                string timeMessage = PhotonNetwork.LocalPlayer.NickName + " Acabou o tempo!";
+                photonView.RPC("ShowFeedbackMessage", RpcTarget.All, timeMessage);
+                TurnManager.instance.EndTurn();
+                ResetAndSyncTimer();
+            }
         }
     }
 
@@ -268,29 +271,26 @@ public class GameManager : MonoBehaviourPunCallbacks
         difficultyText.text = CapitalizeFirstLetter(difficultyName);
         Debug.Log($"Dificuldade: {difficultyText.text}");
 
-        if (PhotonNetwork.IsConnectedAndReady)
-        {
-            photonView.RPC("SyncInitialWord", RpcTarget.AllBuffered, categoryName, pickedWord);
-        }
-        else
-        {
-            SyncInitialWord(categoryName, pickedWord);
-        }
+        photonView.RPC("SyncInitialWord", RpcTarget.AllBuffered, difficultyName, categoryName, pickedWord);
     }
 
 
     [PunRPC]
-    private void SyncInitialWord(string categoryName, string pickedWord)
+    private void SyncInitialWord(string difficultyName, string categoryName, string pickedWord)
     {
-        Debug.Log($"SyncInitialWord called with categoryName: {categoryName} and pickedWord: {pickedWord}");
-
+        difficultyText.text = CapitalizeFirstLetter(difficultyName);
         categoryText.text = CapitalizeFirstLetter(categoryName);
-        Debug.Log($"Categoria: {categoryText.text}");
-
         pickedWord = pickedWord.ToUpper();
         string[] splittedWord = pickedWord.Select(l => l.ToString()).ToArray();
         unsolvedWord = new string[splittedWord.Length];
         solvedList = new List<string>(splittedWord);
+
+        // Clear letters list to avoid memory leak
+        foreach (var letter in letterHolderList)
+        {
+            Destroy(letter.gameObject);
+        }
+        letterHolderList.Clear();
 
         //Create the Visual
         for (int i = 0; i < solvedList.Count; i++)
@@ -320,8 +320,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     private void SyncPlayerNickname(string newNickname)
     {
         playerTurnText.text = "Vez do Jogador: " + newNickname;
-
-
     }
 
 
@@ -342,11 +340,15 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (TurnManager.instance.IsMyTurn())
         {
             playerTurnText.gameObject.SetActive(false);
+            feedbackText.gameObject.SetActive(false);
+            keyboardSection.gameObject.SetActive(false);
             UIHandler.instance.WinCondition(playTime);
         }
         else
         {
             playerTurnText.gameObject.SetActive(false);
+            feedbackText.gameObject.SetActive(false);
+            keyboardSection.gameObject.SetActive(false);
             UIHandler.instance.LoseCondition(playTime);
         }
     }
@@ -358,15 +360,26 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (!TurnManager.instance.IsMyTurn())
         {
             playerTurnText.gameObject.SetActive(false);
+            feedbackText.gameObject.SetActive(false);
+            keyboardSection.gameObject.SetActive(false);
             UIHandler.instance.WinCondition(playTime);
         }
         else
         {
             playerTurnText.gameObject.SetActive(false);
+            feedbackText.gameObject.SetActive(false);
+            keyboardSection.gameObject.SetActive(false);
             UIHandler.instance.LoseCondition(playTime);
         }
     }
 
+
+    [PunRPC]
+    private void ShowFeedbackMessage(string message)
+    {
+        feedbackText.text = message;
+    }
+    
 
     public string CapitalizeFirstLetter(string input)
     {
@@ -400,3 +413,25 @@ public class GameManager : MonoBehaviourPunCallbacks
         return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
     }
 }
+
+    //private IEnumerator TotalGameTimer()
+    //{
+    //    int seconds = 0;
+    //    int minutes = 0;
+    //    timerText.text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
+
+        // Wait for 5 seconds before starting the timer
+    //    yield return new WaitForSeconds(5);
+
+        // Start the timer after 5 seconds
+    //    while (!gameOver)
+    //    {
+    //        yield return new WaitForSeconds(1);
+    //        playTime++;
+
+    //        seconds = playTime % 60;
+    //        minutes = playTime / 60 % 60;
+
+    //        timerText.text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
+    //    }
+    //}

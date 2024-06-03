@@ -15,7 +15,7 @@ public class Conn : MonoBehaviourPunCallbacks
     [SerializeField]
     private InputField nomeJogador, nomeSala;
     [SerializeField]
-    private Text txtNick;
+    public Text txtNick;
     [SerializeField]
     private GameObject jogador;
 
@@ -69,7 +69,9 @@ public class Conn : MonoBehaviourPunCallbacks
         Debug.Log("Não entrou em nenhuma sala");  //se nao estiver nenhuma sala
     }
 
+
     private bool aguardandoSegundoJogador = false;
+
 
     public override void OnJoinedRoom()
     {
@@ -114,7 +116,7 @@ public class Conn : MonoBehaviourPunCallbacks
 
             // Inicia o jogo e carrega a cena "Game"
             Debug.Log("Iniciando o jogo e carregando a cena 'Game'...");
-            PhotonNetwork.LoadLevel("Game");
+            PhotonNetwork.LoadLevel("6-Game");
         }
     }
 }

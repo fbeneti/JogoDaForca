@@ -1,17 +1,18 @@
-using UnityEngine;
+using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Realtime;
-using ExitGames.Client.Photon;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
+
 
 public class TurnManager : MonoBehaviourPunCallbacks
 {
     public static TurnManager instance;
-
     public delegate void TurnAction();
     public static event TurnAction OnTurnChanged;
+
 
     private void Awake()
     {
@@ -23,9 +24,9 @@ public class TurnManager : MonoBehaviourPunCallbacks
         else
         {
             Destroy(gameObject);
-            return;
         }
     }
+
 
     private void Start()
     {
@@ -34,6 +35,7 @@ public class TurnManager : MonoBehaviourPunCallbacks
             SetInitialTurn();
         }
     }
+
 
     private void SetInitialTurn()
     {
@@ -52,6 +54,7 @@ public class TurnManager : MonoBehaviourPunCallbacks
         photonView.RPC("UpdateTurnUIRPC", RpcTarget.All);
     }
 
+
     public void EndTurn()
     {
         int nextPlayer = GetNextPlayer();
@@ -65,12 +68,14 @@ public class TurnManager : MonoBehaviourPunCallbacks
         StartCoroutine(DelayedUIUpdate());
     }
 
+
     // Método para aguardar um curto atraso antes de chamar a atualização da UI
     private IEnumerator DelayedUIUpdate()
     {
         yield return new WaitForSeconds(0.5f); // Aguarda 0.5 segundos para garantir a sincronização
         photonView.RPC("UpdateTurnUIRPC", RpcTarget.All);
     }
+
 
     private int GetNextPlayer()
     {
@@ -80,6 +85,7 @@ public class TurnManager : MonoBehaviourPunCallbacks
         return nextPlayer.ActorNumber;
     }
 
+
     private Player GetNextPlayerInRoom(Player currentPlayer)
     {
         Player[] players = PhotonNetwork.PlayerList;
@@ -88,20 +94,29 @@ public class TurnManager : MonoBehaviourPunCallbacks
         return players[nextIndex];
     }
 
+
     public int GetCurrentPlayer()
     {
         return (int)PhotonNetwork.CurrentRoom.CustomProperties["CurrentTurn"];
     }
+
 
     public bool IsMyTurn()
     {
         return PhotonNetwork.LocalPlayer.ActorNumber == GetCurrentPlayer();
     }
 
+
     [PunRPC]
-    private void UpdateTurnUIRPC()
+    public void UpdateTurnUIRPC()
     {
-        OnTurnChanged?.Invoke();
-        GameManager.instance.UpdateTurnUI();
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.UpdateTurnUI();
+        }
+        else
+        {
+            Debug.LogWarning("GameManager não encontrado para atualização de UI de turno.");
+        }
     }
 }

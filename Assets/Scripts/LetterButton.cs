@@ -14,12 +14,20 @@ public class LetterButton : MonoBehaviour
     }
 
 
-    //BUTTON INPUT OR HINT
+    //Button input or Hint
     public void Sendletter(bool isThatAHint)
     {
-        Debug.Log("My letter is: " + letter);
-        GameManager.instance.InputFromButton(letter, isThatAHint);
-        ButtonCreator.instance.RemoveLetter(this);
-        GetComponent<Button>().interactable = false;
+        //Check if thats the player's turn
+        if (TurnManager.instance.IsMyTurn())
+        {
+            Debug.Log("My letter is: " + letter);
+            GameManager.instance.InputFromButton(letter, isThatAHint);
+            ButtonCreator.instance.RemoveLetter(this);
+            GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            return;
+        }
     }
 }
