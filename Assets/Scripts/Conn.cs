@@ -10,14 +10,23 @@ using Unity.Mathematics;
 public class Conn : MonoBehaviourPunCallbacks
 
 {
+    public static Conn instance;
+
     [SerializeField]
-    private GameObject painelL, painelS;
+    private GameObject painelL, painelS, roomPanel, lobbyPanel;
     [SerializeField]
     private InputField nomeJogador, nomeSala;
     [SerializeField]
+    public Text roomName;
     public Text txtNick;
     [SerializeField]
     private GameObject jogador;
+
+
+void Awake()
+    {
+        instance = this;
+    }
 
 
     void Start()
@@ -28,7 +37,7 @@ public class Conn : MonoBehaviourPunCallbacks
 
     public void Login()
     {
-        PhotonNetwork.NickName = nomeJogador.text;
+        PhotonNetwork.NickName = GlobalVariables.playerName;
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.ConnectUsingSettings();
         painelL.SetActive(false);
@@ -36,12 +45,9 @@ public class Conn : MonoBehaviourPunCallbacks
     }
 
 
-    public void CriarSala()
+    public void CriarSala(InputField nomeSala)
     {
-        if (PhotonNetwork.IsConnected && PhotonNetwork.InLobby)
-            PhotonNetwork.JoinOrCreateRoom(nomeSala.text, new RoomOptions(), TypedLobby.Default);
-        else
-            Debug.LogError("O cliente Photon não está pronto para operações. Aguardando conexão...");
+        PhotonNetwork.CreateRoom(nomeSala.text);
     }
 
 
@@ -58,6 +64,18 @@ public class Conn : MonoBehaviourPunCallbacks
     }
 
 
+    public void JoinRoom(InputField nomeSala)
+    {
+        PhotonNetwork.JoinRoom(nomeSala.text);
+    }
+    
+    
+    public void JoinRandom()
+    {
+        PhotonNetwork.JoinRandomRoom();
+    }
+    
+    
     public override void OnDisconnected(DisconnectCause cause) // verificar se esta disconectado
     {
         Debug.Log("Conexão perdida");
@@ -83,6 +101,9 @@ public class Conn : MonoBehaviourPunCallbacks
         txtNick.text = PhotonNetwork.NickName;
 
         painelS.SetActive(false);
+        lobbyPanel.SetActive(false);
+        roomPanel.SetActive(true);
+        roomName.text = "Nome da Sala: " + PhotonNetwork.CurrentRoom.Name;
 
         if (PhotonNetwork.IsMasterClient)
         {
@@ -116,7 +137,7 @@ public class Conn : MonoBehaviourPunCallbacks
 
             // Inicia o jogo e carrega a cena "Game"
             Debug.Log("Iniciando o jogo e carregando a cena 'Game'...");
-            PhotonNetwork.LoadLevel("6-Game");
+            PhotonNetwork.LoadLevel("7-Game");
         }
     }
 }

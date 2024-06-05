@@ -41,6 +41,11 @@ public class Login : MonoBehaviour
             if (currentPlayer.ContainsKey("Password") && currentPlayer["Password"] == password)
             {
                 Debug.Log("Usuário logado com sucesso!");
+                GlobalVariables.playerName = username;
+                GlobalVariables.playerAvatar = int.Parse(currentPlayer["Avatar"]);
+                GlobalVariables.playerVictories = int.Parse(currentPlayer["Victories"]);
+                GlobalVariables.playerLosses = int.Parse(currentPlayer["Losses"]);
+                GlobalVariables.playerDiamonds = int.Parse(currentPlayer["Diamonds"]);
                 uiHandler.SuccessCondition();
                 uiHandler.SetLoginSuccess(true);
             }

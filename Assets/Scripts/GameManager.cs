@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 letterFound = true;
                 string hitMessage = PhotonNetwork.LocalPlayer.NickName + " Acertou!";
                 photonView.RPC("ShowFeedbackMessage", RpcTarget.All, hitMessage);
-                ResetAndSyncTimer();
+                
             }
         }
 
@@ -143,9 +143,6 @@ public class GameManager : MonoBehaviourPunCallbacks
                 gameOver = true;
                 return;
             }
-
-            TurnManager.instance.EndTurn();
-            ResetAndSyncTimer();
         }
 
         //Check if game won
@@ -154,6 +151,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             gameOver = true;
             photonView.RPC("SyncGameOver", RpcTarget.All);
         }
+        TurnManager.instance.EndTurn();
+        ResetAndSyncTimer();
     }
 
 

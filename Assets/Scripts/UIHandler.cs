@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 public class UIHandler : MonoBehaviourPun
 {
     public static UIHandler instance;
+    private Conn conn;
     private Login login;
     private Register register;
     private bool loginSuccess = false;  
@@ -25,9 +26,11 @@ public class UIHandler : MonoBehaviourPun
     public Animator WarningPanel;   //ID 7
     public TMP_Text WarningText;    //Texto do painel
 
+    [Space]
     [Header("STATS")]
     public TMP_Text statsText;
     [SerializeField] SCR_BaseStats saveFile;
+  
 
     void Awake()
     {
@@ -37,6 +40,7 @@ public class UIHandler : MonoBehaviourPun
 
     void Start()
     {
+        conn = Conn.instance;
         login = Login.instance;
         register = Register.instance;
         if (statsText != null)
@@ -84,19 +88,7 @@ public class UIHandler : MonoBehaviourPun
     }
 
 
-    void UpdateStatsText()
-    {
-        List<int> statsList = saveFile.GetStats();
-        statsText.text =
-            "No de Vitórias:    " + statsList[0] + "\n" +
-            "No de Derrotas:    " + statsList[1] + "\n" +
-            "Total de Jogos:    " + statsList[3] + "\n" +
-            "Taxa de Vitória:   " + statsList[2] + "% \n" +
-            "Menor Tempo:       " + statsList[4] + "segundos \n";
-    }
-
-
-        public void ClosePanelButton(int buttonId)
+    public void ClosePanelButton(int buttonId)
     {
         switch(buttonId)
         {
@@ -122,6 +114,27 @@ public class UIHandler : MonoBehaviourPun
                 WarningPanel.SetTrigger("close");
                 break;
         }
+    }
+
+
+    public void MultiplayerButton()
+    {
+        PhotonNetwork.NickName = GlobalVariables.playerName;
+        PhotonNetwork.AutomaticallySyncScene = true;
+        PhotonNetwork.ConnectUsingSettings();
+        SceneManager.LoadScene("6-Lobby");
+    }
+    
+    
+    void UpdateStatsText()
+    {
+        List<int> statsList = saveFile.GetStats();
+        statsText.text =
+            "No de Vitórias:    " + statsList[0] + "\n" +
+            "No de Derrotas:    " + statsList[1] + "\n" +
+            "Total de Jogos:    " + statsList[3] + "\n" +
+            "Taxa de Vitória:   " + statsList[2] + "% \n" +
+            "Menor Tempo:       " + statsList[4] + "segundos \n";
     }
 
 
@@ -199,7 +212,7 @@ public class UIHandler : MonoBehaviourPun
         Debug.Log("RPC_RestartGame chamado. Recarregando a cena.");
         yield return new WaitForSeconds(1f);
         // Adiciona um atraso de 1 segundo
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("7-Game");
     }
 
 
