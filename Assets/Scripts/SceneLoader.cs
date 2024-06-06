@@ -10,8 +10,14 @@ public class SceneLoader : MonoBehaviour
     [Space]
     [Header("Player 1")]
     public TMP_Text player1Name;
-    public TMP_Text player1Diamonds;
     public Image player1Avatar;
+    public TMP_Text player1Diamonds;
+    public TMP_Text player1Coins;
+    public TMP_Text player1Hints;
+    public TMP_Text player1ExtraLifes;
+    public TMP_Text player1StealTime;
+    public TMP_Text player1Fogs;
+    
 
     [Space]
     [Header("Player 2")]
@@ -50,6 +56,10 @@ public class SceneLoader : MonoBehaviour
         Debug.Log("Função executada após o carregamento da cena.");
         player1Name.text = GlobalVariables.playerName;
         player1Diamonds.text = GlobalVariables.playerDiamonds.ToString();
+        player1Hints.text = GlobalVariables.playerHints.ToString();
+        player1ExtraLifes.text = GlobalVariables.playerExtraLifes.ToString();
+        player1StealTime.text = GlobalVariables.playerStealTime.ToString();
+        player1Fogs.text = GlobalVariables.playerFogs.ToString();
 
         //Save RectTransform properties
         RectTransform rectTransform = player1Avatar.GetComponent<RectTransform>();

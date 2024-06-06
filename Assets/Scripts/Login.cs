@@ -12,17 +12,33 @@ public class Login : MonoBehaviour
     public TMP_InputField PasswordField;
 
     private UIHandler uiHandler;
+    private bool loginSuccess = false;      // Flag to track if player is logged
+    private bool messageDisplayed = false;  // Flag to track if a message is displayed
 
 
     void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
 
     void Start()
     {
         uiHandler = UIHandler.instance;
+
+        // Adicione os eventos para fechar o painel de mensagem
+        UsernameField.onSelect.AddListener(delegate { OnInputFieldSelect(); });
+        UsernameField.onValueChanged.AddListener(delegate { OnInputFieldEdit(); });
+        PasswordField.onSelect.AddListener(delegate { OnInputFieldSelect(); });
+        PasswordField.onValueChanged.AddListener(delegate { OnInputFieldEdit(); });
     }
 
 
@@ -32,6 +48,12 @@ public class Login : MonoBehaviour
         string password = PasswordField.text;
 
         List<Dictionary<string, string>> players = databaseBuilder.ReadTable("Players", $"Username='{username}'");
+
+        if (loginSuccess)
+        {
+            uiHandler.BackToMenu("4-Menu");
+            return;
+        }
 
         if (players.Count > 0)
         {
@@ -46,21 +68,52 @@ public class Login : MonoBehaviour
                 GlobalVariables.playerVictories = int.Parse(currentPlayer["Victories"]);
                 GlobalVariables.playerLosses = int.Parse(currentPlayer["Losses"]);
                 GlobalVariables.playerDiamonds = int.Parse(currentPlayer["Diamonds"]);
-                uiHandler.SuccessCondition();
+                GlobalVariables.playerCoins = int.Parse(currentPlayer["Coins"]);                
+                GlobalVariables.playerHints = int.Parse(currentPlayer["Hints"]);
+                GlobalVariables.playerExtraLifes = int.Parse(currentPlayer["ExtraLifes"]);
+                GlobalVariables.playerStealTime = int.Parse(currentPlayer["StealTime"]);
+                GlobalVariables.playerFogs = int.Parse(currentPlayer["Fogs"]);
+                uiHandler.MessageCondition("AVISO", "Usuário logado com sucesso!");
                 uiHandler.SetLoginSuccess(true);
+                messageDisplayed = true;
+                loginSuccess = true;
             }
             else
             {
                 Debug.Log("Senha incorreta.");
-                uiHandler.WrongCondition("Senha incorreta");
+                uiHandler.MessageCondition("ATENÇÃO", "Senha incorreta");
                 uiHandler.SetLoginSuccess(false);
+                messageDisplayed = true;
             }
         }
         else
         {
             Debug.Log("Nenhum jogador encontrado com o nome de usuário especificado.");
-            uiHandler.WrongCondition("Nenhum jogador encontrado com o nome de usuário especificado.");
+            uiHandler.MessageCondition("ATENÇÃO", "Nenhum jogador encontrado com o nome de usuário especificado.");
             uiHandler.SetLoginSuccess(false);
+            messageDisplayed = true;
+        }
+    }
+
+
+    void OnInputFieldSelect()
+    {
+        if (messageDisplayed)
+        {
+            // Fecha o painel de mensagem ao selecionar um campo de entrada
+            uiHandler.ClosePanelButton(8);
+            messageDisplayed = false;
+        }
+    }
+
+
+    void OnInputFieldEdit()
+    {
+        if (messageDisplayed)
+        {
+            // Fecha o painel de mensagem ao editar um campo de entrada
+            uiHandler.ClosePanelButton(8);
+            messageDisplayed = false;
         }
     }
 }

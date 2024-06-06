@@ -13,18 +13,22 @@ public class UIHandler : MonoBehaviourPun
     private Conn conn;
     private Login login;
     private Register register;
-    private bool loginSuccess = false;  
+    private bool loginSuccess = false;
+    private bool registerSuccess = false;
 
     [Header("PANELS")]
-    public Animator GameOverPanel;  //ID 1
-    public Animator SettingsPanel;  //ID 2
-    public Animator StatsPanel;     //ID 3
-    public Animator WinPanel;       //ID 4
-    public Animator WrongPanel;     //ID 5
-    public TMP_Text WrongText;      //Texto do painel
-    public Animator SuccessPanel;   //ID 6
-    public Animator WarningPanel;   //ID 7
-    public TMP_Text WarningText;    //Texto do painel
+    public Animator GameOverPanel;       //ID 1
+    public Animator SettingsPanel;       //ID 2
+    public Animator StatsPanel;          //ID 3
+    public Animator WinPanel;            //ID 4
+    public Animator WrongPanel;          //ID 5
+    public TMP_Text WrongText;           //Texto do painel
+    public Animator SuccessPanel;        //ID 6
+    public Animator WarningPanel;        //ID 7
+    public TMP_Text WarningText;         //Texto do painel
+    public Animator MessagePanel;        // ID 8
+    public TMP_Text MessagePanelTitle;   //   Message Title
+    public TMP_Text MessagePanelText;    //   Message Text
 
     [Space]
     [Header("STATS")]
@@ -79,11 +83,19 @@ public class UIHandler : MonoBehaviourPun
     }
 
 
-    public void LoginSuccessOkButton()
+    public void MessagePanelClick()
     {
         if (loginSuccess)
         { 
             SceneManager.LoadScene("4-Menu");
+        }
+        else if (registerSuccess)
+        {
+            SceneManager.LoadScene("2-Login");
+        }
+        else
+        { 
+            MessagePanel.SetTrigger("close");
         }
     }
 
@@ -112,6 +124,9 @@ public class UIHandler : MonoBehaviourPun
                 break;
             case 7:
                 WarningPanel.SetTrigger("close");
+                break;
+            case 8:
+                MessagePanel.SetTrigger("close");
                 break;
         }
     }
@@ -161,11 +176,19 @@ public class UIHandler : MonoBehaviourPun
         WrongText.text = message;
     }
 
-
-    //Open Success Panel
+    //Open Message Panel
     public void SuccessCondition()
     {
         SuccessPanel.SetTrigger("open");
+    }
+
+
+    //Open Message Panel
+    public void MessageCondition(string panelTitle, string message)
+    {
+        MessagePanel.SetTrigger("open");
+        MessagePanelTitle.text = panelTitle;
+        MessagePanelText.text = message;
     }
 
 
@@ -180,6 +203,12 @@ public class UIHandler : MonoBehaviourPun
     public void SetLoginSuccess(bool success)
     {
         loginSuccess = success;
+    }
+
+
+    public void SetRegisterSuccess(bool success)
+    {
+        registerSuccess = success;
     }
 
 

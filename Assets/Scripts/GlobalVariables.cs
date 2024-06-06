@@ -9,4 +9,9 @@ public static class GlobalVariables
     public static int playerVictories;
     public static int playerLosses;
     public static int playerDiamonds;
+    public static int playerCoins;
+    public static int playerHints;
+    public static int playerExtraLifes;
+    public static int playerStealTime;
+    public static int playerFogs;
 }
