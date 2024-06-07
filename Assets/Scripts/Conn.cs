@@ -37,7 +37,7 @@ void Awake()
 
     public void Login()
     {
-        PhotonNetwork.NickName = GlobalVariables.playerName;
+        PhotonNetwork.NickName = GlobalVariables.player1Name;
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.ConnectUsingSettings();
         painelL.SetActive(false);
@@ -76,7 +76,7 @@ void Awake()
     }
     
     
-    public override void OnDisconnected(DisconnectCause cause) // verificar se esta disconectado
+    public override void OnDisconnected(DisconnectCause cause) // verify if is connected
     {
         Debug.Log("Conexão perdida");
     }
@@ -84,7 +84,7 @@ void Awake()
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        Debug.Log("Não entrou em nenhuma sala");  //se nao estiver nenhuma sala
+        Debug.Log("Não entrou em nenhuma sala: " + message);  // if don't find any room
     }
 
 
@@ -121,6 +121,51 @@ void Awake()
     }
 
 
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        base.OnPlayerEnteredRoom(newPlayer);
+
+        Debug.Log("Novo jogador entrou na sala: " + newPlayer.NickName);
+
+        // Apenas o MasterClient deve enviar os dados do Player1 para o Player2
+        if (PhotonNetwork.IsMasterClient)
+        {
+            // Dados do Player1 são enviados para o Player2
+            photonView.RPC("SendPlayer1Data", newPlayer,
+                GlobalVariables.player1Name,
+                GlobalVariables.player1Avatar,
+                GlobalVariables.player1Victories,
+                GlobalVariables.player1Losses,
+                GlobalVariables.player1Diamonds,
+                GlobalVariables.player1Coins,
+                GlobalVariables.player1Hints,
+                GlobalVariables.player1ExtraLifes,
+                GlobalVariables.player1StealTime,
+                GlobalVariables.player1Fogs);
+        }
+    }
+
+    [PunRPC]
+    void SendPlayer1Data(string name, int avatar, int victories, int losses, int diamonds, int coins, int hints, int extraLifes, int stealTime, int fogs)
+    {
+        // Atualiza os dados do Player2 no GlobalVariables
+        GlobalVariables.player2Name = name;
+        GlobalVariables.player2Avatar = avatar;
+        GlobalVariables.player2Victories = victories;
+        GlobalVariables.player2Losses = losses;
+        GlobalVariables.player2Diamonds = diamonds;
+        GlobalVariables.player2Coins = coins;
+        GlobalVariables.player2Hints = hints;
+        GlobalVariables.player2ExtraLifes = extraLifes;
+        GlobalVariables.player2StealTime = stealTime;
+        GlobalVariables.player2Fogs = fogs;
+        
+        Debug.Log("Dados do Player2 recebidos:");
+        Debug.Log("Nome: " + GlobalVariables.player2Name);
+        Debug.Log("Avatar: " + GlobalVariables.player2Avatar);
+    }
+
+
     private IEnumerator IniciarJogo()
     {
         // Aguarda até que o segundo jogador entre na sala
@@ -137,7 +182,7 @@ void Awake()
 
             // Inicia o jogo e carrega a cena "Game"
             Debug.Log("Iniciando o jogo e carregando a cena 'Game'...");
-            PhotonNetwork.LoadLevel("7-Game");
+            PhotonNetwork.LoadLevel("New Scene");
         }
     }
 }

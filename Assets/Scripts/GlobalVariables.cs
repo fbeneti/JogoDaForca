@@ -4,14 +4,25 @@ using UnityEngine;
 
 public static class GlobalVariables
 {
-    public static string playerName;
-    public static int playerAvatar;
-    public static int playerVictories;
-    public static int playerLosses;
-    public static int playerDiamonds;
-    public static int playerCoins;
-    public static int playerHints;
-    public static int playerExtraLifes;
-    public static int playerStealTime;
-    public static int playerFogs;
+    public static string player1Name;
+    public static int player1Avatar;
+    public static int player1Victories;
+    public static int player1Losses;
+    public static int player1Diamonds;
+    public static int player1Coins;
+    public static int player1Hints;
+    public static int player1ExtraLifes;
+    public static int player1StealTime;
+    public static int player1Fogs;
+
+    public static string player2Name;
+    public static int player2Avatar;
+    public static int player2Victories;
+    public static int player2Losses;
+    public static int player2Diamonds;
+    public static int player2Coins;
+    public static int player2Hints;
+    public static int player2ExtraLifes;
+    public static int player2StealTime;
+    public static int player2Fogs;
 }

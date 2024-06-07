@@ -134,7 +134,7 @@ public class UIHandler : MonoBehaviourPun
 
     public void MultiplayerButton()
     {
-        PhotonNetwork.NickName = GlobalVariables.playerName;
+        PhotonNetwork.NickName = GlobalVariables.player1Name;
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.ConnectUsingSettings();
         SceneManager.LoadScene("6-Lobby");

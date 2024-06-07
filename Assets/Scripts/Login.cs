@@ -63,16 +63,16 @@ public class Login : MonoBehaviour
             if (currentPlayer.ContainsKey("Password") && currentPlayer["Password"] == password)
             {
                 Debug.Log("Usuário logado com sucesso!");
-                GlobalVariables.playerName = username;
-                GlobalVariables.playerAvatar = int.Parse(currentPlayer["Avatar"]);
-                GlobalVariables.playerVictories = int.Parse(currentPlayer["Victories"]);
-                GlobalVariables.playerLosses = int.Parse(currentPlayer["Losses"]);
-                GlobalVariables.playerDiamonds = int.Parse(currentPlayer["Diamonds"]);
-                GlobalVariables.playerCoins = int.Parse(currentPlayer["Coins"]);                
-                GlobalVariables.playerHints = int.Parse(currentPlayer["Hints"]);
-                GlobalVariables.playerExtraLifes = int.Parse(currentPlayer["ExtraLifes"]);
-                GlobalVariables.playerStealTime = int.Parse(currentPlayer["StealTime"]);
-                GlobalVariables.playerFogs = int.Parse(currentPlayer["Fogs"]);
+                GlobalVariables.player1Name = username;
+                GlobalVariables.player1Avatar = int.Parse(currentPlayer["Avatar"]);
+                GlobalVariables.player1Victories = int.Parse(currentPlayer["Victories"]);
+                GlobalVariables.player1Losses = int.Parse(currentPlayer["Losses"]);
+                GlobalVariables.player1Diamonds = int.Parse(currentPlayer["Diamonds"]);
+                GlobalVariables.player1Coins = int.Parse(currentPlayer["Coins"]);                
+                GlobalVariables.player1Hints = int.Parse(currentPlayer["Hints"]);
+                GlobalVariables.player1ExtraLifes = int.Parse(currentPlayer["ExtraLifes"]);
+                GlobalVariables.player1StealTime = int.Parse(currentPlayer["StealTime"]);
+                GlobalVariables.player1Fogs = int.Parse(currentPlayer["Fogs"]);
                 uiHandler.MessageCondition("AVISO", "Usuário logado com sucesso!");
                 uiHandler.SetLoginSuccess(true);
                 messageDisplayed = true;

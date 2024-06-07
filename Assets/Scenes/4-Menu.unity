@@ -158,6 +158,9 @@ MonoBehaviour:
   SuccessPanel: {fileID: 0}
   WarningPanel: {fileID: 0}
   WarningText: {fileID: 0}
+  MessagePanel: {fileID: 0}
+  MessagePanelTitle: {fileID: 0}
+  MessagePanelText: {fileID: 0}
   statsText: {fileID: 0}
   saveFile: {fileID: 11400000, guid: c9279facb85698340b4a1d9d86b86d14, type: 2}
 --- !u!4 &28229026
@@ -188,8 +191,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player1Name: {fileID: 1356196283}
-  player1Diamonds: {fileID: 194965825}
   player1Avatar: {fileID: 329686774}
+  player1Diamonds: {fileID: 194965825}
+  player1Coins: {fileID: 1000418564}
+  player1Hints: {fileID: 0}
+  player1ExtraLifes: {fileID: 0}
+  player1StealTime: {fileID: 0}
+  player1Fogs: {fileID: 0}
   player2Name: {fileID: 0}
   player2Avatar: {fileID: 0}
 --- !u!1 &194965822

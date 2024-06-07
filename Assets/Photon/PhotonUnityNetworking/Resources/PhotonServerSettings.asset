@@ -49,6 +49,8 @@ MonoBehaviour:
   - UpdateTurnUIRPC
   - ShowFeedbackMessage
   - RPC_RestartGame
+  - SendPlayer1Data
+  - SyncPlayerData
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
