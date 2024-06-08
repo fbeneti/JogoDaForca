@@ -137,8 +137,8 @@ public class UIHandler : MonoBehaviourPun
     public void ActivateGamePanel(int categoryId)
     {
         // Formatar o categoryId como uma string de 2 dígitos
-        string panelName = $"Panel{categoryId:D2}";
-        string animatorName = $"HangPanel{categoryId:D2}";
+        string panelName = $"HangPanel{categoryId:D2}";
+        string animatorName = $"Panel{categoryId:D2}";
 
         Debug.Log($"Trying to activate panel: {panelName} and animator: {animatorName}");
 
