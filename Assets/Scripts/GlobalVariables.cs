@@ -17,12 +17,4 @@ public static class GlobalVariables
 
     public static string player2Name;
     public static int player2Avatar;
-    public static int player2Victories;
-    public static int player2Losses;
-    public static int player2Diamonds;
-    public static int player2Coins;
-    public static int player2Hints;
-    public static int player2ExtraLifes;
-    public static int player2StealTime;
-    public static int player2Fogs;
 }

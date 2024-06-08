@@ -49,61 +49,67 @@ public class SceneLoader : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("Cena carregada: " + scene.name);
-        AfterSceneLoaded();
+        AfterSceneLoaded(scene.name);
     }
 
 
     // Função para executar após o carregamento da cena
-    private void AfterSceneLoaded()
+    private void AfterSceneLoaded(string sceneName)
     {
         Debug.Log("Carregando dados do Player 1 na tela.");
                 
-        if (player1Name != null) player1Name.text = GlobalVariables.player1Name;
-        else Debug.LogError("Player1 Name is null");
+        if (sceneName == "4-Menu" || sceneName == "New Scene")
+        {
+            if (player1Name != null) player1Name.text = GlobalVariables.player1Name;
+            else Debug.LogError("Player1 Name is null");
+            
+            //Save Player1's avatar RectTransform properties
+            RectTransform rectTransform1 = player1Avatar.GetComponent<RectTransform>();
+            Vector2 originalSizeDelta1 = rectTransform1.sizeDelta;
+            Vector3 originalScale1 = rectTransform1.localScale;
+
+            //Load Player1's avatar image
+            string avatarPlayer1Path = "Avatars/avatar" + GlobalVariables.player1Avatar.ToString("D2");
+            Sprite avatarPlayer1Sprite = Resources.Load<Sprite>(avatarPlayer1Path);
+            Debug.Log("Avatar encontrado em: " + avatarPlayer1Path);
+
+            if (avatarPlayer1Sprite != null)
+            {
+                player1Avatar.sprite = avatarPlayer1Sprite;
+
+                //Apply RectTransform properties
+                rectTransform1.sizeDelta = originalSizeDelta1;
+                rectTransform1.localScale = originalScale1;
+            }
+            else
+            {
+                Debug.LogError("Avatar não encontrado em: " + avatarPlayer1Path);
+            }
+        }
         
-        //Save Player1's avatar RectTransform properties
-        RectTransform rectTransform1 = player1Avatar.GetComponent<RectTransform>();
-        Vector2 originalSizeDelta1 = rectTransform1.sizeDelta;
-        Vector3 originalScale1 = rectTransform1.localScale;
-
-        //Load Player1's avatar image
-        string avatarPlayer1Path = "Avatars/avatar" + GlobalVariables.player1Avatar.ToString("D2");
-        Sprite avatarPlayer1Sprite = Resources.Load<Sprite>(avatarPlayer1Path);
-        Debug.Log("Avatar encontrado em: " + avatarPlayer1Path);
-
-        if (avatarPlayer1Sprite != null)
+        if (sceneName == "New Scene" || sceneName == "5-Store")
         {
-            player1Avatar.sprite = avatarPlayer1Sprite;
+            if (player1Diamonds != null) player1Diamonds.text = GlobalVariables.player1Diamonds.ToString();
+            else Debug.LogError("Player1 Diamonds is null");
 
-            //Apply RectTransform properties
-            rectTransform1.sizeDelta = originalSizeDelta1;
-            rectTransform1.localScale = originalScale1;
-        }
-        else
-        {
-            Debug.LogError("Avatar não encontrado em: " + avatarPlayer1Path);
+            if (player1Coins != null) player1Coins.text = GlobalVariables.player1Coins.ToString();
+            else Debug.LogError("Player1 Coins is null");
+
+            if (player1Hints != null) player1Hints.text = GlobalVariables.player1Hints.ToString();
+            else Debug.LogError("Player1 Hints is null");
+
+            if (player1ExtraLifes != null) player1ExtraLifes.text = GlobalVariables.player1ExtraLifes.ToString();
+            else Debug.LogError("Player1 Extra Lifes is null");
+
+            if (player1StealTime != null) player1StealTime.text = GlobalVariables.player1StealTime.ToString();
+            else Debug.LogError("Player1 Steal Time is null");
+
+            if (player1Fogs != null) player1Fogs.text = GlobalVariables.player1Fogs.ToString();
+            else Debug.LogError("Player1 Fogs is null");
         }
 
-        if (player1Diamonds != null) player1Diamonds.text = GlobalVariables.player1Diamonds.ToString();
-        else Debug.LogError("Player1 Diamonds is null");
-
-        if (player1Coins != null) player1Coins.text = GlobalVariables.player1Coins.ToString();
-        else Debug.LogError("Player1 Coins is null");
-
-        if (player1Hints != null) player1Hints.text = GlobalVariables.player1Hints.ToString();
-        else Debug.LogError("Player1 Hints is null");
-
-        if (player1ExtraLifes != null) player1ExtraLifes.text = GlobalVariables.player1ExtraLifes.ToString();
-        else Debug.LogError("Player1 Extra Lifes is null");
-
-        if (player1StealTime != null) player1StealTime.text = GlobalVariables.player1StealTime.ToString();
-        else Debug.LogError("Player1 Steal Time is null");
-
-        if (player1Fogs != null) player1Fogs.text = GlobalVariables.player1Fogs.ToString();
-        else Debug.LogError("Player1 Fogs is null");
-
-        if (SceneManager.GetActiveScene().name == "New Game")
-        { 
+        if (sceneName == "New Scene")
+        {
             Debug.Log("Carregando dados do Player 2 na tela.");
             if (player2Name != null)
             { 
@@ -135,4 +141,5 @@ public class SceneLoader : MonoBehaviour
             }
         }
     }
+    
 }

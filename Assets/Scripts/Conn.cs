@@ -146,19 +146,11 @@ void Awake()
     }
 
     [PunRPC]
-    void SendPlayer1Data(string name, int avatar, int victories, int losses, int diamonds, int coins, int hints, int extraLifes, int stealTime, int fogs)
+    void SendPlayer1Data(string name, int avatar)
     {
         // Atualiza os dados do Player2 no GlobalVariables
         GlobalVariables.player2Name = name;
         GlobalVariables.player2Avatar = avatar;
-        GlobalVariables.player2Victories = victories;
-        GlobalVariables.player2Losses = losses;
-        GlobalVariables.player2Diamonds = diamonds;
-        GlobalVariables.player2Coins = coins;
-        GlobalVariables.player2Hints = hints;
-        GlobalVariables.player2ExtraLifes = extraLifes;
-        GlobalVariables.player2StealTime = stealTime;
-        GlobalVariables.player2Fogs = fogs;
         
         Debug.Log("Dados do Player2 recebidos:");
         Debug.Log("Nome: " + GlobalVariables.player2Name);
