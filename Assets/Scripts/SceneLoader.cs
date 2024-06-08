@@ -24,19 +24,16 @@ public class SceneLoader : MonoBehaviour
     public TMP_Text player2Name;
     public Image player2Avatar;
 
-
     void Awake()
     {
         // Subscreve ao evento de cena carregada
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-
     void Start()
     {
         uiHandler = UIHandler.instance;
     }
-
 
     void OnDestroy()
     {
@@ -44,11 +41,12 @@ public class SceneLoader : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-
     // Função de callback que será chamada quando a cena for carregada
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("Cena carregada: " + scene.name);
+
+        // Chame aqui a função que você quer executar após o carregamento da cena
         AfterSceneLoaded(scene.name);
     }
 
@@ -141,5 +139,4 @@ public class SceneLoader : MonoBehaviour
             }
         }
     }
-    
 }

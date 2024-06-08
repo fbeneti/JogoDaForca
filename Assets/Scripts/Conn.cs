@@ -121,43 +121,6 @@ void Awake()
     }
 
 
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        base.OnPlayerEnteredRoom(newPlayer);
-
-        Debug.Log("Novo jogador entrou na sala: " + newPlayer.NickName);
-
-        // Apenas o MasterClient deve enviar os dados do Player1 para o Player2
-        if (PhotonNetwork.IsMasterClient)
-        {
-            // Dados do Player1 são enviados para o Player2
-            photonView.RPC("SendPlayer1Data", newPlayer,
-                GlobalVariables.player1Name,
-                GlobalVariables.player1Avatar,
-                GlobalVariables.player1Victories,
-                GlobalVariables.player1Losses,
-                GlobalVariables.player1Diamonds,
-                GlobalVariables.player1Coins,
-                GlobalVariables.player1Hints,
-                GlobalVariables.player1ExtraLifes,
-                GlobalVariables.player1StealTime,
-                GlobalVariables.player1Fogs);
-        }
-    }
-
-    [PunRPC]
-    void SendPlayer1Data(string name, int avatar)
-    {
-        // Atualiza os dados do Player2 no GlobalVariables
-        GlobalVariables.player2Name = name;
-        GlobalVariables.player2Avatar = avatar;
-        
-        Debug.Log("Dados do Player2 recebidos:");
-        Debug.Log("Nome: " + GlobalVariables.player2Name);
-        Debug.Log("Avatar: " + GlobalVariables.player2Avatar);
-    }
-
-
     private IEnumerator IniciarJogo()
     {
         // Aguarda até que o segundo jogador entre na sala
