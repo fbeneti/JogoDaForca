@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     int maxMistakes;
     int currentMistakes;
 
+    private UIHandler uiHandler;
     private bool gameOver;
     private Coroutine timerCoroutine;
 
@@ -75,6 +76,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     private void Start()
     {
+        uiHandler = UIHandler.instance;
         maxMistakes = petalList.Length;
         Initialize();
         StartCoroutine(Timer());
@@ -226,7 +228,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void SetInitialWord()
     {
-        //Load categories from database
+        // Load categories from database
         List<Dictionary<string, string>> categories = databaseBuilder.ReadTable("Categories");
         if (categories.Count == 0)
         {
@@ -234,12 +236,12 @@ public class GameManager : MonoBehaviourPunCallbacks
             return;
         }
 
-        //Pick a category from the list
+        // Pick a category from the list
         int cIndex = Random.Range(0, categories.Count);
         var selectedCategory = categories[cIndex];
         string categoryName = selectedCategory["Categoria"];
 
-        //Load words from selected category on the words list 
+        // Load words from selected category on the words list 
         int categoryId = int.Parse(selectedCategory["Id"]);
         Debug.Log("Categoria Id = " + selectedCategory["Id"]);
         List<Dictionary<string, string>> words = databaseBuilder.ReadTable("Words", $"Categoria = {categoryId}");
@@ -249,13 +251,13 @@ public class GameManager : MonoBehaviourPunCallbacks
             return;
         }
 
-        //Pick a word from the list
+        // Pick a word from the list
         int wIndex = Random.Range(0, words.Count);
         string pickedWord = words[wIndex]["Nome"];
         int difficultyId = int.Parse(words[wIndex]["Dificuldade"]);
         Debug.Log("Palavra: " + pickedWord);
 
-        //Load dificulty with the selected Id
+        // Load dificulty with the selected Id
         List<Dictionary<string, string>> difficulties = databaseBuilder.ReadTable("Dificulties", $"Id = {difficultyId}");
         if (difficulties.Count == 0)
         {
@@ -263,13 +265,20 @@ public class GameManager : MonoBehaviourPunCallbacks
             return;
         }
 
-        //Pick a dificulty from the list
+        // Pick a dificulty from the list
         int dIndex = Random.Range(0, difficulties.Count);
         var selectedDifficulty = difficulties[dIndex];
         string difficultyName = selectedDifficulty["Dificuldade"];
         difficultyText.text = CapitalizeFirstLetter(difficultyName);
         Debug.Log($"Dificuldade: {difficultyText.text}");
 
+        // Activate category's GamePanel
+        uiHandler.ActivateGamePanel(categoryId);
+
+        // Sync GamePanel between players
+        photonView.RPC("SyncGamePanel", RpcTarget.AllBuffered, categoryId);
+
+        // Sync Word, Category and Dificulty between players
         photonView.RPC("SyncInitialWord", RpcTarget.AllBuffered, difficultyName, categoryName, pickedWord);
     }
 
@@ -330,6 +339,13 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             photonView.RPC("SyncPlayerNickname", RpcTarget.AllBuffered, currentPlayer.NickName);
         }
+    }
+
+
+    [PunRPC]
+    private void SyncGamePanel(int categoryId)
+    {
+        uiHandler.ActivateGamePanel(categoryId);
     }
 
 

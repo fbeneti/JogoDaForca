@@ -160,6 +160,7 @@ MonoBehaviour:
   MessagePanel: {fileID: 1252541820}
   MessagePanelTitle: {fileID: 2139194187}
   MessagePanelText: {fileID: 713165113}
+  hangPanels: []
   statsText: {fileID: 0}
   saveFile: {fileID: 11400000, guid: c9279facb85698340b4a1d9d86b86d14, type: 2}
 --- !u!4 &28689684

@@ -1,0 +1,500 @@
+fileFormatVersion: 2
+guid: 237c22742e15dc1419e558215e46d6e1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8179617659614863132
+    second: Paises_0
+  - first:
+      213: -278141032338357413
+    second: Paises_1
+  - first:
+      213: -5991200016229061094
+    second: Paises_2
+  - first:
+      213: -2280678876114992970
+    second: Paises_3
+  - first:
+      213: 1255052415162205536
+    second: Paises_4
+  - first:
+      213: -6088309385245760665
+    second: Paises_5
+  - first:
+      213: -7623731879656013272
+    second: Paises_6
+  - first:
+      213: -3146237543820990011
+    second: Paises_7
+  - first:
+      213: -874884104031597530
+    second: Paises_8
+  - first:
+      213: -8482560760863659435
+    second: Paises_9
+  - first:
+      213: -7210606732481423291
+    second: Paises_10
+  - first:
+      213: 1991257786541761261
+    second: Paises_11
+  - first:
+      213: -6465489471360311047
+    second: Paises_12
+  - first:
+      213: 1406864193559043895
+    second: Paises_13
+  - first:
+      213: -7589725047604613573
+    second: Paises_14
+  - first:
+      213: 8436655712098679670
+    second: Paises_15
+  - first:
+      213: -783621431187052545
+    second: Paises_16
+  - first:
+      213: 2716104018443042948
+    second: Paises_17
+  - first:
+      213: -325539163951815825
+    second: Paises_18
+  - first:
+      213: 6154949050635997733
+    second: Paises_19
+  - first:
+      213: -7711852984717339168
+    second: Paises_20
+  - first:
+      213: 2584387289863036442
+    second: Paises_21
+  - first:
+      213: -3213537882507509440
+    second: Paises_22
+  - first:
+      213: 5904318493045343884
+    second: Paises_23
+  - first:
+      213: 3713436339887104586
+    second: Paises_24
+  - first:
+      213: -2429709751965497860
+    second: Paises_25
+  - first:
+      213: -1356988215568224607
+    second: Paises_26
+  - first:
+      213: 5095572990960716737
+    second: Paises_27
+  - first:
+      213: -446269248425934212
+    second: Paises_28
+  - first:
+      213: 8428265403811468394
+    second: Paises_29
+  - first:
+      213: -6649493313052967668
+    second: Paises_30
+  - first:
+      213: -975138207066373848
+    second: Paises_31
+  - first:
+      213: 3492378460224986169
+    second: Paises_32
+  - first:
+      213: -8645685978238717281
+    second: Paises_33
+  - first:
+      213: 6704594243964741703
+    second: Paises_34
+  - first:
+      213: 7317083749316757703
+    second: Paises_35
+  - first:
+      213: 521966973654131212
+    second: Paises_36
+  - first:
+      213: -2195480064756521029
+    second: Paises_37
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Paises_1
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 1369
+        width: 343
+        height: 183
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1f1bd78ce6d38170800000000000000
+      internalID: 8179617659614863132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paises_6
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 1304
+        width: 302
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1e2a56f35bfadca0800000000000000
+      internalID: -5991200016229061094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paises_4
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 1407
+        width: 173
+        height: 132
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62c8f8fea89cbd3f0800000000000000
+      internalID: -874884104031597530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paises_3
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 1133
+        width: 123
+        height: 199
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4800f48d63a81b520800000000000000
+      internalID: 2716104018443042948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paises_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1131
+        width: 171
+        height: 206
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f63ac2cead37b7bf0800000000000000
+      internalID: -325539163951815825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paises_2
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 1265
+        width: 77
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52259cd1d85ca6550800000000000000
+      internalID: 6154949050635997733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paises_7
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 1145
+        width: 175
+        height: 143
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1e12562c869dd320800000000000000
+      internalID: 2584387289863036442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paises_8
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1051
+        width: 559
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 748a5a241f08b0d50800000000000000
+      internalID: 6704594243964741703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paises_9
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 534
+        width: 900
+        height: 478
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c02e32172366e3700800000000000000
+      internalID: 521966973654131212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paises_0
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 27
+        width: 900
+        height: 478
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb76cb463861881e0800000000000000
+      internalID: -2195480064756521029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 55e3c345cd92fd84ab8e44e8ce3adc39
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Paises_0: -2195480064756521029
+      Paises_1: 8179617659614863132
+      Paises_2: 6154949050635997733
+      Paises_3: 2716104018443042948
+      Paises_4: -874884104031597530
+      Paises_5: -325539163951815825
+      Paises_6: -5991200016229061094
+      Paises_7: 2584387289863036442
+      Paises_8: 6704594243964741703
+      Paises_9: 521966973654131212
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -29,6 +29,8 @@ public class UIHandler : MonoBehaviourPun
     public Animator MessagePanel;        // ID 8
     public TMP_Text MessagePanelTitle;   //   Message Title
     public TMP_Text MessagePanelText;    //   Message Text
+    [Header("GamePanels")]
+    public GameObject[] hangPanels;
 
     [Space]
     [Header("STATS")]
@@ -128,6 +130,37 @@ public class UIHandler : MonoBehaviourPun
             case 8:
                 MessagePanel.SetTrigger("close");
                 break;
+        }
+    }
+
+
+    public void ActivateGamePanel(int categoryId)
+    {
+        // Formatar o categoryId como uma string de 2 dígitos
+        string panelName = $"HangPanel{categoryId:D2}";
+
+        // Desativar todos os painéis
+        foreach (GameObject panel in hangPanels)
+        {
+            panel.SetActive(false);
+        }
+
+        // Ativar o painel correspondente à categoria
+        bool panelFound = false;
+        foreach (GameObject panel in hangPanels)
+        {
+            if (panel.name == panelName)
+            {
+                panel.SetActive(true);
+                panelFound = true;
+                break;
+            }
+        }
+
+        // Se nenhum painel correspondente for encontrado, ativar o painel padrão
+        if (!panelFound && hangPanels.Length > 0)
+        {
+            hangPanels[0].SetActive(true);
         }
     }
 

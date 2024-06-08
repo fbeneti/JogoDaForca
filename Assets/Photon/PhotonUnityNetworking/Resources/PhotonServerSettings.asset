@@ -51,6 +51,8 @@ MonoBehaviour:
   - RPC_RestartGame
   - SendPlayer1Data
   - SyncPlayerData
+  - SyncPanel
+  - SyncGamePanel
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
