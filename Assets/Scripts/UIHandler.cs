@@ -137,30 +137,75 @@ public class UIHandler : MonoBehaviourPun
     public void ActivateGamePanel(int categoryId)
     {
         // Formatar o categoryId como uma string de 2 dígitos
-        string panelName = $"HangPanel{categoryId:D2}";
+        string panelName = $"Panel{categoryId:D2}";
+        string animatorName = $"HangPanel{categoryId:D2}";
 
-        // Desativar todos os painéis
+        Debug.Log($"Trying to activate panel: {panelName} and animator: {animatorName}");
+
+        // Desativar todos os painéis e animators
         foreach (GameObject panel in hangPanels)
         {
             panel.SetActive(false);
+            Animator animator = panel.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.enabled = false;
+            }
         }
 
-        // Ativar o painel correspondente à categoria
+        // Ativar o painel e animator correspondente à categoria
         bool panelFound = false;
         foreach (GameObject panel in hangPanels)
         {
             if (panel.name == panelName)
             {
                 panel.SetActive(true);
+                Animator animator = GameObject.Find(animatorName)?.GetComponent<Animator>();
+                if (animator != null)
+                {
+                    if (animator.runtimeAnimatorController != null)
+                    {
+                        animator.enabled = true;
+                        animator.Play(0, -1, 0f); // Reiniciar a animação
+                        Debug.Log($"Activated panel: {panelName} with animator: {animatorName}");
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"Animator for panel {panelName} does not have an AnimatorController assigned.");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning($"Animator not found for panel: {panelName}");
+                }
                 panelFound = true;
                 break;
             }
         }
 
-        // Se nenhum painel correspondente for encontrado, ativar o painel padrão
+        // Se nenhum painel correspondente for encontrado, ativar o painel e animator padrão
         if (!panelFound && hangPanels.Length > 0)
         {
-            hangPanels[0].SetActive(true);
+            GameObject defaultPanel = hangPanels[0];
+            defaultPanel.SetActive(true);
+            Animator animator = GameObject.Find("Panel00")?.GetComponent<Animator>();
+            if (animator != null)
+            {
+                if (animator.runtimeAnimatorController != null)
+                {
+                    animator.enabled = true;
+                    animator.Play(0, -1, 0f); // Reiniciar a animação
+                    Debug.Log("Activated default panel and animator.");
+                }
+                else
+                {
+                    Debug.LogWarning("Animator for default panel does not have an AnimatorController assigned.");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Animator not found for default panel.");
+            }
         }
     }
 
