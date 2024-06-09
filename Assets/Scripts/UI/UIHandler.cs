@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 public class UIHandler : MonoBehaviourPun
 {
     public static UIHandler instance;
+    public DatabaseBuilder databaseBuilder;
     private Conn conn;
     private Login login;
     private Register register;
@@ -31,12 +32,20 @@ public class UIHandler : MonoBehaviourPun
     public TMP_Text MessagePanelText;    //   Message Text
     [Header("GamePanels")]
     public GameObject[] hangPanels;
+    [Header("CategoryPanel")]
+    public GameObject categoryPanel;
+    public TMP_Text categoryText;
+
 
     [Space]
     [Header("STATS")]
     public TMP_Text statsText;
     [SerializeField] SCR_BaseStats saveFile;
   
+    private List<Dictionary<string, string>> categoriesDict;
+    private int countCategory;
+    private int actualCategory = 0;
+
 
     void Awake()
     {
@@ -53,6 +62,9 @@ public class UIHandler : MonoBehaviourPun
         { 
             UpdateStatsText();
         }
+
+        categoriesDict = databaseBuilder.ReadTable("Categories");
+        countCategory = categoriesDict.Count;
     }
 
 
@@ -141,7 +153,43 @@ public class UIHandler : MonoBehaviourPun
         PhotonNetwork.ConnectUsingSettings();
         SceneManager.LoadScene("6-Lobby");
     }
+
+
+    public void UpCategoryButton()
+    {
+        if (actualCategory < countCategory) 
+        { 
+            actualCategory++; 
+            UpdateCategory();
+        }
+        else
+            return;
+
+        
+    }
+
+
+    public void DownCategoyButton()
+    {
+        if (actualCategory > 0) 
+        { 
+            actualCategory--; 
+            UpdateCategory();
+        }
+        else
+            return;
+    }
     
+
+    void UpdateCategory()
+    {
+        if (actualCategory == 0)
+            categoryText.text = "categoria";
+        else
+        {
+            categoryText.text = categoriesDict[actualCategory - 1]["Categoria"];
+        }
+    }
     
     void UpdateStatsText()
     {
