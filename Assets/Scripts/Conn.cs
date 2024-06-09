@@ -2,15 +2,19 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Unity.Mathematics;
 
 
 public class Conn : MonoBehaviourPunCallbacks
 
 {
     public static Conn instance;
+    public DatabaseBuilder databaseBuilder;
+
 
     [SerializeField]
     private GameObject painelL, painelS, roomPanel, lobbyPanel;
@@ -21,6 +25,14 @@ public class Conn : MonoBehaviourPunCallbacks
     public Text txtNick;
     [SerializeField]
     private GameObject jogador;
+
+    public string selectedDifficulty;
+    public string selectedCategory;
+    public string selectedWord;
+    public string selectedWordHint1;
+    public string selectedWordHint2;
+    public string selectedWordHint3;
+    public int selectedCategoryId;
 
 
 void Awake()
@@ -88,9 +100,6 @@ void Awake()
     }
 
 
-    private bool aguardandoSegundoJogador = false;
-
-
     public override void OnJoinedRoom()
     {
         Debug.Log("Entrou em uma sala");
@@ -110,6 +119,12 @@ void Awake()
             // Posição do primeiro jogador
             Vector3 posicaoPrimeiroJogador = new Vector3(-184.0f, -16.0f, 0.0f);
             PhotonNetwork.Instantiate("Player", posicaoPrimeiroJogador, Quaternion.identity, 0);
+
+            // Sort category and word
+            SelectCategoryAndWord();
+
+            // Envia a categoria e a palavra para todos os jogadores
+            photonView.RPC("SyncCategoryAndWord", RpcTarget.AllBuffered, selectedDifficulty, selectedCategory, selectedCategoryId, selectedWord);
         }
         else
         {
@@ -117,7 +132,69 @@ void Awake()
             Vector3 posicaoSegundoJogador = new Vector3(-184.0f, -120.0f, 0.0f);
             PhotonNetwork.Instantiate("Player", posicaoSegundoJogador, Quaternion.identity, 0);
         }
+        
         StartCoroutine(IniciarJogo());
+    }
+
+
+    private void SelectCategoryAndWord()
+    {
+        // Load categories from database
+        List<Dictionary<string, string>> categories = databaseBuilder.ReadTable("Categories");
+        if (categories.Count == 0)
+        {
+            Debug.LogError("Nenhuma categoria encontrada no banco de dados.");
+            return;
+        }
+
+        // Pick a category from the list
+        int cIndex = Random.Range(0, categories.Count);
+        var selectedCategoryDict = categories[cIndex];
+        selectedCategory = selectedCategoryDict["Categoria"];
+        selectedCategoryId = int.Parse(selectedCategoryDict["Id"]);
+        Debug.Log("Categoria Id = " + selectedCategoryDict["Id"]);
+
+        // Load words from picked category on the words list
+        List<Dictionary<string, string>> words = databaseBuilder.ReadTable("Words", $"Categoria = {selectedCategoryId}");
+        if (words.Count == 0)
+        {
+            Debug.LogError("Nenhuma palavra encontrada para a categoria selecionada.");
+            return;
+        }
+
+        // Pick a word from the list
+        int wIndex = Random.Range(0, words.Count);
+        selectedWord = words[wIndex]["Nome"];
+        selectedWordHint1 = words[wIndex]["Dica1"];
+        selectedWordHint2 = words[wIndex]["Dica2"];
+        selectedWordHint3 = words[wIndex]["Dica3"];
+        Debug.Log("Palavra: " + selectedWord);
+
+        int difficultyId = int.Parse(words[wIndex]["Dificuldade"]);
+
+        // Load dificulty with the selected Id
+        List<Dictionary<string, string>> difficulties = databaseBuilder.ReadTable("Dificulties", $"Id = {difficultyId}");
+        if (difficulties.Count == 0)
+        {
+            Debug.LogError("Nenhuma dificuldade encontrada para o Id selecionado.");
+            return;
+        }
+
+        // Pick a dificulty from the list
+        var selectedDifficultyDict = difficulties[0];
+        selectedDifficulty = selectedDifficultyDict["Dificuldade"];
+        Debug.Log($"Dificuldade: {selectedDifficulty}");
+    }
+
+
+    [PunRPC]
+    private void SyncCategoryAndWord(string difficulty, string category, int categoryId, string word)
+    {
+        selectedDifficulty = difficulty;
+        selectedCategory = category;
+        selectedCategoryId = categoryId;
+        selectedWord = word;
+        Debug.Log($"Sincronizado: {category} - {word}");
     }
 
 
@@ -135,9 +212,10 @@ void Awake()
         {
             yield return new WaitForSeconds(5f);
 
-            // Inicia o jogo e carrega a cena "Game"
-            Debug.Log("Iniciando o jogo e carregando a cena 'Loading'...");
-            PhotonNetwork.LoadLevel("8-Game00");
+            // Inicia o jogo e carrega a cena da categoria correspondente
+            string sceneName = $"8-Game{selectedCategoryId:D2}";
+            Debug.Log($"Iniciando o jogo e carregando a cena {sceneName}");
+            PhotonNetwork.LoadLevel(sceneName);
         }
     }
 }

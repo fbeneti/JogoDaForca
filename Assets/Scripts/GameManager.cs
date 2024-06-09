@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     private void Start()
     {
+        conn = Conn.instance;
         sceneLoader = SceneLoader.instance;
         uiHandler = UIHandler.instance;
         maxMistakes = partList.Length;
@@ -87,12 +88,27 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
 
-    private void Initialize()
+    private IEnumerator Initialize()
     {
+        // Aguarde até que as variáveis sejam sincronizadas
+        while (string.IsNullOrEmpty(conn.selectedDifficulty) || string.IsNullOrEmpty(conn.selectedCategory) || string.IsNullOrEmpty(conn.selectedWord))
+        {
+            yield return null;
+        }
+
         if (PhotonNetwork.IsMasterClient)
         {
-            SetInitialWord();
+            string difficulty = conn.selectedDifficulty;
+            string category = conn.selectedCategory;
+            string word = conn.selectedWord;
+            int categoryId = conn.selectedCategoryId;
+            photonView.RPC("SyncInitialWord", RpcTarget.AllBuffered, difficulty, category, categoryId, word);
             Timer();
+        }
+        else
+        {
+            // Para os jogadores que não são o MasterClient, aguarde a sincronização
+            SyncInitialWord(conn.selectedDifficulty, conn.selectedCategory, conn.selectedCategoryId, conn.selectedWord);
         }
     }
     
@@ -127,11 +143,9 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 letterHolderList[i].text = solvedList[i];
                 unsolvedWord[i] = solvedList[i];
-                
                 letterFound = true;
                 string hitMessage = PhotonNetwork.LocalPlayer.NickName + " Acertou!";
                 photonView.RPC("ShowFeedbackMessage", RpcTarget.All, hitMessage);
-                
             }
         }
 
@@ -233,72 +247,14 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
 
-    private void SetInitialWord()
-    {
-        // Load categories from database
-        List<Dictionary<string, string>> categories = databaseBuilder.ReadTable("Categories");
-        if (categories.Count == 0)
-        {
-            Debug.LogError("Nenhuma categoria encontrada no banco de dados.");
-            return;
-        }
-
-        // Pick a category from the list
-        int cIndex = Random.Range(0, categories.Count);
-        var selectedCategory = categories[cIndex];
-        string categoryName = selectedCategory["Categoria"];
-
-        // Load words from selected category on the words list 
-        int categoryId = int.Parse(selectedCategory["Id"]);
-        Debug.Log("Categoria Id = " + selectedCategory["Id"]);
-        List<Dictionary<string, string>> words = databaseBuilder.ReadTable("Words", $"Categoria = {categoryId}");
-        if (words.Count == 0)
-        {
-            Debug.LogError("Nenhuma palavra encontrada para a categoria selecionada.");
-            return;
-        }
-
-        // Pick a word from the list
-        int wIndex = Random.Range(0, words.Count);
-        string pickedWord = words[wIndex]["Nome"];
-        string pickedWordHint1 = words[wIndex]["Dica1"];
-        string pickedWordHint2 = words[wIndex]["Dica2"];
-        string pickedWordHint3 = words[wIndex]["Dica3"];
-        int difficultyId = int.Parse(words[wIndex]["Dificuldade"]);
-        Debug.Log("Palavra: " + pickedWord);
-
-        // Load dificulty with the selected Id
-        List<Dictionary<string, string>> difficulties = databaseBuilder.ReadTable("Dificulties", $"Id = {difficultyId}");
-        if (difficulties.Count == 0)
-        {
-            Debug.LogError("Nenhuma dificuldade encontrada para o Id selecionado.");
-            return;
-        }
-
-        // Pick a dificulty from the list
-        int dIndex = Random.Range(0, difficulties.Count);
-        var selectedDifficulty = difficulties[dIndex];
-        string difficultyName = selectedDifficulty["Dificuldade"];
-        difficultyText.text = CapitalizeFirstLetter(difficultyName);
-        Debug.Log($"Dificuldade: {difficultyText.text}");
-
-        // Activate category's GamePanel
-        uiHandler.ActivateGamePanel(categoryId);
-
-        // Sync GamePanel between players
-        photonView.RPC("SyncGamePanel", RpcTarget.AllBuffered, categoryId);
-
-        // Sync Word, Category and Dificulty between players
-        photonView.RPC("SyncInitialWord", RpcTarget.AllBuffered, difficultyName, categoryName, pickedWord);
-    }
-
-
     [PunRPC]
-    private void SyncInitialWord(string difficultyName, string categoryName, string pickedWord)
+    private void SyncInitialWord(string difficultyName, string categoryName, int categoryId, string pickedWord)
     {
         difficultyText.text = CapitalizeFirstLetter(difficultyName);
         categoryText.text = CapitalizeFirstLetter(categoryName);
         pickedWord = pickedWord.ToUpper();
+        Debug.Log($"Inicializando com dificuldade: {difficultyName}, categoria: {categoryName}, palavra: {pickedWord}");
+
         string[] splittedWord = pickedWord.Select(l => l.ToString()).ToArray();
         unsolvedWord = new string[splittedWord.Length];
         solvedList = new List<string>(splittedWord);
@@ -333,7 +289,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
-
+    
     [PunRPC]
     private void SyncPlayerNickname(string newNickname)
     {
@@ -349,13 +305,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             photonView.RPC("SyncPlayerNickname", RpcTarget.AllBuffered, currentPlayer.NickName);
         }
-    }
-
-
-    [PunRPC]
-    private void SyncGamePanel(int categoryId)
-    {
-        uiHandler.ActivateGamePanel(categoryId);
     }
 
 
@@ -438,25 +387,3 @@ public class GameManager : MonoBehaviourPunCallbacks
         return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
     }
 }
-
-    //private IEnumerator TotalGameTimer()
-    //{
-    //    int seconds = 0;
-    //    int minutes = 0;
-    //    timerText.text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
-
-        // Wait for 5 seconds before starting the timer
-    //    yield return new WaitForSeconds(5);
-
-        // Start the timer after 5 seconds
-    //    while (!gameOver)
-    //    {
-    //        yield return new WaitForSeconds(1);
-    //        playTime++;
-
-    //        seconds = playTime % 60;
-    //        minutes = playTime / 60 % 60;
-
-    //        timerText.text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
-    //    }
-    //}
