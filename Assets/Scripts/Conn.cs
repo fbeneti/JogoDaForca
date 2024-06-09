@@ -16,10 +16,12 @@ public class Conn : MonoBehaviourPunCallbacks
     public DatabaseBuilder databaseBuilder;
 
 
+    public TMP_InputField createRoomName;
+    public TMP_InputField joinRoomName;
     [SerializeField]
     private GameObject painelL, painelS, roomPanel, lobbyPanel;
     [SerializeField]
-    private InputField nomeJogador, nomeSala;
+    private InputField nomeJogador;
     [SerializeField]
     public Text roomName;
     public Text txtNick;
@@ -33,6 +35,8 @@ public class Conn : MonoBehaviourPunCallbacks
     public string selectedWordHint2;
     public string selectedWordHint3;
     public int selectedCategoryId;
+    private string nomeSalaCriar;
+    private string nomeSalaEntrar;
 
 
 void Awake()
@@ -43,7 +47,8 @@ void Awake()
 
     void Start()
     {
-
+        nomeSalaCriar = createRoomName.text;
+        nomeSalaEntrar = joinRoomName.text;
     }
 
 
@@ -57,9 +62,9 @@ void Awake()
     }
 
 
-    public void CriarSala(InputField nomeSala)
+    public void CriarSala()
     {
-        PhotonNetwork.CreateRoom(nomeSala.text);
+        PhotonNetwork.CreateRoom(nomeSalaCriar);
     }
 
 
@@ -76,9 +81,9 @@ void Awake()
     }
 
 
-    public void JoinRoom(InputField nomeSala)
+    public void JoinRoom()
     {
-        PhotonNetwork.JoinRoom(nomeSala.text);
+        PhotonNetwork.JoinRoom(nomeSalaEntrar);
     }
     
     
