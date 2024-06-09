@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     int maxMistakes;
     int currentMistakes;
 
+    private Conn conn;
     private SceneLoader sceneLoader;
     private UIHandler uiHandler;
     private bool gameOver;
