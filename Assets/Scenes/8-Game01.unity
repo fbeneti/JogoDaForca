@@ -7412,8 +7412,24 @@ MonoBehaviour:
   player1ExtraLifes: {fileID: 1452640261}
   player1StealTime: {fileID: 1999785508}
   player1Fogs: {fileID: 949100897}
+  player1Lifes:
+  - {fileID: 1214222015}
+  - {fileID: 1314277202}
+  - {fileID: 610934091}
+  - {fileID: 1984580367}
+  - {fileID: 342222723}
+  - {fileID: 735807433}
+  - {fileID: 882334465}
   player2Name: {fileID: 1418075714}
   player2Avatar: {fileID: 710921023}
+  player2Lifes:
+  - {fileID: 2105042041}
+  - {fileID: 662570886}
+  - {fileID: 723694218}
+  - {fileID: 1787914340}
+  - {fileID: 449033403}
+  - {fileID: 1424441952}
+  - {fileID: 185838483}
 --- !u!1 &1169252246
 GameObject:
   m_ObjectHideFlags: 0
@@ -9714,7 +9730,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73357e565bd16f6448d339478e7bcd6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  databaseBuilder: {fileID: 0}
   painelL: {fileID: 0}
   painelS: {fileID: 0}
   roomPanel: {fileID: 0}
@@ -9724,9 +9739,6 @@ MonoBehaviour:
   roomName: {fileID: 0}
   txtNick: {fileID: 0}
   jogador: {fileID: 0}
-  selectedDifficulty: 
-  selectedCategory: 
-  selectedWord: 
 --- !u!1 &1513837970
 GameObject:
   m_ObjectHideFlags: 0
@@ -10292,7 +10304,7 @@ MonoBehaviour:
   playerTurnText: {fileID: 684520050}
   feedbackText: {fileID: 1562217070}
   maxHints: 3
-  partsList: []
+  partList: []
   maxMistakes: 0
 --- !u!114 &1549116194
 MonoBehaviour:

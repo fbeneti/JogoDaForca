@@ -17,12 +17,15 @@ public class SceneLoader : MonoBehaviour
     public TMP_Text player1ExtraLifes;
     public TMP_Text player1StealTime;
     public TMP_Text player1Fogs;
+    public Image[] player1Lifes;
     
 
     [Space]
     [Header("Player 2")]
     public TMP_Text player2Name;
     public Image player2Avatar;
+    public Image[] player2Lifes;
+
 
     void Awake()
     {

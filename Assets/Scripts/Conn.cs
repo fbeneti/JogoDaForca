@@ -136,8 +136,8 @@ void Awake()
             yield return new WaitForSeconds(5f);
 
             // Inicia o jogo e carrega a cena "Game"
-            Debug.Log("Iniciando o jogo e carregando a cena 'Game'...");
-            PhotonNetwork.LoadLevel("New Scene");
+            Debug.Log("Iniciando o jogo e carregando a cena 'Loading'...");
+            PhotonNetwork.LoadLevel("8-Game00");
         }
     }
 }

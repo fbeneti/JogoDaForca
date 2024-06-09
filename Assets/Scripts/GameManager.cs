@@ -44,8 +44,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int maxHints = 1;
 
     [Space]
-    [Header("Mistakes")]
-    public Animator[] petalList;
+    [Header("Parts")]
+    public Animator[] partList;
 
     [SerializeField]
     int maxMistakes;
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     private void Start()
     {
         uiHandler = UIHandler.instance;
-        maxMistakes = petalList.Length;
+        maxMistakes = partList.Length;
         Initialize();
         StartCoroutine(Timer());
     }
@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (!letterFound && !isThatAHint)
         {
             //Mistake stuff - Graphical representation
-            petalList[currentMistakes].SetTrigger("miss");
+            partList[currentMistakes].SetTrigger("miss");
             currentMistakes++;
             string mistakeMessage = PhotonNetwork.LocalPlayer.NickName + " errou!";
             photonView.RPC("ShowFeedbackMessage", RpcTarget.All, mistakeMessage);

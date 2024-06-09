@@ -21,19 +21,19 @@ EditorBuildSettings:
     path: Assets/Scenes/8-Game00.unity
     guid: b9dfec5730132af4b92027fcdcf10b50
   - enabled: 1
-    path: Assets/Scenes/7-Game01.unity
+    path: Assets/Scenes/8-Game01.unity
     guid: e0fb71fc346ec52489ecdd9b8e389d9f
   - enabled: 1
-    path: Assets/Scenes/7-Game02.unity
+    path: Assets/Scenes/8-Game02.unity
     guid: e6797a0dc580b734a97ed5e9a3a45be9
   - enabled: 1
-    path: Assets/Scenes/7-Game03.unity
+    path: Assets/Scenes/8-Game03.unity
     guid: 3d24c004d25411c4cb2af9cd00f5d528
   - enabled: 1
-    path: Assets/Scenes/7-Game04.unity
+    path: Assets/Scenes/8-Game04.unity
     guid: 369d3336f8e4da5479300d02e32cca00
   - enabled: 1
-    path: Assets/Scenes/7-Game05.unity
+    path: Assets/Scenes/8-Game05.unity
     guid: 2d0bd1112cac15e41886fcfa47c24995
   - enabled: 1
     path: Assets/Scenes/8-Game06.unity
