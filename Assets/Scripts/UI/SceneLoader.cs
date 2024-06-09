@@ -5,7 +5,9 @@ using TMPro;
 
 public class SceneLoader : MonoBehaviour
 {
+    public static SceneLoader instance;
     private UIHandler uiHandler;
+    private GameManager gameManager;
 
     [Space]
     [Header("Player 1")]
@@ -17,32 +19,45 @@ public class SceneLoader : MonoBehaviour
     public TMP_Text player1ExtraLifes;
     public TMP_Text player1StealTime;
     public TMP_Text player1Fogs;
-    public Image[] player1Lifes;
+    public Animator[] player1Lifes;
     
 
     [Space]
     [Header("Player 2")]
     public TMP_Text player2Name;
     public Image player2Avatar;
-    public Image[] player2Lifes;
+    public Animator[] player2Lifes;
 
 
-    void Awake()
+    private void Awake()
     {
-        // Subscreve ao evento de cena carregada
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+
     void Start()
     {
+        gameManager = GameManager.instance;
         uiHandler = UIHandler.instance;
     }
+
 
     void OnDestroy()
     {
         // Remove a subscrição ao evento de cena carregada
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+
 
     // Função de callback que será chamada quando a cena for carregada
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

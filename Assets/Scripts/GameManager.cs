@@ -51,8 +51,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     int maxMistakes;
     int currentMistakes;
 
+    private SceneLoader sceneLoader;
     private UIHandler uiHandler;
     private bool gameOver;
+    private int playerLifes;
     private Coroutine timerCoroutine;
 
 
@@ -76,8 +78,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     private void Start()
     {
+        sceneLoader = SceneLoader.instance;
         uiHandler = UIHandler.instance;
         maxMistakes = partList.Length;
+        playerLifes = maxMistakes;
         Initialize();
         StartCoroutine(Timer());
     }
@@ -123,6 +127,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             {
                 letterHolderList[i].text = solvedList[i];
                 unsolvedWord[i] = solvedList[i];
+                
                 letterFound = true;
                 string hitMessage = PhotonNetwork.LocalPlayer.NickName + " Acertou!";
                 photonView.RPC("ShowFeedbackMessage", RpcTarget.All, hitMessage);
@@ -134,7 +139,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             //Mistake stuff - Graphical representation
             partList[currentMistakes].SetTrigger("miss");
+            sceneLoader.player1Lifes[playerLifes].SetTrigger("miss");
             currentMistakes++;
+            playerLifes--;
             string mistakeMessage = PhotonNetwork.LocalPlayer.NickName + " errou!";
             photonView.RPC("ShowFeedbackMessage", RpcTarget.All, mistakeMessage);
 
@@ -254,6 +261,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         // Pick a word from the list
         int wIndex = Random.Range(0, words.Count);
         string pickedWord = words[wIndex]["Nome"];
+        string pickedWordHint1 = words[wIndex]["Dica1"];
+        string pickedWordHint2 = words[wIndex]["Dica2"];
+        string pickedWordHint3 = words[wIndex]["Dica3"];
         int difficultyId = int.Parse(words[wIndex]["Dificuldade"]);
         Debug.Log("Palavra: " + pickedWord);
 
