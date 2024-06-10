@@ -14,6 +14,7 @@ public class Conn : MonoBehaviourPunCallbacks
 {
     public static Conn instance;
     public DatabaseBuilder databaseBuilder;
+    public UIHandler uiHandler;
 
 
     public TMP_InputField createRoomName;
@@ -124,12 +125,6 @@ void Awake()
             // Posição do primeiro jogador
             Vector3 posicaoPrimeiroJogador = new Vector3(-184.0f, -16.0f, 0.0f);
             PhotonNetwork.Instantiate("Player", posicaoPrimeiroJogador, Quaternion.identity, 0);
-
-            // Sort category and word
-            SelectCategoryAndWord();
-
-            // Envia a categoria e a palavra para todos os jogadores
-            photonView.RPC("SyncCategoryAndWord", RpcTarget.AllBuffered, selectedDifficulty, selectedCategory, selectedCategoryId, selectedWord);
         }
         else
         {
@@ -142,69 +137,9 @@ void Awake()
     }
 
 
-    private void SelectCategoryAndWord()
-    {
-        // Load categories from database
-        List<Dictionary<string, string>> categories = databaseBuilder.ReadTable("Categories");
-        if (categories.Count == 0)
-        {
-            Debug.LogError("Nenhuma categoria encontrada no banco de dados.");
-            return;
-        }
-
-        // Pick a category from the list
-        int cIndex = Random.Range(0, categories.Count);
-        var selectedCategoryDict = categories[cIndex];
-        selectedCategory = selectedCategoryDict["Categoria"];
-        selectedCategoryId = int.Parse(selectedCategoryDict["Id"]);
-        Debug.Log("Categoria Id = " + selectedCategoryDict["Id"]);
-
-        // Load words from picked category on the words list
-        List<Dictionary<string, string>> words = databaseBuilder.ReadTable("Words", $"Categoria = {selectedCategoryId}");
-        if (words.Count == 0)
-        {
-            Debug.LogError("Nenhuma palavra encontrada para a categoria selecionada.");
-            return;
-        }
-
-        // Pick a word from the list
-        int wIndex = Random.Range(0, words.Count);
-        selectedWord = words[wIndex]["Nome"];
-        selectedWordHint1 = words[wIndex]["Dica1"];
-        selectedWordHint2 = words[wIndex]["Dica2"];
-        selectedWordHint3 = words[wIndex]["Dica3"];
-        Debug.Log("Palavra: " + selectedWord);
-
-        int difficultyId = int.Parse(words[wIndex]["Dificuldade"]);
-
-        // Load dificulty with the selected Id
-        List<Dictionary<string, string>> difficulties = databaseBuilder.ReadTable("Dificulties", $"Id = {difficultyId}");
-        if (difficulties.Count == 0)
-        {
-            Debug.LogError("Nenhuma dificuldade encontrada para o Id selecionado.");
-            return;
-        }
-
-        // Pick a dificulty from the list
-        var selectedDifficultyDict = difficulties[0];
-        selectedDifficulty = selectedDifficultyDict["Dificuldade"];
-        Debug.Log($"Dificuldade: {selectedDifficulty}");
-    }
-
-
-    [PunRPC]
-    private void SyncCategoryAndWord(string difficulty, string category, int categoryId, string word)
-    {
-        selectedDifficulty = difficulty;
-        selectedCategory = category;
-        selectedCategoryId = categoryId;
-        selectedWord = word;
-        Debug.Log($"Sincronizado: {category} - {word}");
-    }
-
-
     private IEnumerator IniciarJogo()
     {
+        int cID;
         // Aguarda até que o segundo jogador entre na sala
         while (PhotonNetwork.CurrentRoom.PlayerCount < 2)
         {
@@ -218,7 +153,16 @@ void Awake()
             yield return new WaitForSeconds(5f);
 
             // Inicia o jogo e carrega a cena da categoria correspondente
-            string sceneName = $"8-Game{selectedCategoryId:D2}";
+            if (GlobalVariables.actualCategory == 0)
+            {
+                cID = Random.Range(0, GlobalVariables.countCategory);
+                GlobalVariables.actualCategory = cID;
+            }
+            else
+            {
+                cID = GlobalVariables.actualCategory;
+            }
+            string sceneName = $"8-Game{cID:D2}";
             Debug.Log($"Iniciando o jogo e carregando a cena {sceneName}");
             PhotonNetwork.LoadLevel(sceneName);
         }

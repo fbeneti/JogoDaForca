@@ -5,17 +5,25 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class UIHandler : MonoBehaviourPun
 {
     public static UIHandler instance;
-    public DatabaseBuilder databaseBuilder;
     private Conn conn;
+    public DatabaseBuilder databaseBuilder;
     private Login login;
     private Register register;
+    
     private bool loginSuccess = false;
     private bool registerSuccess = false;
+    private int countCategory;
+    private int actualCategory;
+    private int currentAvatarIndex = 0;
+    private List<Dictionary<string, string>> categoriesDict;
+    private List<Sprite> avatars;
+
 
     [Header("PANELS")]
     public Animator GameOverPanel;       //ID 1
@@ -30,21 +38,27 @@ public class UIHandler : MonoBehaviourPun
     public Animator MessagePanel;        // ID 8
     public TMP_Text MessagePanelTitle;   //   Message Title
     public TMP_Text MessagePanelText;    //   Message Text
-    [Header("GamePanels")]
+
+    [Space]
+    [Header("Game Panels")]
     public GameObject[] hangPanels;
-    [Header("CategoryPanel")]
+
+    [Space]
+    [Header("Category Panel")]
     public GameObject categoryPanel;
     public TMP_Text categoryText;
 
+    [Space]
+    [Header("Avatar Panel")]
+    public Animator AvatarPanel;
+    public Image avatarImage; // Referência para o componente de imagem do avatar
 
     [Space]
     [Header("STATS")]
     public TMP_Text statsText;
     [SerializeField] SCR_BaseStats saveFile;
-  
-    private List<Dictionary<string, string>> categoriesDict;
-    private int countCategory;
-    private int actualCategory = 0;
+
+    
 
 
     void Awake()
@@ -65,21 +79,15 @@ public class UIHandler : MonoBehaviourPun
 
         categoriesDict = databaseBuilder.ReadTable("Categories");
         countCategory = categoriesDict.Count;
-    }
-
-
-    //TOP LEFT CORNER BUTTON
-    public void SettingsButton()
-    {
-        SettingsPanel.SetTrigger("open");
-    }
-
-
-    //TOP LEFT CORNER BUTTON
-    public void StatsButton()
-    {
-        StatsPanel.SetTrigger("open");
-        UpdateStatsText();
+        GlobalVariables.countCategory = countCategory;
+        actualCategory = 0;
+        GlobalVariables.actualCategory = actualCategory;
+        currentAvatarIndex = GlobalVariables.player1Avatar;
+        avatars = new List<Sprite>(Resources.LoadAll<Sprite>("Avatars"));
+        if (avatars.Count == 0)
+        {
+            Debug.LogError("No avatars found in the Resources/Avatars folder!");
+        }
     }
 
 
@@ -155,6 +163,12 @@ public class UIHandler : MonoBehaviourPun
     }
 
 
+    public void StoreButton()
+    {
+        SceneManager.LoadScene("5-Lobby");
+    }
+
+
     public void UpCategoryButton()
     {
         if (actualCategory < countCategory) 
@@ -169,7 +183,7 @@ public class UIHandler : MonoBehaviourPun
     }
 
 
-    public void DownCategoyButton()
+    public void DownCategoryButton()
     {
         if (actualCategory > 0) 
         { 
@@ -183,14 +197,74 @@ public class UIHandler : MonoBehaviourPun
 
     void UpdateCategory()
     {
+        GlobalVariables.actualCategory = actualCategory;
         if (actualCategory == 0)
-            categoryText.text = "categoria";
+            categoryText.text = "Aleatória";
         else
         {
             categoryText.text = categoriesDict[actualCategory - 1]["Categoria"];
         }
     }
+
+
+    //Open Avatar Control Panel
+    public void AvatarButtonClick()
+    {
+        AvatarPanel.SetTrigger("open");
+    }
     
+
+    public void UpAvatarButton()
+    {
+        if (currentAvatarIndex < avatars.Count - 1)
+        {
+            currentAvatarIndex++;
+            UpdateAvatarImage();
+        }
+        else
+            return;
+
+        Debug.Log("Avatar" + currentAvatarIndex);
+    }
+
+
+    public void DownAvatarButton()
+    {
+         if (currentAvatarIndex > 0)
+        {
+            currentAvatarIndex--;
+            UpdateAvatarImage();
+        }
+                else
+            return;
+
+        Debug.Log("Avatar" + currentAvatarIndex);
+    }
+    
+
+    void UpdateAvatarImage()
+    {
+        // Atualiza a imagem do avatar na interface do usuário
+        if (avatars != null && avatars.Count > 0)
+        {
+            avatarImage.sprite = avatars[currentAvatarIndex];
+        }
+    }
+
+
+    public void UpdateAvatarOnDatabase()
+    {
+        Dictionary<string, string> player1 = new Dictionary<string, string>
+        {
+            { "Avatar", currentAvatarIndex.ToString() }
+        };
+        databaseBuilder.UpdateTable("Players", player1, $"Username = '{GlobalVariables.player1Name}'");
+        Debug.Log("Avatar alterado com sucesso!");
+        AvatarPanel.SetTrigger("close");
+    }
+
+
+
     void UpdateStatsText()
     {
         List<int> statsList = saveFile.GetStats();
