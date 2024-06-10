@@ -12,7 +12,7 @@ public class UIHandler : MonoBehaviourPun
 {
     public static UIHandler instance;
     private Conn conn;
-    public DatabaseBuilder databaseBuilder;
+    private DatabaseBuilder databaseBuilder;
     private Login login;
     private Register register;
     
@@ -45,7 +45,7 @@ public class UIHandler : MonoBehaviourPun
 
     [Space]
     [Header("Category Panel")]
-    public GameObject categoryPanel;
+    public Animator CategoryPanel;
     public TMP_Text categoryText;
 
     [Space]
@@ -72,6 +72,19 @@ public class UIHandler : MonoBehaviourPun
         conn = Conn.instance;
         login = Login.instance;
         register = Register.instance;
+        
+        // If DatabaseBuilder wasn't instantiated, instantiate and initiate it
+        if (DatabaseBuilder.instance == null)
+        {
+            GameObject dbGameObject = new GameObject("DatabaseBuilder");
+            databaseBuilder = dbGameObject.AddComponent<DatabaseBuilder>();
+            databaseBuilder.Initialize();
+        }
+        else
+        {
+            databaseBuilder = DatabaseBuilder.instance;
+        }
+        
         if (statsText != null)
         { 
             UpdateStatsText();
@@ -163,9 +176,10 @@ public class UIHandler : MonoBehaviourPun
     }
 
 
-    public void StoreButton()
+    //Open Categoy Control Panel
+    public void CreateRoomClick()
     {
-        SceneManager.LoadScene("5-Lobby");
+        CategoryPanel.SetTrigger("open");
     }
 
 
@@ -245,7 +259,7 @@ public class UIHandler : MonoBehaviourPun
     void UpdateAvatarImage()
     {
         // Atualiza a imagem do avatar na interface do usuário
-        if (avatars != null && avatars.Count > 0)
+        if (avatars != null && avatars.Count > 0 && avatarImage != null)
         {
             avatarImage.sprite = avatars[currentAvatarIndex];
         }

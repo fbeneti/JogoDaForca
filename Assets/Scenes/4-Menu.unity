@@ -163,7 +163,7 @@ MonoBehaviour:
   MessagePanelTitle: {fileID: 0}
   MessagePanelText: {fileID: 0}
   hangPanels: []
-  categoryPanel: {fileID: 0}
+  CategoryPanel: {fileID: 0}
   categoryText: {fileID: 0}
   AvatarPanel: {fileID: 145022191}
   avatarImage: {fileID: 329686774}
@@ -2850,14 +2850,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 28229025}
         m_TargetAssemblyTypeName: UIHandler, Assembly-CSharp
-        m_MethodName: StoreButton
-        m_Mode: 1
+        m_MethodName: BackToMenu
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Lobby
+          m_StringArgument: 5-Store
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1292525660

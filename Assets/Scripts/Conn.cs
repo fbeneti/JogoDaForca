@@ -13,9 +13,6 @@ public class Conn : MonoBehaviourPunCallbacks
 
 {
     public static Conn instance;
-    public DatabaseBuilder databaseBuilder;
-    public UIHandler uiHandler;
-
 
     public TMP_InputField createRoomName;
     public TMP_InputField joinRoomName;
@@ -92,8 +89,8 @@ void Awake()
     {
         PhotonNetwork.JoinRandomRoom();
     }
-    
-    
+
+
     public override void OnDisconnected(DisconnectCause cause) // verify if is connected
     {
         Debug.Log("Conexão perdida");

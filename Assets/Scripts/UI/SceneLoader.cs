@@ -74,11 +74,11 @@ public class SceneLoader : MonoBehaviour
     {
         Debug.Log("Carregando dados do Player 1 na tela.");
                 
-        if (sceneName == "4-Menu" || sceneName == "New Scene")
+        if (sceneName == "4-Menu" || sceneName == "5-Store" || sceneName == "6-Lobby" || sceneName.StartsWith("8-Game"))
         {
             if (player1Name != null) player1Name.text = GlobalVariables.player1Name;
             else Debug.LogError("Player1 Name is null");
-            
+
             //Save Player1's avatar RectTransform properties
             RectTransform rectTransform1 = player1Avatar.GetComponent<RectTransform>();
             Vector2 originalSizeDelta1 = rectTransform1.sizeDelta;
@@ -103,7 +103,7 @@ public class SceneLoader : MonoBehaviour
             }
         }
         
-        if (sceneName == "New Scene" || sceneName == "5-Store")
+        if (sceneName == "5-Store" || sceneName.StartsWith("8-Game"))
         {
             if (player1Diamonds != null) player1Diamonds.text = GlobalVariables.player1Diamonds.ToString();
             else Debug.LogError("Player1 Diamonds is null");
@@ -124,7 +124,7 @@ public class SceneLoader : MonoBehaviour
             else Debug.LogError("Player1 Fogs is null");
         }
 
-        if (sceneName == "New Scene")
+        if (sceneName.StartsWith("8-Game"))
         {
             Debug.Log("Carregando dados do Player 2 na tela.");
             if (player2Name != null)
@@ -135,25 +135,32 @@ public class SceneLoader : MonoBehaviour
             else Debug.LogError("Player2 Name is null");
 
             //Save Player2's avatar RectTransform properties
-            RectTransform rectTransform2 = player2Avatar.GetComponent<RectTransform>();
-            Vector2 originalSizeDelta2 = rectTransform2.sizeDelta;
-            Vector3 originalScale2 = rectTransform2.localScale;
-
-            //Load Player2's avatar image
-            string avatarPlayer2Path = "Avatars/avatar" + GlobalVariables.player2Avatar.ToString("D2");
-            Sprite avatarPlayer2Sprite = Resources.Load<Sprite>(avatarPlayer2Path);
-
-            if (avatarPlayer2Sprite != null)
+            if (player2Avatar != null)
             {
-                player2Avatar.sprite = avatarPlayer2Sprite;
+                RectTransform rectTransform2 = player2Avatar.GetComponent<RectTransform>();
+                Vector2 originalSizeDelta2 = rectTransform2.sizeDelta;
+                Vector3 originalScale2 = rectTransform2.localScale;
 
-                //Apply RectTransform properties
-                rectTransform2.sizeDelta = originalSizeDelta2;
-                rectTransform2.localScale = originalScale2;
+                //Load Player2's avatar image
+                string avatarPlayer2Path = "Avatars/avatar" + GlobalVariables.player2Avatar.ToString("D2");
+                Sprite avatarPlayer2Sprite = Resources.Load<Sprite>(avatarPlayer2Path);
+
+                if (avatarPlayer2Sprite != null)
+                {
+                    player2Avatar.sprite = avatarPlayer2Sprite;
+
+                    //Apply RectTransform properties
+                    rectTransform2.sizeDelta = originalSizeDelta2;
+                    rectTransform2.localScale = originalScale2;
+                }
+                else
+                {
+                    Debug.LogError("Avatar não encontrado em: " + avatarPlayer2Path);
+                }
             }
             else
             {
-                Debug.LogError("Avatar não encontrado em: " + avatarPlayer2Path);
+                Debug.LogError("player2Avatar is null");
             }
         }
     }

@@ -10,6 +10,8 @@ using UnityEngine.Networking;
 
 public class DatabaseBuilder : MonoBehaviour
 {
+    public static DatabaseBuilder instance;
+
     [Header("Banco de Dados:")]
     public string databaseName;
     protected string databasePath;
@@ -17,15 +19,32 @@ public class DatabaseBuilder : MonoBehaviour
 
     private void Awake()
     {
-        if(string.IsNullOrEmpty(this.databaseName))
+        if (instance == null)
         {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
             return;
+        }
+    }
+
+
+    public void Initialize()
+    {
+        this.databaseName = "existing.db";
+
+        if (string.IsNullOrEmpty(this.databaseName))
+        {
             Debug.LogError("Database name is empty!");
+            return;
         }
         
         CopyDatabaseFileIfNotExists();
-                
     }
+
 
     #region Create DataBase
     private void CopyDatabaseFileIfNotExists()
@@ -105,31 +124,9 @@ public class DatabaseBuilder : MonoBehaviour
             }
         }
     }
-
-    protected void CreateTableWeapon()
-    {
-        var commandText = $"CREATE TABLE Weapon " +
-            "(" +
-            "  Id INTEGER PRIMARY KEY, " +
-            "  Name TEXT NOT NULL, " +
-            "  Attack INTEGER NOT NULL," +
-            "  Price REAL NOT NULL" +
-            ");";
-        
-        using(var connection = Connection)
-        { 
-            connection.Open();
-            using(var command = connection.CreateCommand())
-            {
-                command.CommandText = commandText;
-                command.ExecuteNonQuery();
-                Debug.Log("CreateTableWeapon");
-            }
-        }
-    }
     #endregion
 
-#region Insert Data
+    #region Insert Data
     public void InsertIntoTable(string tableName, Dictionary<string, string> data)
     {
         var columns = new List<string>();

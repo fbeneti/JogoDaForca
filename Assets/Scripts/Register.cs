@@ -5,7 +5,7 @@ using UnityEngine;
 public class Register : MonoBehaviour
 {
     public static Register instance;
-    public DatabaseBuilder databaseBuilder;
+    private DatabaseBuilder databaseBuilder;
 
     [Header("Entrada de Dados:")]
     public TMP_InputField UsernameField;
@@ -34,6 +34,18 @@ public class Register : MonoBehaviour
     void Start()
     {
         uiHandler = UIHandler.instance;
+
+        // If DatabaseBuilder wasn't instantiated, instantiate and initiate it
+        if (DatabaseBuilder.instance == null)
+        {
+           GameObject dbGameObject = new GameObject("DatabaseBuilder");
+            databaseBuilder = dbGameObject.AddComponent<DatabaseBuilder>();
+            databaseBuilder.Initialize();
+        }
+        else
+        {
+            databaseBuilder = DatabaseBuilder.instance;
+        }
 
         // Adicione os eventos para fechar o painel de mensagem
         UsernameField.onSelect.AddListener(delegate { OnInputFieldSelect(); });

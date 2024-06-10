@@ -90,14 +90,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
 
-    private IEnumerator Initialize()
+    private void Initialize()
     {
-        // Aguarde até que as variáveis sejam sincronizadas
-        while (string.IsNullOrEmpty(conn.selectedDifficulty) || string.IsNullOrEmpty(conn.selectedCategory) || string.IsNullOrEmpty(conn.selectedWord))
-        {
-            yield return null;
-        }
-
         if (PhotonNetwork.IsMasterClient)
         {
             SetInitialWord();
