@@ -91,15 +91,15 @@ void Awake()
     }
 
 
-    public override void OnDisconnected(DisconnectCause cause) // verify if is connected
-    {
-        Debug.Log("Conexão perdida");
-    }
-
-
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         Debug.Log("Não entrou em nenhuma sala: " + message);  // if don't find any room
+    }
+
+
+    public override void OnDisconnected(DisconnectCause cause) // verify if is connected
+    {
+        Debug.Log("Conexão perdida");
     }
 
 
@@ -129,7 +129,6 @@ void Awake()
             Vector3 posicaoSegundoJogador = new Vector3(-184.0f, -120.0f, 0.0f);
             PhotonNetwork.Instantiate("Player", posicaoSegundoJogador, Quaternion.identity, 0);
         }
-        
         StartCoroutine(IniciarJogo());
     }
 

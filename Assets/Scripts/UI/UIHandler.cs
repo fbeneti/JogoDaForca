@@ -63,7 +63,7 @@ public class UIHandler : MonoBehaviourPun
 
     void Awake()
     {
-        instance = this;
+            instance = this;
     }
 
 
