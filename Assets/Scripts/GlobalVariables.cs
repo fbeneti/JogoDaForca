@@ -18,6 +18,9 @@ public static class GlobalVariables
     public static string player2Name;
     public static int player2Avatar;
 
-    public static int actualCategory;
+    public static string actualCategoryName;
+    public static int actualCategoryId;
+    public static string actualDifficulty;
+    public static string actualWord;
     public static int countCategory;
 }

@@ -236,53 +236,14 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void SetInitialWord()
     {
-        // Load categories from database
-        List<Dictionary<string, string>> categories = databaseBuilder.ReadTable("Categories", $"Id = {GlobalVariables.actualCategory}");
-        if (categories.Count == 0)
-        {
-            Debug.LogError("Nenhuma categoria encontrada no banco de dados.");
-            return;
-        }
-
-        // Pick a category from the list
-        int cIndex = Random.Range(0, categories.Count);
-        var selectedCategory = categories[cIndex];
-        string categoryName = selectedCategory["Categoria"];
-        Debug.Log("Categoria = " + categoryName);
-
-        // Load words from selected category on the words list 
-        int categoryId = int.Parse(selectedCategory["Id"]);
-        Debug.Log("Categoria Id = " + selectedCategory["Id"]);
-        List<Dictionary<string, string>> words = databaseBuilder.ReadTable("Words", $"Categoria = {categoryId}");
-        if (words.Count == 0)
-        {
-            Debug.LogError("Nenhuma palavra encontrada para a categoria selecionada.");
-            return;
-        }
-
-        // Pick a word from the list
-        int wIndex = Random.Range(0, words.Count);
-        string pickedWord = words[wIndex]["Nome"];
-        int difficultyId = int.Parse(words[wIndex]["Dificuldade"]);
-        Debug.Log("Palavra = " + pickedWord);
-
-        // Load dificulty with the selected Id
-        List<Dictionary<string, string>> difficulties = databaseBuilder.ReadTable("Dificulties", $"Id = {difficultyId}");
-        if (difficulties.Count == 0)
-        {
-            Debug.LogError("Nenhuma dificuldade encontrada para o Id selecionado.");
-            return;
-        }
-
-        // Pick a dificulty from the list
-        int dIndex = Random.Range(0, difficulties.Count);
-        var selectedDifficulty = difficulties[dIndex];
-        string difficultyName = selectedDifficulty["Dificuldade"];
-        difficultyText.text = CapitalizeFirstLetter(difficultyName);
+        difficultyText.text = CapitalizeFirstLetter(GlobalVariables.actualDifficulty);
         Debug.Log($"Dificuldade = {difficultyText.text}");
+        categoryText.text = CapitalizeFirstLetter(GlobalVariables.actualCategoryName);
+        Debug.Log($"Categoria = {categoryText.text}");
+        Debug.Log($"Palavra = {GlobalVariables.actualWord}");
 
         // Sync Word, Category and Dificulty between players
-        photonView.RPC("SyncInitialWord", RpcTarget.AllBuffered, difficultyName, categoryName, pickedWord);
+        photonView.RPC("SyncInitialWord", RpcTarget.AllBuffered, GlobalVariables.actualDifficulty, GlobalVariables.actualCategoryName, GlobalVariables.actualCategoryId, GlobalVariables.actualWord);
     }
 
 

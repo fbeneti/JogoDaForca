@@ -115,7 +115,7 @@ public class SceneLoader : MonoBehaviour
             else Debug.LogError("Player1 Fogs is null");
         }
 
-        if (sceneName.StartsWith("8-Game"))
+        /*if (sceneName.StartsWith("8-Game"))
         {
             Debug.Log("Carregando dados do Player 2 na tela.");
             if (player2Name != null)
@@ -154,5 +154,6 @@ public class SceneLoader : MonoBehaviour
                 Debug.LogError("player2Avatar is null");
             }
         }
+        */
     }
 }

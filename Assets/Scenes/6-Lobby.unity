@@ -4150,7 +4150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a396868bdfd8da41be100227caba7f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  databaseBuilder: {fileID: 620108168}
   GameOverPanel: {fileID: 0}
   SettingsPanel: {fileID: 0}
   StatsPanel: {fileID: 0}
@@ -7168,8 +7167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73357e565bd16f6448d339478e7bcd6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  databaseBuilder: {fileID: 620108168}
-  uiHandler: {fileID: 1103469111}
   createRoomName: {fileID: 1730891832}
   joinRoomName: {fileID: 1146932999}
   painelL: {fileID: 1557296802}
@@ -7178,8 +7175,9 @@ MonoBehaviour:
   lobbyPanel: {fileID: 950526019}
   nomeJogador: {fileID: 1589795887}
   roomName: {fileID: 2057045473}
-  txtNick: {fileID: 654128182}
-  jogador: {fileID: 6974241657863941313, guid: f9f84d2b1c251e349b54952d3be59e88, type: 3}
+  playerItemsList: []
+  playerItemPrefab: {fileID: 1343014444971562945, guid: 4a37de4bf04b75f4992a4af8f78fa8ed, type: 3}
+  playerItemParent: {fileID: 1092435328529681087, guid: a2a2e81749966cc44b983f208ced7b17, type: 3}
   selectedDifficulty: 
   selectedCategory: 
   selectedWord: 

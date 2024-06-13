@@ -94,7 +94,7 @@ public class UIHandler : MonoBehaviourPun
         countCategory = categoriesDict.Count;
         GlobalVariables.countCategory = countCategory;
         actualCategory = 0;
-        GlobalVariables.actualCategory = actualCategory;
+        GlobalVariables.actualCategoryId = actualCategory;
         currentAvatarIndex = GlobalVariables.player1Avatar;
         avatars = new List<Sprite>(Resources.LoadAll<Sprite>("Avatars"));
         if (avatars.Count == 0)
@@ -211,7 +211,7 @@ public class UIHandler : MonoBehaviourPun
 
     void UpdateCategory()
     {
-        GlobalVariables.actualCategory = actualCategory;
+        GlobalVariables.actualCategoryId = actualCategory;
         if (actualCategory == 0)
             categoryText.text = "Aleatória";
         else
