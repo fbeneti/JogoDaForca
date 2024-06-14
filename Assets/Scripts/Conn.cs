@@ -19,6 +19,7 @@ public class Conn : MonoBehaviourPunCallbacks
     public TMP_InputField joinRoomName;
     [SerializeField]
     private GameObject painelL, painelS, roomPanel, lobbyPanel;
+    public Animator categoryPanel;
     [SerializeField]
     private InputField nomeJogador;
     [SerializeField]
@@ -73,6 +74,7 @@ void Awake()
 
     public void CriarSala()
     {
+        categoryPanel.SetTrigger("close");
         PhotonNetwork.CreateRoom(nomeSalaCriar);
     }
 

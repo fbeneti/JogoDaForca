@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             partList[currentMistakes].SetTrigger("miss");
             sceneLoader.player1Lifes[playerLifes].SetTrigger("miss");
             currentMistakes++;
-            playerLifes--;
+            //playerLifes--;
             string mistakeMessage = PhotonNetwork.LocalPlayer.NickName + " errou!";
             photonView.RPC("ShowFeedbackMessage", RpcTarget.All, mistakeMessage);
 
@@ -257,6 +257,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         string[] splittedWord = pickedWord.Select(l => l.ToString()).ToArray();
         unsolvedWord = new string[splittedWord.Length];
         solvedList = new List<string>(splittedWord);
+        GlobalVariables.solvedList = solvedList;
 
         // Clear letters list to avoid memory leak
         foreach (var letter in letterHolderList)

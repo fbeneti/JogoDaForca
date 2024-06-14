@@ -12,6 +12,7 @@ public class ButtonCreator : MonoBehaviour
     public Transform buttonholder1;
     public Transform buttonholder2;
     public Transform buttonholder3;
+    private bool exists = false;
 
     string[] lettersToUse = new string[27] 
     {
@@ -79,9 +80,28 @@ public class ButtonCreator : MonoBehaviour
             Debug.Log("Voce não tem mais dicas!");
             return;
         }
-
         GameManager.instance.maxHints--;
-        int randomIndex = Random.Range(0, letterList.Count);
-        letterList[randomIndex].Sendletter(true);
+        StartCoroutine(SortLetter());
+    }
+
+    public IEnumerator SortLetter()
+    {
+        while (!exists)
+        { 
+            int randomIndex = Random.Range(0, GlobalVariables.solvedList.Count);    
+            string selectedLetter = GlobalVariables.solvedList[randomIndex];
+
+            exists = letterList.Exists(button => button.letter == selectedLetter);
+
+            if (exists)
+            {
+                LetterButton letterButton = letterList.Find(button => button.letter == selectedLetter);
+                if (letterButton != null)
+                {
+                    letterButton.Sendletter(true);
+                }
+            }
+            yield return null;
+        }
     }
 }

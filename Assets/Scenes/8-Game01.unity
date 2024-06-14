@@ -10348,7 +10348,7 @@ MonoBehaviour:
   timerText: {fileID: 1828980865}
   playerTurnText: {fileID: 684520050}
   feedbackText: {fileID: 1562217070}
-  maxHints: 3
+  maxHints: 1
   partList: []
   maxMistakes: 0
 --- !u!114 &1549116194

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class LetterButton : MonoBehaviour
 {
-    string letter;
+    public string letter { get; private set; }
 
     public void SetButton(string _letter)
     {  

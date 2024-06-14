@@ -10445,15 +10445,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73357e565bd16f6448d339478e7bcd6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  databaseBuilder: {fileID: 0}
+  createRoomName: {fileID: 0}
+  joinRoomName: {fileID: 0}
   painelL: {fileID: 0}
   painelS: {fileID: 0}
   roomPanel: {fileID: 0}
   lobbyPanel: {fileID: 0}
   nomeJogador: {fileID: 0}
-  nomeSala: {fileID: 0}
   roomName: {fileID: 0}
-  txtNick: {fileID: 0}
-  jogador: {fileID: 0}
+  playerItemsList: []
+  playerItemPrefab: {fileID: 0}
+  playerItemParent: {fileID: 0}
+  selectedDifficulty: 
+  selectedCategory: 
+  selectedWord: 
+  selectedWordHint1: 
+  selectedWordHint2: 
+  selectedWordHint3: 
+  selectedCategoryId: 0
 --- !u!1 &1497174850
 GameObject:
   m_ObjectHideFlags: 0
@@ -11006,6 +11016,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 1439641014}
   - {fileID: 0}
+  CategoryPanel: {fileID: 0}
+  categoryText: {fileID: 0}
+  AvatarPanel: {fileID: 0}
+  avatarImage: {fileID: 0}
   statsText: {fileID: 538826231}
   saveFile: {fileID: 11400000, guid: c9279facb85698340b4a1d9d86b86d14, type: 2}
 --- !u!114 &1549116192
@@ -11051,8 +11065,15 @@ MonoBehaviour:
   timerText: {fileID: 1828980865}
   playerTurnText: {fileID: 684520050}
   feedbackText: {fileID: 1562217070}
-  maxHints: 3
-  partList: []
+  maxHints: 1
+  partList:
+  - {fileID: 840725526}
+  - {fileID: 1175457949}
+  - {fileID: 174546684}
+  - {fileID: 396134324}
+  - {fileID: 656043089}
+  - {fileID: 89730125}
+  - {fileID: 1225432474}
   maxMistakes: 0
 --- !u!114 &1549116194
 MonoBehaviour:

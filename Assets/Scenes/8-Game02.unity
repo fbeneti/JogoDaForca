@@ -1821,7 +1821,7 @@ Animator:
   m_GameObject: {fileID: 259968132}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 59c3211d8008e2f48bb49dc795150495, type: 2}
+  m_Controller: {fileID: 9100000, guid: 664bb519475428d4abe460f697a3a04e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4871,7 +4871,7 @@ Animator:
   m_GameObject: {fileID: 654878881}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 59c3211d8008e2f48bb49dc795150495, type: 2}
+  m_Controller: {fileID: 9100000, guid: a8be6fd1d559acb47a0c9399ced4b45c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5817,7 +5817,7 @@ Animator:
   m_GameObject: {fileID: 892166418}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 59c3211d8008e2f48bb49dc795150495, type: 2}
+  m_Controller: {fileID: 9100000, guid: 74e5ed1d42098f44a8cf25cebe0f5bb5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -7477,7 +7477,7 @@ Animator:
   m_GameObject: {fileID: 1156842493}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 59c3211d8008e2f48bb49dc795150495, type: 2}
+  m_Controller: {fileID: 9100000, guid: 11d0d36870fe8894a870e9d554b1a7af, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -10299,15 +10299,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73357e565bd16f6448d339478e7bcd6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  databaseBuilder: {fileID: 0}
+  createRoomName: {fileID: 0}
+  joinRoomName: {fileID: 0}
   painelL: {fileID: 0}
   painelS: {fileID: 0}
   roomPanel: {fileID: 0}
   lobbyPanel: {fileID: 0}
+  categoryPanel: {fileID: 0}
   nomeJogador: {fileID: 0}
-  nomeSala: {fileID: 0}
   roomName: {fileID: 0}
-  txtNick: {fileID: 0}
-  jogador: {fileID: 0}
+  playerItemsList: []
+  playerItemPrefab: {fileID: 0}
+  playerItemParent: {fileID: 0}
+  selectedDifficulty: 
+  selectedCategory: 
+  selectedWord: 
+  selectedWordHint1: 
+  selectedWordHint2: 
+  selectedWordHint3: 
+  selectedCategoryId: 0
 --- !u!1 &1513837970
 GameObject:
   m_ObjectHideFlags: 0
@@ -10762,6 +10773,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  CategoryPanel: {fileID: 0}
+  categoryText: {fileID: 0}
+  AvatarPanel: {fileID: 0}
+  avatarImage: {fileID: 0}
   statsText: {fileID: 538826231}
   saveFile: {fileID: 11400000, guid: c9279facb85698340b4a1d9d86b86d14, type: 2}
 --- !u!114 &1549116192
@@ -10807,8 +10822,15 @@ MonoBehaviour:
   timerText: {fileID: 1828980865}
   playerTurnText: {fileID: 684520050}
   feedbackText: {fileID: 1562217070}
-  maxHints: 3
-  partList: []
+  maxHints: 1
+  partList:
+  - {fileID: 1156842497}
+  - {fileID: 1385640881}
+  - {fileID: 1597148773}
+  - {fileID: 654878885}
+  - {fileID: 1699034176}
+  - {fileID: 892166422}
+  - {fileID: 259968136}
   maxMistakes: 0
 --- !u!114 &1549116194
 MonoBehaviour:
@@ -11367,7 +11389,7 @@ Animator:
   m_GameObject: {fileID: 1597148769}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 59c3211d8008e2f48bb49dc795150495, type: 2}
+  m_Controller: {fileID: 9100000, guid: 851b2cb5236f75a48bca4f0154a55fd6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -11782,7 +11804,7 @@ Animator:
   m_GameObject: {fileID: 1699034172}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 59c3211d8008e2f48bb49dc795150495, type: 2}
+  m_Controller: {fileID: 9100000, guid: 93f2cc0832955f84eb9cdfa4b16e18c1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

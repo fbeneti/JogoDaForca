@@ -7167,12 +7167,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73357e565bd16f6448d339478e7bcd6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  databaseBuilder: {fileID: 0}
   createRoomName: {fileID: 1730891832}
   joinRoomName: {fileID: 1146932999}
   painelL: {fileID: 1557296802}
   painelS: {fileID: 1884962461}
   roomPanel: {fileID: 585406059}
   lobbyPanel: {fileID: 950526019}
+  categoryPanel: {fileID: 205325278}
   nomeJogador: {fileID: 1589795887}
   roomName: {fileID: 2057045473}
   playerItemsList: []
