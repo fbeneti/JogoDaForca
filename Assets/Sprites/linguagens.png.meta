@@ -1,0 +1,789 @@
+fileFormatVersion: 2
+guid: 77a5339a306c2fa4e9d614894e16e200
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4237569161039793542
+    second: linguagems_0
+  - first:
+      213: 5632570203159741445
+    second: linguagems_1
+  - first:
+      213: -5763886136364018109
+    second: linguagems_2
+  - first:
+      213: -5406862064682286958
+    second: linguagems_3
+  - first:
+      213: 8647235808515962882
+    second: linguagems_4
+  - first:
+      213: -7997984199908514212
+    second: linguagems_5
+  - first:
+      213: 3688949053494913578
+    second: linguagems_6
+  - first:
+      213: -9179757810937334416
+    second: linguagems_7
+  - first:
+      213: 8278935618501914400
+    second: linguagems_8
+  - first:
+      213: 3286723063110347718
+    second: linguagems_9
+  - first:
+      213: 118826770645751005
+    second: linguagems_10
+  - first:
+      213: 6849750632839514454
+    second: linguagems_11
+  - first:
+      213: 2100517700841943002
+    second: linguagems_12
+  - first:
+      213: -1975035343317912933
+    second: linguagems_13
+  - first:
+      213: 5079540818331282856
+    second: linguagems_14
+  - first:
+      213: 4659514861172046878
+    second: linguagems_15
+  - first:
+      213: -1323575623329924577
+    second: linguagems_16
+  - first:
+      213: -1105979726819413719
+    second: linguagems_17
+  - first:
+      213: -342190338433602026
+    second: linguagems_18
+  - first:
+      213: -3207893230627055086
+    second: linguagems_19
+  - first:
+      213: 7927783201431131303
+    second: linguagems_20
+  - first:
+      213: -5047205172312899991
+    second: linguagems_21
+  - first:
+      213: -8721069502328975174
+    second: linguagems_22
+  - first:
+      213: 5244711187990518945
+    second: linguagems_23
+  - first:
+      213: 8111367872521397262
+    second: linguagems_24
+  - first:
+      213: -2992649488293690030
+    second: linguagems_25
+  - first:
+      213: -3659114084643475367
+    second: linguagems_26
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: linguagems_0
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 376
+        width: 65
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68d4dea43bedeca30800000000000000
+      internalID: 4237569161039793542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_1
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 376
+        width: 67
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50449c3d1c8ea2e40800000000000000
+      internalID: 5632570203159741445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_2
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 379
+        width: 67
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 346593ce8109200b0800000000000000
+      internalID: -5763886136364018109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_3
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 372
+        width: 42
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 290c3155997f6f4b0800000000000000
+      internalID: -5406862064682286958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_4
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 374
+        width: 54
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 208b1af1727210870800000000000000
+      internalID: 8647235808515962882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_5
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 262
+        width: 50
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c56244dceb3710190800000000000000
+      internalID: -7997984199908514212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_6
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 275
+        width: 70
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2ae3188e97c13330800000000000000
+      internalID: 3688949053494913578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_7
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 262
+        width: 60
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07576fa48e2fa9080800000000000000
+      internalID: -9179757810937334416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_8
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 264
+        width: 37
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02fa223d410b4e270800000000000000
+      internalID: 8278935618501914400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_9
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 313
+        width: 32
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cba6cb4639cc9d20800000000000000
+      internalID: 3286723063110347718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_10
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 264
+        width: 26
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd4952e715826a100800000000000000
+      internalID: 118826770645751005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_11
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 263
+        width: 67
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6590866b8e33f0f50800000000000000
+      internalID: 6849750632839514454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_12
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 157
+        width: 66
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adfaa1b48b9862d10800000000000000
+      internalID: 2100517700841943002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_13
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 161
+        width: 47
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b92b1b6c1d34794e0800000000000000
+      internalID: -1975035343317912933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_14
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 154
+        width: 23
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8adabb236772e7640800000000000000
+      internalID: 5079540818331282856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_15
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 154
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1c30dd341ce9a040800000000000000
+      internalID: 4659514861172046878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_16
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 158
+        width: 66
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1abd02bbf6b1ade0800000000000000
+      internalID: -1323575623329924577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_17
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 172
+        width: 65
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92135265c45c6a0f0800000000000000
+      internalID: -1105979726819413719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_18
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 154
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61e281043bb404bf0800000000000000
+      internalID: -342190338433602026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_19
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 154
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21a18175a164b73d0800000000000000
+      internalID: -3207893230627055086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_20
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 153
+        width: 57
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a49c9981d4250e60800000000000000
+      internalID: 7927783201431131303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_21
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 47
+        width: 59
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96e76c313a9b4f9b0800000000000000
+      internalID: -5047205172312899991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_22
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 44
+        width: 59
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab0503c6e7988f680800000000000000
+      internalID: -8721069502328975174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_23
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 51
+        width: 67
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ac11bda905f8c840800000000000000
+      internalID: 5244711187990518945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_24
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 44
+        width: 49
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e04672caa1e519070800000000000000
+      internalID: 8111367872521397262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_25
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 77
+        width: 39
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25500096529f776d0800000000000000
+      internalID: -2992649488293690030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems_26
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 44
+        width: 42
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95072387027383dc0800000000000000
+      internalID: -3659114084643475367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      linguagems_0: 4237569161039793542
+      linguagems_1: 5632570203159741445
+      linguagems_10: 118826770645751005
+      linguagems_11: 6849750632839514454
+      linguagems_12: 2100517700841943002
+      linguagems_13: -1975035343317912933
+      linguagems_14: 5079540818331282856
+      linguagems_15: 4659514861172046878
+      linguagems_16: -1323575623329924577
+      linguagems_17: -1105979726819413719
+      linguagems_18: -342190338433602026
+      linguagems_19: -3207893230627055086
+      linguagems_2: -5763886136364018109
+      linguagems_20: 7927783201431131303
+      linguagems_21: -5047205172312899991
+      linguagems_22: -8721069502328975174
+      linguagems_23: 5244711187990518945
+      linguagems_24: 8111367872521397262
+      linguagems_25: -2992649488293690030
+      linguagems_26: -3659114084643475367
+      linguagems_3: -5406862064682286958
+      linguagems_4: 8647235808515962882
+      linguagems_5: -7997984199908514212
+      linguagems_6: 3688949053494913578
+      linguagems_7: -9179757810937334416
+      linguagems_8: 8278935618501914400
+      linguagems_9: 3286723063110347718
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

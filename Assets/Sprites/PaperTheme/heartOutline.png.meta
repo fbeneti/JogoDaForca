@@ -182,7 +182,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      heartOutline_0: -6228947282023763002
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -2,36 +2,65 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Unity.Mathematics;
 
 
 public class Conn : MonoBehaviourPunCallbacks
 
 {
     public static Conn instance;
+    public DatabaseBuilder databaseBuilder;
 
+    public TMP_InputField createRoomName;
+    public TMP_InputField joinRoomName;
     [SerializeField]
     private GameObject painelL, painelS, roomPanel, lobbyPanel;
+    public Animator categoryPanel;
     [SerializeField]
-    private InputField nomeJogador, nomeSala;
+    private InputField nomeJogador;
     [SerializeField]
     public Text roomName;
-    public Text txtNick;
-    [SerializeField]
-    private GameObject jogador;
+    public List<PlayerItem> playerItemsList = new List<PlayerItem>();
+    public PlayerItem playerItemPrefab;
+    public Transform playerItemParent;
+
+    public string selectedDifficulty;
+    public string selectedCategory;
+    public string selectedWord;
+    public string selectedWordHint1;
+    public string selectedWordHint2;
+    public string selectedWordHint3;
+    public int selectedCategoryId;
+    private string nomeSalaCriar;
+    private string nomeSalaEntrar;
 
 
 void Awake()
     {
-        instance = this;
+
     }
 
 
     void Start()
     {
+        nomeSalaCriar = createRoomName.text;
+        nomeSalaEntrar = joinRoomName.text;
 
+        // If DatabaseBuilder wasn't instantiated, instantiate and initiate it
+        if (DatabaseBuilder.instance == null)
+        {
+            GameObject dbGameObject = new GameObject("DatabaseBuilder");
+            databaseBuilder = dbGameObject.AddComponent<DatabaseBuilder>();
+            databaseBuilder.Initialize();
+        }
+        else
+        {
+            databaseBuilder = DatabaseBuilder.instance;
+        }
     }
 
 
@@ -40,14 +69,13 @@ void Awake()
         PhotonNetwork.NickName = GlobalVariables.player1Name;
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.ConnectUsingSettings();
-        painelL.SetActive(false);
-        painelS.SetActive(true);
     }
 
 
-    public void CriarSala(InputField nomeSala)
+    public void CriarSala()
     {
-        PhotonNetwork.CreateRoom(nomeSala.text);
+        categoryPanel.SetTrigger("close");
+        PhotonNetwork.CreateRoom(nomeSalaCriar);
     }
 
 
@@ -64,9 +92,9 @@ void Awake()
     }
 
 
-    public void JoinRoom(InputField nomeSala)
+    public void JoinRoom()
     {
-        PhotonNetwork.JoinRoom(nomeSala.text);
+        PhotonNetwork.JoinRoom(nomeSalaEntrar);
     }
     
     
@@ -74,8 +102,8 @@ void Awake()
     {
         PhotonNetwork.JoinRandomRoom();
     }
-    
-    
+
+
     public override void OnDisconnected(DisconnectCause cause) // verify if is connected
     {
         Debug.Log("Conexão perdida");
@@ -88,7 +116,38 @@ void Awake()
     }
 
 
-    private bool aguardandoSegundoJogador = false;
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        UpdatePlayerList();
+    }
+
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        UpdatePlayerList();
+    }
+
+
+    void UpdatePlayerList()
+    {
+        foreach(PlayerItem item in playerItemsList)
+        {
+            Destroy(item.gameObject);
+        }
+        playerItemsList.Clear();
+
+        if(PhotonNetwork.CurrentRoom == null)
+        {
+            return;
+        }
+        foreach(KeyValuePair<int, Player> player in PhotonNetwork.CurrentRoom.Players)
+        {
+            PlayerItem newPlayerItem = Instantiate(playerItemPrefab, playerItemParent);
+            newPlayerItem.SetPlayerInfo(player.Value);
+            
+            playerItemsList.Add(newPlayerItem);
+        }
+    }
 
 
     public override void OnJoinedRoom()
@@ -98,14 +157,12 @@ void Awake()
         Debug.Log("Quantidade de jogadores na sala: " + PhotonNetwork.CurrentRoom.PlayerCount);
         Debug.Log("Apelido do jogador: " + PhotonNetwork.NickName);
 
-        txtNick.text = PhotonNetwork.NickName;
-
         painelS.SetActive(false);
         lobbyPanel.SetActive(false);
         roomPanel.SetActive(true);
         roomName.text = "Nome da Sala: " + PhotonNetwork.CurrentRoom.Name;
 
-        if (PhotonNetwork.IsMasterClient)
+         if (PhotonNetwork.IsMasterClient)
         {
             // Posição do primeiro jogador
             Vector3 posicaoPrimeiroJogador = new Vector3(-184.0f, -16.0f, 0.0f);
@@ -117,12 +174,15 @@ void Awake()
             Vector3 posicaoSegundoJogador = new Vector3(-184.0f, -120.0f, 0.0f);
             PhotonNetwork.Instantiate("Player", posicaoSegundoJogador, Quaternion.identity, 0);
         }
+
+        UpdatePlayerList();
         StartCoroutine(IniciarJogo());
     }
 
 
     private IEnumerator IniciarJogo()
     {
+        int cID;
         // Aguarda até que o segundo jogador entre na sala
         while (PhotonNetwork.CurrentRoom.PlayerCount < 2)
         {
@@ -135,9 +195,70 @@ void Awake()
         {
             yield return new WaitForSeconds(5f);
 
-            // Inicia o jogo e carrega a cena "Game"
-            Debug.Log("Iniciando o jogo e carregando a cena 'Loading'...");
-            PhotonNetwork.LoadLevel("8-Game00");
+            // Inicia o jogo e carrega a cena da categoria correspondente
+            if (GlobalVariables.actualCategoryId == 0)
+            {
+                cID = Random.Range(0, GlobalVariables.countCategory);
+                GlobalVariables.actualCategoryId = cID;
+            }
+            else
+            {
+                cID = GlobalVariables.actualCategoryId;
+            }
+
+            // Load categories from database
+            List<Dictionary<string, string>> categories = databaseBuilder.ReadTable("Categories", $"Id = {cID}");
+            if (categories.Count == 0)
+            {
+                Debug.LogError("Nenhuma categoria encontrada no banco de dados.");
+                yield return null;
+            }
+
+            // Pick a category from the list
+            int cIndex = Random.Range(0, categories.Count);
+            var selectedCategory = categories[cIndex];
+            string categoryName = selectedCategory["Categoria"];
+            Debug.Log("Categoria = " + categoryName);
+
+            // Load words from selected category on the words list 
+            int categoryId = int.Parse(selectedCategory["Id"]);
+            Debug.Log("Categoria Id = " + selectedCategory["Id"]);
+            List<Dictionary<string, string>> words = databaseBuilder.ReadTable("Words", $"Categoria = {categoryId}");
+            if (words.Count == 0)
+            {
+                Debug.LogError("Nenhuma palavra encontrada para a categoria selecionada.");
+                yield return null;
+            }
+
+            // Pick a word from the list
+            int wIndex = Random.Range(0, words.Count);
+            string pickedWord = words[wIndex]["Nome"];
+            int difficultyId = int.Parse(words[wIndex]["Dificuldade"]);
+            Debug.Log("Palavra = " + pickedWord);
+
+            // Load dificulty with the selected Id
+            List<Dictionary<string, string>> difficulties = databaseBuilder.ReadTable("Dificulties", $"Id = {difficultyId}");
+            if (difficulties.Count == 0)
+            {
+                Debug.LogError("Nenhuma dificuldade encontrada para o Id selecionado.");
+                yield return null;
+            }
+
+            // Pick a dificulty from the list
+            int dIndex = Random.Range(0, difficulties.Count);
+            var selectedDifficulty = difficulties[dIndex];
+            string difficultyName = selectedDifficulty["Dificuldade"];
+
+            GlobalVariables.actualCategoryName = categoryName;
+            GlobalVariables.actualDifficulty = difficultyName;
+            GlobalVariables.actualWord = pickedWord;
+
+            string sceneName = $"8-Game{cID:D2}";
+            Debug.Log($"Iniciando o jogo e carregando a cena {sceneName}");
+            PhotonNetwork.LoadLevel(sceneName);
         }
     }
+
+
+    
 }

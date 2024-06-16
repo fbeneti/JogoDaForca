@@ -182,7 +182,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      vazio_02_0: -3302392273422800154
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

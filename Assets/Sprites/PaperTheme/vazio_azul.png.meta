@@ -182,7 +182,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      vazio_azul_0: 1951459241280051286
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

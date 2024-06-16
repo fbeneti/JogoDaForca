@@ -296,6 +296,11 @@ MonoBehaviour:
   MessagePanel: {fileID: 929970478}
   MessagePanelTitle: {fileID: 643157902}
   MessagePanelText: {fileID: 100637261}
+  hangPanels: []
+  CategoryPanel: {fileID: 0}
+  categoryText: {fileID: 0}
+  AvatarPanel: {fileID: 0}
+  avatarImage: {fileID: 0}
   statsText: {fileID: 703499203}
   saveFile: {fileID: 11400000, guid: c9279facb85698340b4a1d9d86b86d14, type: 2}
 --- !u!4 &88448487
@@ -4695,51 +4700,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1519497760}
   m_CullTransparentMesh: 1
---- !u!1 &1636529321
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1636529323}
-  - component: {fileID: 1636529324}
-  m_Layer: 0
-  m_Name: DatabaseBuilder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1636529323
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1636529321}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 310.2624, y: 38.425175, z: -3.739216}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1636529324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1636529321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfc65404c45857e4cb9c659cdbca56c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  databaseName: existing.db
 --- !u!1 &1637772359
 GameObject:
   m_ObjectHideFlags: 0
@@ -5498,7 +5458,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dfea0b6f6f938c4f8984b83050a7302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  databaseBuilder: {fileID: 1636529324}
   UsernameField: {fileID: 113438152}
   EmailField: {fileID: 429498044}
   PasswordField: {fileID: 779927779}
@@ -5514,4 +5473,3 @@ SceneRoots:
   - {fileID: 88448487}
   - {fileID: 703499205}
   - {fileID: 2129109488}
-  - {fileID: 1636529323}

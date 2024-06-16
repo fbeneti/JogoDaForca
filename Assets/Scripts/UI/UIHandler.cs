@@ -5,16 +5,25 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class UIHandler : MonoBehaviourPun
 {
     public static UIHandler instance;
     private Conn conn;
+    private DatabaseBuilder databaseBuilder;
     private Login login;
     private Register register;
+    
     private bool loginSuccess = false;
     private bool registerSuccess = false;
+    private int countCategory;
+    private int actualCategory;
+    private int currentAvatarIndex = 0;
+    private List<Dictionary<string, string>> categoriesDict;
+    private List<Sprite> avatars;
+
 
     [Header("PANELS")]
     public Animator GameOverPanel;       //ID 1
@@ -29,18 +38,32 @@ public class UIHandler : MonoBehaviourPun
     public Animator MessagePanel;        // ID 8
     public TMP_Text MessagePanelTitle;   //   Message Title
     public TMP_Text MessagePanelText;    //   Message Text
-    [Header("GamePanels")]
+
+    [Space]
+    [Header("Game Panels")]
     public GameObject[] hangPanels;
+
+    [Space]
+    [Header("Category Panel")]
+    public Animator CategoryPanel;
+    public TMP_Text categoryText;
+
+    [Space]
+    [Header("Avatar Panel")]
+    public Animator AvatarPanel;
+    public Image avatarImage; // Referência para o componente de imagem do avatar
 
     [Space]
     [Header("STATS")]
     public TMP_Text statsText;
     [SerializeField] SCR_BaseStats saveFile;
-  
+
+    
+
 
     void Awake()
     {
-        instance = this;
+            instance = this;
     }
 
 
@@ -49,25 +72,35 @@ public class UIHandler : MonoBehaviourPun
         conn = Conn.instance;
         login = Login.instance;
         register = Register.instance;
+        
+        // If DatabaseBuilder wasn't instantiated, instantiate and initiate it
+        if (DatabaseBuilder.instance == null)
+        {
+            GameObject dbGameObject = new GameObject("DatabaseBuilder");
+            databaseBuilder = dbGameObject.AddComponent<DatabaseBuilder>();
+            databaseBuilder.Initialize();
+        }
+        else
+        {
+            databaseBuilder = DatabaseBuilder.instance;
+        }
+        
         if (statsText != null)
         { 
             UpdateStatsText();
         }
-    }
 
-
-    //TOP LEFT CORNER BUTTON
-    public void SettingsButton()
-    {
-        SettingsPanel.SetTrigger("open");
-    }
-
-
-    //TOP LEFT CORNER BUTTON
-    public void StatsButton()
-    {
-        StatsPanel.SetTrigger("open");
-        UpdateStatsText();
+        categoriesDict = databaseBuilder.ReadTable("Categories");
+        countCategory = categoriesDict.Count;
+        GlobalVariables.countCategory = countCategory;
+        actualCategory = 0;
+        GlobalVariables.actualCategoryId = actualCategory;
+        currentAvatarIndex = GlobalVariables.player1Avatar;
+        avatars = new List<Sprite>(Resources.LoadAll<Sprite>("Avatars"));
+        if (avatars.Count == 0)
+        {
+            Debug.LogError("No avatars found in the Resources/Avatars folder!");
+        }
     }
 
 
@@ -134,82 +167,6 @@ public class UIHandler : MonoBehaviourPun
     }
 
 
-    public void ActivateGamePanel(int categoryId)
-    {
-        // Formatar o categoryId como uma string de 2 dígitos
-        string panelName = $"Panel{categoryId:D2}";
-        string animatorName = $"HangPanel{categoryId:D2}";
-
-        Debug.Log($"Trying to activate panel: {panelName} and animator: {animatorName}");
-
-        // Desativar todos os painéis e animators
-        foreach (GameObject panel in hangPanels)
-        {
-            panel.SetActive(false);
-            Animator animator = panel.GetComponent<Animator>();
-            if (animator != null)
-            {
-                animator.enabled = false;
-            }
-        }
-
-        // Ativar o painel e animator correspondente à categoria
-        bool panelFound = false;
-        foreach (GameObject panel in hangPanels)
-        {
-            if (panel.name == panelName)
-            {
-                panel.SetActive(true);
-                Animator animator = GameObject.Find(animatorName)?.GetComponent<Animator>();
-                if (animator != null)
-                {
-                    if (animator.runtimeAnimatorController != null)
-                    {
-                        animator.enabled = true;
-                        animator.Play(0, -1, 0f); // Reiniciar a animação
-                        Debug.Log($"Activated panel: {panelName} with animator: {animatorName}");
-                    }
-                    else
-                    {
-                        Debug.LogWarning($"Animator for panel {panelName} does not have an AnimatorController assigned.");
-                    }
-                }
-                else
-                {
-                    Debug.LogWarning($"Animator not found for panel: {panelName}");
-                }
-                panelFound = true;
-                break;
-            }
-        }
-
-        // Se nenhum painel correspondente for encontrado, ativar o painel e animator padrão
-        if (!panelFound && hangPanels.Length > 0)
-        {
-            GameObject defaultPanel = hangPanels[0];
-            defaultPanel.SetActive(true);
-            Animator animator = GameObject.Find("Panel00")?.GetComponent<Animator>();
-            if (animator != null)
-            {
-                if (animator.runtimeAnimatorController != null)
-                {
-                    animator.enabled = true;
-                    animator.Play(0, -1, 0f); // Reiniciar a animação
-                    Debug.Log("Activated default panel and animator.");
-                }
-                else
-                {
-                    Debug.LogWarning("Animator for default panel does not have an AnimatorController assigned.");
-                }
-            }
-            else
-            {
-                Debug.LogWarning("Animator not found for default panel.");
-            }
-        }
-    }
-
-
     public void MultiplayerButton()
     {
         PhotonNetwork.NickName = GlobalVariables.player1Name;
@@ -217,8 +174,111 @@ public class UIHandler : MonoBehaviourPun
         PhotonNetwork.ConnectUsingSettings();
         SceneManager.LoadScene("6-Lobby");
     }
+
+
+    //Open Categoy Control Panel
+    public void CreateRoomClick()
+    {
+        CategoryPanel.SetTrigger("open");
+    }
+
+
+    public void UpCategoryButton()
+    {
+        if (actualCategory < countCategory) 
+        { 
+            actualCategory++; 
+            UpdateCategory();
+        }
+        else
+            return;
+
+        
+    }
+
+
+    public void DownCategoryButton()
+    {
+        if (actualCategory > 0) 
+        { 
+            actualCategory--; 
+            UpdateCategory();
+        }
+        else
+            return;
+    }
     
+
+    void UpdateCategory()
+    {
+        GlobalVariables.actualCategoryId = actualCategory;
+        if (actualCategory == 0)
+            categoryText.text = "Aleatória";
+        else
+        {
+            categoryText.text = categoriesDict[actualCategory - 1]["Categoria"];
+        }
+    }
+
+
+    //Open Avatar Control Panel
+    public void AvatarButtonClick()
+    {
+        AvatarPanel.SetTrigger("open");
+    }
     
+
+    public void UpAvatarButton()
+    {
+        if (currentAvatarIndex < avatars.Count - 1)
+        {
+            currentAvatarIndex++;
+            UpdateAvatarImage();
+        }
+        else
+            return;
+
+        Debug.Log("Avatar" + currentAvatarIndex);
+    }
+
+
+    public void DownAvatarButton()
+    {
+         if (currentAvatarIndex > 0)
+        {
+            currentAvatarIndex--;
+            UpdateAvatarImage();
+        }
+                else
+            return;
+
+        Debug.Log("Avatar" + currentAvatarIndex);
+    }
+    
+
+    void UpdateAvatarImage()
+    {
+        // Atualiza a imagem do avatar na interface do usuário
+        if (avatars != null && avatars.Count > 0 && avatarImage != null)
+        {
+            avatarImage.sprite = avatars[currentAvatarIndex];
+        }
+    }
+
+
+    public void UpdateAvatarOnDatabase()
+    {
+        Dictionary<string, string> player1 = new Dictionary<string, string>
+        {
+            { "Avatar", currentAvatarIndex.ToString() }
+        };
+        databaseBuilder.UpdateTable("Players", player1, $"Username = '{GlobalVariables.player1Name}'");
+        Debug.Log("Avatar alterado com sucesso!");
+        AvatarPanel.SetTrigger("close");
+    }
+
+
+
     void UpdateStatsText()
     {
         List<int> statsList = saveFile.GetStats();

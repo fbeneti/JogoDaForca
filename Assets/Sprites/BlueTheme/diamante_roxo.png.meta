@@ -182,7 +182,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      diamante_roxo_0: 1311940134007259149
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

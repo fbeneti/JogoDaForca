@@ -182,7 +182,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "Bot\xE3oMarrom3_0": 1953226955691899088
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

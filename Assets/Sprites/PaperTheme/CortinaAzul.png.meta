@@ -182,7 +182,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CortinaAzul_0: 3144543278422669046
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

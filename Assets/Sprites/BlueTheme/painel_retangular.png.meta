@@ -182,7 +182,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      painel_retangular_0: -2415917657856805831
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

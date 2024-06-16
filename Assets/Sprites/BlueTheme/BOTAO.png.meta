@@ -182,7 +182,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BOTAO_0: -5670037012066493597
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
