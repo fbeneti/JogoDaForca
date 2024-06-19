@@ -47,9 +47,6 @@ void Awake()
 
     void Start()
     {
-        nomeSalaCriar = createRoomName.text;
-        nomeSalaEntrar = joinRoomName.text;
-
         // If DatabaseBuilder wasn't instantiated, instantiate and initiate it
         if (DatabaseBuilder.instance == null)
         {
@@ -72,10 +69,10 @@ void Awake()
     }
 
 
-    public void CriarSala()
+    public void CriarSala(TMP_InputField createRoomName)
     {
         categoryPanel.SetTrigger("close");
-        PhotonNetwork.CreateRoom(nomeSalaCriar);
+        PhotonNetwork.CreateRoom(createRoomName.text);
     }
 
 
@@ -92,9 +89,9 @@ void Awake()
     }
 
 
-    public void JoinRoom()
+    public void JoinRoom(TMP_InputField joinRoomName)
     {
-        PhotonNetwork.JoinRoom(nomeSalaEntrar);
+        PhotonNetwork.JoinRoom(joinRoomName.text);
     }
     
     
@@ -146,6 +143,12 @@ void Awake()
             newPlayerItem.SetPlayerInfo(player.Value);
             
             playerItemsList.Add(newPlayerItem);
+
+            //Check if this player is not Player1 to identify Player2
+            if (player.Value.NickName != GlobalVariables.player1Name)
+            { 
+                GlobalVariables.player2Name = player.Value.NickName;
+            }
         }
     }
 
@@ -162,7 +165,8 @@ void Awake()
         roomPanel.SetActive(true);
         roomName.text = "Nome da Sala: " + PhotonNetwork.CurrentRoom.Name;
 
-         if (PhotonNetwork.IsMasterClient)
+        /*
+        if (PhotonNetwork.IsMasterClient)
         {
             // Posição do primeiro jogador
             Vector3 posicaoPrimeiroJogador = new Vector3(-184.0f, -16.0f, 0.0f);
@@ -174,6 +178,7 @@ void Awake()
             Vector3 posicaoSegundoJogador = new Vector3(-184.0f, -120.0f, 0.0f);
             PhotonNetwork.Instantiate("Player", posicaoSegundoJogador, Quaternion.identity, 0);
         }
+        */
 
         UpdatePlayerList();
         StartCoroutine(IniciarJogo());
@@ -193,7 +198,9 @@ void Awake()
         // Quando o segundo jogador entrar na sala, aguarda 10 segundos antes de iniciar o jogo
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
+            
             yield return new WaitForSeconds(5f);
+            //photonView.RPC("SyncPlayer2Info", RpcTarget.AllBuffered, GlobalVariables.player1Name, GlobalVariables.player1Avatar);
 
             // Inicia o jogo e carrega a cena da categoria correspondente
             if (GlobalVariables.actualCategoryId == 0)
@@ -233,6 +240,10 @@ void Awake()
             // Pick a word from the list
             int wIndex = Random.Range(0, words.Count);
             string pickedWord = words[wIndex]["Nome"];
+            string wordHint1 = words[wIndex]["Dica1"];
+            string wordHint2 = words[wIndex]["Dica2"];
+            string wordHint3 = words[wIndex]["Dica3"];
+
             int difficultyId = int.Parse(words[wIndex]["Dificuldade"]);
             Debug.Log("Palavra = " + pickedWord);
 
@@ -252,6 +263,9 @@ void Awake()
             GlobalVariables.actualCategoryName = categoryName;
             GlobalVariables.actualDifficulty = difficultyName;
             GlobalVariables.actualWord = pickedWord;
+            GlobalVariables.wordHint1 = wordHint1;
+            GlobalVariables.wordHint2 = wordHint2;
+            GlobalVariables.wordHint3 = wordHint3;
 
             string sceneName = $"8-Game{cID:D2}";
             Debug.Log($"Iniciando o jogo e carregando a cena {sceneName}");
@@ -259,6 +273,12 @@ void Awake()
         }
     }
 
-
-    
+    [PunRPC]
+    private void SyncPlayer2Info(string player2Name, int player2Avatar)
+    {
+        GlobalVariables.player2Name = player2Name;
+        Debug.Log("Player2 Nome: " + player2Name);
+        GlobalVariables.player2Avatar = player2Avatar;
+        Debug.Log("Player2 Avatar: " + player2Avatar.ToString());
+    }    
 }

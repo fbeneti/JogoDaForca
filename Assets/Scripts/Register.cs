@@ -13,21 +13,17 @@ public class Register : MonoBehaviour
     public TMP_InputField PasswordField;
     public TMP_InputField PasswordVrfField;
 
+    [Space]
+    [Header("Audios")]
+    public AudioSource audioWriting;
+    
     private UIHandler uiHandler;
     private bool messageDisplayed = false;  // Flag to track if a message is displayed
 
 
     void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        instance = this;
     }
 
 
@@ -50,12 +46,16 @@ public class Register : MonoBehaviour
         // Adicione os eventos para fechar o painel de mensagem
         UsernameField.onSelect.AddListener(delegate { OnInputFieldSelect(); });
         UsernameField.onValueChanged.AddListener(delegate { OnInputFieldEdit(); });
+        UsernameField.onValueChanged.AddListener(OnInputValueChanged);
         EmailField.onSelect.AddListener(delegate { OnInputFieldSelect(); });
         EmailField.onValueChanged.AddListener(delegate { OnInputFieldEdit(); });
+        EmailField.onValueChanged.AddListener(OnInputValueChanged);
         PasswordField.onSelect.AddListener(delegate { OnInputFieldSelect(); });
         PasswordField.onValueChanged.AddListener(delegate { OnInputFieldEdit(); });
+        PasswordField.onValueChanged.AddListener(OnInputValueChanged);
         PasswordVrfField.onSelect.AddListener(delegate { OnInputFieldSelect(); });
         PasswordVrfField.onValueChanged.AddListener(delegate { OnInputFieldEdit(); });
+        PasswordVrfField.onValueChanged.AddListener(OnInputValueChanged);
     }
 
     
@@ -136,5 +136,11 @@ public class Register : MonoBehaviour
             uiHandler.ClosePanelButton(8);
             messageDisplayed = false;
         }
+    }
+
+
+        void OnInputValueChanged(string value)
+    {
+        audioWriting.Play();
     }
 }

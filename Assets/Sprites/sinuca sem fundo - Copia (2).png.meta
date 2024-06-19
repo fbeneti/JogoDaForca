@@ -1,0 +1,541 @@
+fileFormatVersion: 2
+guid: 672c09e9dd6bf3c4995ac4396776756c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6471762905424795429
+    second: sinuca sem fundo - Copia (2)_0
+  - first:
+      213: -1840241788717949513
+    second: sinuca sem fundo - Copia (2)_1
+  - first:
+      213: 8737525672644696085
+    second: sinuca sem fundo - Copia (2)_2
+  - first:
+      213: 3910848951885607800
+    second: sinuca sem fundo - Copia (2)_3
+  - first:
+      213: 5390673267654212116
+    second: sinuca sem fundo - Copia (2)_4
+  - first:
+      213: 7315939825690393156
+    second: sinuca sem fundo - Copia (2)_5
+  - first:
+      213: 600428717952098694
+    second: sinuca sem fundo - Copia (2)_6
+  - first:
+      213: 2480724410756586118
+    second: sinuca sem fundo - Copia (2)_7
+  - first:
+      213: -7309643595908298584
+    second: sinuca sem fundo - Copia (2)_8
+  - first:
+      213: 7499985519292427981
+    second: sinuca sem fundo - Copia (2)_9
+  - first:
+      213: 8764710211695846312
+    second: sinuca sem fundo - Copia (2)_10
+  - first:
+      213: 463610259513765688
+    second: sinuca sem fundo - Copia (2)_11
+  - first:
+      213: 6693361809265420418
+    second: sinuca sem fundo - Copia (2)_12
+  - first:
+      213: -1056736044513748510
+    second: sinuca sem fundo - Copia (2)_13
+  - first:
+      213: -757643419349719729
+    second: sinuca sem fundo - Copia (2)_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sinuca sem fundo - Copia (2)_0
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 470
+        width: 127
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5271568d21250d950800000000000000
+      internalID: 6471762905424795429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinuca sem fundo - Copia (2)_1
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 469
+        width: 127
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bd13aad7d52676e0800000000000000
+      internalID: -1840241788717949513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinuca sem fundo - Copia (2)_2
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 469
+        width: 127
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 518d7dd4e4de14970800000000000000
+      internalID: 8737525672644696085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinuca sem fundo - Copia (2)_3
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 469
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 873b953b660264630800000000000000
+      internalID: 3910848951885607800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinuca sem fundo - Copia (2)_4
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 326
+        width: 127
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41a39b2a6c48fca40800000000000000
+      internalID: 5390673267654212116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinuca sem fundo - Copia (2)_5
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 326
+        width: 127
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44ab86c8280778560800000000000000
+      internalID: 7315939825690393156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinuca sem fundo - Copia (2)_6
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 326
+        width: 127
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6816a7edcb6255800800000000000000
+      internalID: 600428717952098694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinuca sem fundo - Copia (2)_7
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 326
+        width: 126
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68a59c845bd4d6220800000000000000
+      internalID: 2480724410756586118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinuca sem fundo - Copia (2)_8
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 185
+        width: 126
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a84d2fa0edee8a90800000000000000
+      internalID: -7309643595908298584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinuca sem fundo - Copia (2)_9
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 185
+        width: 126
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dceaff9d71d451860800000000000000
+      internalID: 7499985519292427981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinuca sem fundo - Copia (2)_10
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 185
+        width: 126
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a3ae57008182a970800000000000000
+      internalID: 8764710211695846312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinuca sem fundo - Copia (2)_11
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 185
+        width: 126
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83f6b8023131f6600800000000000000
+      internalID: 463610259513765688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinuca sem fundo - Copia (2)_12
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 44
+        width: 126
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2886e624a1993ec50800000000000000
+      internalID: 6693361809265420418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinuca sem fundo - Copia (2)_13
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 43
+        width: 126
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e918659a28b551f0800000000000000
+      internalID: -1056736044513748510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sinuca sem fundo - Copia (2)_14
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 43
+        width: 126
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f456f33035f4c75f0800000000000000
+      internalID: -757643419349719729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      sinuca sem fundo - Copia (2)_0: 6471762905424795429
+      sinuca sem fundo - Copia (2)_1: -1840241788717949513
+      sinuca sem fundo - Copia (2)_10: 8764710211695846312
+      sinuca sem fundo - Copia (2)_11: 463610259513765688
+      sinuca sem fundo - Copia (2)_12: 6693361809265420418
+      sinuca sem fundo - Copia (2)_13: -1056736044513748510
+      sinuca sem fundo - Copia (2)_14: -757643419349719729
+      sinuca sem fundo - Copia (2)_2: 8737525672644696085
+      sinuca sem fundo - Copia (2)_3: 3910848951885607800
+      sinuca sem fundo - Copia (2)_4: 5390673267654212116
+      sinuca sem fundo - Copia (2)_5: 7315939825690393156
+      sinuca sem fundo - Copia (2)_6: 600428717952098694
+      sinuca sem fundo - Copia (2)_7: 2480724410756586118
+      sinuca sem fundo - Copia (2)_8: -7309643595908298584
+      sinuca sem fundo - Copia (2)_9: 7499985519292427981
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1332,6 +1332,9 @@ namespace Photon.Realtime
 
         /// <summary>(253) UserId of the player. Sent when room gets created with RoomOptions.PublishUserId = true.</summary>
         public const byte UserId = 253;
+
+        /// <summary>(252) Avatar of the player. Sent when room gets created with RoomOptions.PublishUserId = true.</summary>
+        public const byte Avatar = 252;
     }
 
 

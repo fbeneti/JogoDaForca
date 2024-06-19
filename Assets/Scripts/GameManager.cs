@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public TMP_Text playerTurnText;
     public TMP_Text feedbackText;
     int playTime;
-    int maxTurnTime = 15;
+    int maxTurnTime = 25;
 
     [Space]
     [Header("Free Hints")]
@@ -49,29 +49,37 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     [SerializeField]
     int maxMistakes;
-    int currentMistakes;
+    public int currentMistakes;
+
+    [Space]
+    [Header("Hearts")]
+    public Animator[] heartList;
+
+    [Space]
+    [Header("Audio")]
+    public AudioSource audioAcertou1;
+    public AudioSource audioAcertou2;
+    public AudioSource audioErrou;
+    public AudioSource audioGanhou;
+    public AudioSource audioPerdeu1;
+    public AudioSource audioPerdeu2;
+    public AudioSource audioComecar;
+
+    [Space]
+    [Header("Vitao")]
+    public Animator hostPanel;
 
     private Conn conn;
     private SceneLoader sceneLoader;
     private UIHandler uiHandler;
     private bool gameOver;
-    private int playerLifes;
+
     private Coroutine timerCoroutine;
 
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-
+        instance = this;
         TurnManager.OnTurnChanged += () => UpdateTurnUI();
     }
 
@@ -83,7 +91,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         sceneLoader = SceneLoader.instance;
         uiHandler = UIHandler.instance;
         maxMistakes = partList.Length;
-        playerLifes = maxMistakes;
 
         Initialize();
         StartCoroutine(Timer());
@@ -131,6 +138,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 letterHolderList[i].text = solvedList[i];
                 unsolvedWord[i] = solvedList[i];
                 letterFound = true;
+                VitaoAcertou();
                 string hitMessage = PhotonNetwork.LocalPlayer.NickName + " Acertou!";
                 photonView.RPC("ShowFeedbackMessage", RpcTarget.All, hitMessage);
             }
@@ -140,16 +148,18 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             //Mistake stuff - Graphical representation
             partList[currentMistakes].SetTrigger("miss");
-            sceneLoader.player1Lifes[playerLifes].SetTrigger("miss");
+            heartList[currentMistakes].SetTrigger("hide");
             currentMistakes++;
-            //playerLifes--;
+            VitaoErrou();
             string mistakeMessage = PhotonNetwork.LocalPlayer.NickName + " errou!";
             photonView.RPC("ShowFeedbackMessage", RpcTarget.All, mistakeMessage);
+
 
             if (currentMistakes == maxMistakes)
             {
                 //Do game over
                 photonView.RPC("SyncGameOverLose", RpcTarget.All);
+                VitaoLose();
                 gameOver = true;
                 return;
             }
@@ -160,6 +170,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             gameOver = true;
             photonView.RPC("SyncGameOver", RpcTarget.All);
+            VitaoWin();
         }
         TurnManager.instance.EndTurn();
         ResetAndSyncTimer();
@@ -183,6 +194,95 @@ public class GameManager : MonoBehaviourPunCallbacks
     public bool GameOver()
     {
         return gameOver;
+    }
+
+
+    public void VitaoAcertou()
+    {
+        hostPanel.SetTrigger("Show");
+        int iAcertou = Random.Range(1, 3);
+        switch(iAcertou)
+        {
+            case 1:
+                StartCoroutine(PlayAcertou1());
+                break;
+            case 2:
+                StartCoroutine(PlayAcertou2());
+                break;
+        }
+    }
+
+
+    private IEnumerator PlayAcertou1()
+    {
+        audioAcertou1.Play();
+        yield return new WaitForSeconds(4);
+        hostPanel.SetTrigger("Hide");
+    }
+
+
+    private IEnumerator PlayAcertou2()
+    {
+        audioAcertou2.Play();
+        yield return new WaitForSeconds(3);
+        hostPanel.SetTrigger("Hide");
+    }
+
+
+    public void VitaoErrou()
+    {
+        StartCoroutine(PlayErrou());
+    }
+
+
+    private IEnumerator PlayErrou()
+    {
+        hostPanel.SetTrigger("Show");
+        audioErrou.Play();
+        yield return new WaitForSeconds(3);
+        hostPanel.SetTrigger("Hide");
+    }
+
+
+    public void VitaoWin()
+    {
+        StartCoroutine(PlayGanhou());
+    }
+
+
+    private IEnumerator PlayGanhou()
+    {
+        yield return new WaitForSeconds(3);
+        audioGanhou.Play();
+    }
+
+
+    public void VitaoLose()
+    {
+        int iPerdeu = Random.Range(1, 3);
+        switch(iPerdeu)
+        {
+            case 1:
+                StartCoroutine(PlayPerdeu1());
+                break;
+            case 2:
+                StartCoroutine(PlayPerdeu2());
+                break;
+        }
+    }
+
+
+    private IEnumerator PlayPerdeu1()
+    {
+        yield return new WaitForSeconds(3);
+        audioPerdeu1.Play();
+    }
+
+
+    private IEnumerator PlayPerdeu2()
+    {
+        yield return new WaitForSeconds(3);
+        audioPerdeu2.Play();
     }
 
 
@@ -243,16 +343,23 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.Log($"Palavra = {GlobalVariables.actualWord}");
 
         // Sync Word, Category and Dificulty between players
-        photonView.RPC("SyncInitialWord", RpcTarget.AllBuffered, GlobalVariables.actualDifficulty, GlobalVariables.actualCategoryName, GlobalVariables.actualCategoryId, GlobalVariables.actualWord);
+        photonView.RPC("SyncInitialWord", RpcTarget.AllBuffered, GlobalVariables.actualDifficulty, GlobalVariables.actualCategoryName, GlobalVariables.actualCategoryId, GlobalVariables.actualWord, GlobalVariables.wordHint1, GlobalVariables.wordHint2, GlobalVariables.wordHint3);
     }
 
 
     [PunRPC]
-    private void SyncInitialWord(string difficultyName, string categoryName, int categoryId, string pickedWord)
+    private void SyncInitialWord(string difficultyName, string categoryName, int categoryId, string pickedWord, string wordHint1, string wordHint2, string wordHint3)
     {
         difficultyText.text = CapitalizeFirstLetter(difficultyName);
         categoryText.text = CapitalizeFirstLetter(categoryName);
         pickedWord = pickedWord.ToUpper();
+
+        GlobalVariables.actualCategoryName = categoryName;
+        GlobalVariables.actualDifficulty = difficultyName;
+        GlobalVariables.actualWord = pickedWord;
+        GlobalVariables.wordHint1 = wordHint1;
+        GlobalVariables.wordHint2 = wordHint2;
+        GlobalVariables.wordHint3 = wordHint3;
 
         string[] splittedWord = pickedWord.Select(l => l.ToString()).ToArray();
         unsolvedWord = new string[splittedWord.Length];

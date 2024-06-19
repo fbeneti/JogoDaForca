@@ -26,22 +26,15 @@ public class UIHandler : MonoBehaviourPun
 
 
     [Header("PANELS")]
-    public Animator GameOverPanel;       //ID 1
-    public Animator SettingsPanel;       //ID 2
-    public Animator StatsPanel;          //ID 3
-    public Animator WinPanel;            //ID 4
-    public Animator WrongPanel;          //ID 5
-    public TMP_Text WrongText;           //Texto do painel
-    public Animator SuccessPanel;        //ID 6
-    public Animator WarningPanel;        //ID 7
-    public TMP_Text WarningText;         //Texto do painel
-    public Animator MessagePanel;        // ID 8
-    public TMP_Text MessagePanelTitle;   //   Message Title
-    public TMP_Text MessagePanelText;    //   Message Text
-
-    [Space]
-    [Header("Game Panels")]
-    public GameObject[] hangPanels;
+    public Animator GameOverPanel;           // ID 1
+    public TMP_Text VictoryQttGameOverPanel;
+    public TMP_Text LoseQttGameOverPanel;
+    public Animator WinPanel;                // ID 2
+    public TMP_Text VictoryQttWinPanel;
+    public TMP_Text LoseQttWinPanel;
+    public Animator MessagePanel;            // ID 3
+    public TMP_Text MessagePanelTitle;       // Message Title
+    public TMP_Text MessagePanelText;        // Message Text
 
     [Space]
     [Header("Category Panel")]
@@ -58,7 +51,9 @@ public class UIHandler : MonoBehaviourPun
     public TMP_Text statsText;
     [SerializeField] SCR_BaseStats saveFile;
 
-    
+    [Space]
+    [Header("Audios")]
+    public AudioSource audioBemVindos;
 
 
     void Awake()
@@ -84,12 +79,12 @@ public class UIHandler : MonoBehaviourPun
         {
             databaseBuilder = DatabaseBuilder.instance;
         }
-        
+
         if (statsText != null)
         { 
             UpdateStatsText();
         }
-
+        
         categoriesDict = databaseBuilder.ReadTable("Categories");
         countCategory = categoriesDict.Count;
         GlobalVariables.countCategory = countCategory;
@@ -122,7 +117,7 @@ public class UIHandler : MonoBehaviourPun
     {
         if (loginSuccess)
         { 
-            SceneManager.LoadScene("4-Menu");
+            StartCoroutine(PlayWelcome());
         }
         else if (registerSuccess)
         {
@@ -135,6 +130,14 @@ public class UIHandler : MonoBehaviourPun
     }
 
 
+    private IEnumerator PlayWelcome()
+    {
+        audioBemVindos.Play();
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("4-Menu");
+    }
+
+
     public void ClosePanelButton(int buttonId)
     {
         switch(buttonId)
@@ -143,24 +146,9 @@ public class UIHandler : MonoBehaviourPun
                 GameOverPanel.SetTrigger("close");
                 break;
             case 2:
-                SettingsPanel.SetTrigger("close");
-                break;
-            case 3:
-                StatsPanel.SetTrigger("close");
-                break;
-            case 4:
                 WinPanel.SetTrigger("close");
                 break;
-            case 5:
-                WrongPanel.SetTrigger("close");
-                break;
-            case 6:
-                SuccessPanel.SetTrigger("close");
-                break;
-            case 7:
-                WarningPanel.SetTrigger("close");
-                break;
-            case 8:
+            case 3:
                 MessagePanel.SetTrigger("close");
                 break;
         }
@@ -192,8 +180,6 @@ public class UIHandler : MonoBehaviourPun
         }
         else
             return;
-
-        
     }
 
 
@@ -278,7 +264,6 @@ public class UIHandler : MonoBehaviourPun
     }
 
 
-
     void UpdateStatsText()
     {
         List<int> statsList = saveFile.GetStats();
@@ -295,6 +280,11 @@ public class UIHandler : MonoBehaviourPun
     public void WinCondition(int playTime)
     {
         saveFile.SaveStats(true, playTime);
+        GlobalVariables.player1Victories++;
+        VictoryQttWinPanel.text = GlobalVariables.player1Victories.ToString();
+        LoseQttWinPanel.text = GlobalVariables.player1Losses.ToString();
+        GlobalVariables.player1Coins += 75;
+        UpdatePlayerOnDatabase();
         WinPanel.SetTrigger("open");
     }
 
@@ -302,22 +292,43 @@ public class UIHandler : MonoBehaviourPun
     //COULDN'T PASS IN MISTAKES USED AND TIME USED
     public void LoseCondition(int playTime)
     {
-        saveFile.SaveStats(false, playTime);
+        saveFile.SaveStats(true, playTime);
+        GlobalVariables.player1Losses++;
+        VictoryQttGameOverPanel.text = GlobalVariables.player1Victories.ToString();
+        LoseQttGameOverPanel.text = GlobalVariables.player1Losses.ToString();
+        GlobalVariables.player1Coins += 25;
+        UpdatePlayerOnDatabase();
         GameOverPanel.SetTrigger("open");
     }
 
 
-    //Open Wrong Panel and set message
-    public void WrongCondition(string message)
+    public void UpdatePlayerOnDatabase()
     {
-        WrongPanel.SetTrigger("open");
-        WrongText.text = message;
-    }
+        Dictionary<string, string> player1Coins = new Dictionary<string, string>
+        {
+            {"Coins", GlobalVariables.player1Coins.ToString()}
+        };
 
-    //Open Message Panel
-    public void SuccessCondition()
-    {
-        SuccessPanel.SetTrigger("open");
+        databaseBuilder.UpdateTable("Players", player1Coins, $"Username = '{GlobalVariables.player1Name}'");
+        Debug.Log("Moedas atualizadas com sucesso");
+
+
+        Dictionary<string, string> player1Victories = new Dictionary<string, string>
+        {
+            {"Victories", GlobalVariables.player1Victories.ToString()}
+        };
+
+        databaseBuilder.UpdateTable("Players", player1Victories, $"Username = '{GlobalVariables.player1Name}'");
+        Debug.Log("Vitorias atualizadas com sucesso");
+        
+
+        Dictionary<string, string> player1Losses = new Dictionary<string, string>
+        {
+            {"Losses", GlobalVariables.player1Losses.ToString()}
+        };
+
+        databaseBuilder.UpdateTable("Players", player1Losses, $"Username = '{GlobalVariables.player1Name}'");
+        Debug.Log("Derrotas atualizadas com sucesso");
     }
 
 
@@ -327,14 +338,6 @@ public class UIHandler : MonoBehaviourPun
         MessagePanel.SetTrigger("open");
         MessagePanelTitle.text = panelTitle;
         MessagePanelText.text = message;
-    }
-
-
-    //Open Warning panel and set message
-    public void WarningCondition(string message)
-    {
-        WarningPanel.SetTrigger("open");
-        WarningText.text = message;
     }
 
 

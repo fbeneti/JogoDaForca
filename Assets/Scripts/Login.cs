@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -11,6 +12,11 @@ public class Login : MonoBehaviour
     public TMP_InputField UsernameField;
     public TMP_InputField PasswordField;
 
+    [Space]
+    [Header("Audios")]
+    public AudioSource audioBemVindos;
+    public AudioSource audioWriting;
+
     private UIHandler uiHandler;
     private bool loginSuccess = false;      // Flag to track if player is logged
     private bool messageDisplayed = false;  // Flag to track if a message is displayed
@@ -18,15 +24,7 @@ public class Login : MonoBehaviour
 
     void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        instance = this;
     }
 
 
@@ -46,11 +44,12 @@ public class Login : MonoBehaviour
             databaseBuilder = DatabaseBuilder.instance;
         }
         
-        // Adicione os eventos para fechar o painel de mensagem
         UsernameField.onSelect.AddListener(delegate { OnInputFieldSelect(); });
         UsernameField.onValueChanged.AddListener(delegate { OnInputFieldEdit(); });
+        UsernameField.onValueChanged.AddListener(OnInputValueChanged);
         PasswordField.onSelect.AddListener(delegate { OnInputFieldSelect(); });
         PasswordField.onValueChanged.AddListener(delegate { OnInputFieldEdit(); });
+        PasswordField.onValueChanged.AddListener(OnInputValueChanged);
     }
 
 
@@ -63,7 +62,7 @@ public class Login : MonoBehaviour
 
         if (loginSuccess)
         {
-            uiHandler.BackToMenu("4-Menu");
+            StartCoroutine(PlayWelcome());
             return;
         }
 
@@ -108,6 +107,14 @@ public class Login : MonoBehaviour
     }
 
 
+    private IEnumerator PlayWelcome()
+    {
+        audioBemVindos.Play();
+        yield return new WaitForSeconds(3);
+        uiHandler.BackToMenu("4-Menu");
+    }
+
+
     void OnInputFieldSelect()
     {
         if (messageDisplayed)
@@ -127,5 +134,11 @@ public class Login : MonoBehaviour
             uiHandler.ClosePanelButton(8);
             messageDisplayed = false;
         }
+    }
+
+
+    void OnInputValueChanged(string value)
+    {
+        audioWriting.Play();
     }
 }

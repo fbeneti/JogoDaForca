@@ -224,7 +224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a396868bdfd8da41be100227caba7f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  databaseBuilder: {fileID: 248860721}
   GameOverPanel: {fileID: 0}
   SettingsPanel: {fileID: 0}
   StatsPanel: {fileID: 0}
@@ -238,12 +237,13 @@ MonoBehaviour:
   MessagePanelTitle: {fileID: 0}
   MessagePanelText: {fileID: 0}
   hangPanels: []
-  categoryPanel: {fileID: 0}
+  CategoryPanel: {fileID: 0}
   categoryText: {fileID: 0}
   AvatarPanel: {fileID: 30846947}
   avatarImage: {fileID: 329686774}
   statsText: {fileID: 0}
   saveFile: {fileID: 11400000, guid: c9279facb85698340b4a1d9d86b86d14, type: 2}
+  audioBemVindos: {fileID: 0}
 --- !u!4 &28229026
 Transform:
   m_ObjectHideFlags: 0
@@ -1154,7 +1154,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 311977441}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1332979495}
+        m_TargetAssemblyTypeName: StoreManager, Assembly-CSharp
+        m_MethodName: AddDiamonds
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4000
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &311977441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1639,7 +1651,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 397055152}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1332979495}
+        m_TargetAssemblyTypeName: StoreManager, Assembly-CSharp
+        m_MethodName: AddStealTime
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &397055152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1763,7 +1787,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 441156047}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1332979495}
+        m_TargetAssemblyTypeName: StoreManager, Assembly-CSharp
+        m_MethodName: AddFogs
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &441156047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3078,7 +3114,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 820510995}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1332979495}
+        m_TargetAssemblyTypeName: StoreManager, Assembly-CSharp
+        m_MethodName: AddCoins
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 300
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &820510995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3337,7 +3385,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 839324799}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1332979495}
+        m_TargetAssemblyTypeName: StoreManager, Assembly-CSharp
+        m_MethodName: AddDiamonds
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 250
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &839324799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4476,6 +4536,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1330269447}
   m_CullTransparentMesh: 1
+--- !u!1 &1332979494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1332979496}
+  - component: {fileID: 1332979495}
+  m_Layer: 0
+  m_Name: StoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1332979495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332979494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7f5b07bba705c4fa29af3e76889be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinsText: {fileID: 1049908784}
+  diamondsText: {fileID: 821075287}
+  hintsText: {fileID: 1506492396}
+  extraLifesText: {fileID: 1644559470}
+  stealTimeText: {fileID: 1902444485}
+  fogsText: {fileID: 1944906083}
+--- !u!4 &1332979496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332979494}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -40.841576, y: -55.258114, z: -0.737043}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1336408852
 GameObject:
   m_ObjectHideFlags: 0
@@ -5386,7 +5496,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1527955400}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1332979495}
+        m_TargetAssemblyTypeName: StoreManager, Assembly-CSharp
+        m_MethodName: AddHints
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1531438996
 GameObject:
   m_ObjectHideFlags: 0
@@ -5471,7 +5593,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1531438999}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1332979495}
+        m_TargetAssemblyTypeName: StoreManager, Assembly-CSharp
+        m_MethodName: AddDiamonds
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2000
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1531438999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6839,7 +6973,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1882002920}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1332979495}
+        m_TargetAssemblyTypeName: StoreManager, Assembly-CSharp
+        m_MethodName: AddExtraLifes
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1882002920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7355,7 +7501,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1971394099}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1332979495}
+        m_TargetAssemblyTypeName: StoreManager, Assembly-CSharp
+        m_MethodName: AddCoins
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5000
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1971394099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7706,7 +7864,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2068570424}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1332979495}
+        m_TargetAssemblyTypeName: StoreManager, Assembly-CSharp
+        m_MethodName: AddCoins
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1000
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2068570424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7828,3 +7998,4 @@ SceneRoots:
   - {fileID: 248860722}
   - {fileID: 1486306350}
   - {fileID: 28229026}
+  - {fileID: 1332979496}

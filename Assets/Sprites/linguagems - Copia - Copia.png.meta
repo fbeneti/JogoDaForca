@@ -1,0 +1,841 @@
+fileFormatVersion: 2
+guid: 986daac10d92e474e89f47f835d549cb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2455108781881735936
+    second: linguagems - Copia - Copia_0
+  - first:
+      213: 8380923062760452927
+    second: linguagems - Copia - Copia_1
+  - first:
+      213: -7435866759920469733
+    second: linguagems - Copia - Copia_2
+  - first:
+      213: -4636596286044660172
+    second: linguagems - Copia - Copia_3
+  - first:
+      213: 3452124708222536377
+    second: linguagems - Copia - Copia_4
+  - first:
+      213: -9049134073994376242
+    second: linguagems - Copia - Copia_5
+  - first:
+      213: 7848945341131818273
+    second: linguagems - Copia - Copia_6
+  - first:
+      213: 7783101338942894432
+    second: linguagems - Copia - Copia_7
+  - first:
+      213: -6105270324046363679
+    second: linguagems - Copia - Copia_8
+  - first:
+      213: 3241517339086296563
+    second: linguagems - Copia - Copia_9
+  - first:
+      213: 8702113627898496120
+    second: linguagems - Copia - Copia_10
+  - first:
+      213: 6312107603540317817
+    second: linguagems - Copia - Copia_11
+  - first:
+      213: -9008165185483570679
+    second: linguagems - Copia - Copia_12
+  - first:
+      213: -2113251643125480393
+    second: linguagems - Copia - Copia_13
+  - first:
+      213: -1948564963787712039
+    second: linguagems - Copia - Copia_14
+  - first:
+      213: 5661396389707748144
+    second: linguagems - Copia - Copia_15
+  - first:
+      213: 8738685914215650989
+    second: linguagems - Copia - Copia_16
+  - first:
+      213: -4696020323138399451
+    second: linguagems - Copia - Copia_17
+  - first:
+      213: 700120932175628002
+    second: linguagems - Copia - Copia_18
+  - first:
+      213: 6992594715684639377
+    second: linguagems - Copia - Copia_19
+  - first:
+      213: -478955683746594344
+    second: linguagems - Copia - Copia_20
+  - first:
+      213: 66645259570394140
+    second: linguagems - Copia - Copia_21
+  - first:
+      213: -860596679004725034
+    second: linguagems - Copia - Copia_22
+  - first:
+      213: -879775669513988572
+    second: linguagems - Copia - Copia_23
+  - first:
+      213: -5650471154664833645
+    second: linguagems - Copia - Copia_24
+  - first:
+      213: 1226547935476554684
+    second: linguagems - Copia - Copia_25
+  - first:
+      213: -6512126862443163021
+    second: linguagems - Copia - Copia_26
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_0
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 376
+        width: 65
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00bb00ded6c421220800000000000000
+      internalID: 2455108781881735936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_1
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 376
+        width: 67
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3337bd1f150f4470800000000000000
+      internalID: 8380923062760452927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_2
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 379
+        width: 67
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b193ec9249e7ec890800000000000000
+      internalID: -7435866759920469733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_3
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 372
+        width: 42
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43e996b5e3087afb0800000000000000
+      internalID: -4636596286044660172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_4
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 374
+        width: 54
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ba04f9c12968ef20800000000000000
+      internalID: 3452124708222536377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_5
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 262
+        width: 50
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecb8eaa01840b6280800000000000000
+      internalID: -9049134073994376242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_6
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 275
+        width: 70
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1258e97c33e0dec60800000000000000
+      internalID: 7848945341131818273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_7
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 262
+        width: 60
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 061fe8e5e61230c60800000000000000
+      internalID: 7783101338942894432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_8
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 264
+        width: 37
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e38b75ccf8b54ba0800000000000000
+      internalID: -6105270324046363679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_9
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 313
+        width: 32
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f5128978de2cfc20800000000000000
+      internalID: 3241517339086296563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_10
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 264
+        width: 26
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 874c9f12d3e14c870800000000000000
+      internalID: 8702113627898496120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_11
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 263
+        width: 67
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97610152c6c199750800000000000000
+      internalID: 6312107603540317817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_12
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 157
+        width: 66
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9020639bd719cf280800000000000000
+      internalID: -9008165185483570679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_13
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 161
+        width: 47
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 734ce7ab3d83ca2e0800000000000000
+      internalID: -2113251643125480393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_14
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 154
+        width: 23
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d959a74d7e45f4e0800000000000000
+      internalID: -1948564963787712039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_15
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 154
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03395356502519e40800000000000000
+      internalID: 5661396389707748144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_16
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 158
+        width: 66
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da698881a8c064970800000000000000
+      internalID: 8738685914215650989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_17
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 172
+        width: 65
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 523125d856264deb0800000000000000
+      internalID: -4696020323138399451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_18
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 154
+        width: 17
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e6c426474457b900800000000000000
+      internalID: 700120932175628002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_19
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 154
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19218a678dfaa0160800000000000000
+      internalID: 6992594715684639377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_20
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 153
+        width: 57
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d1412fd7586a59f0800000000000000
+      internalID: -478955683746594344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_21
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 47
+        width: 59
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1438aea285cce000800000000000000
+      internalID: 66645259570394140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_22
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 44
+        width: 59
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d0ea0d41eb8e04f0800000000000000
+      internalID: -860596679004725034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_23
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 51
+        width: 67
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 426569890b86ac3f0800000000000000
+      internalID: -879775669513988572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_24
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 44
+        width: 49
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39d7c9c1c6e7591b0800000000000000
+      internalID: -5650471154664833645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_25
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 77
+        width: 39
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbb911a49d2950110800000000000000
+      internalID: 1226547935476554684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: linguagems - Copia - Copia_26
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 44
+        width: 42
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 372dbcf0f1740a5a0800000000000000
+      internalID: -6512126862443163021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      linguagems - Copia - Copia_0: 2455108781881735936
+      linguagems - Copia - Copia_1: 8380923062760452927
+      linguagems - Copia - Copia_10: 8702113627898496120
+      linguagems - Copia - Copia_11: 6312107603540317817
+      linguagems - Copia - Copia_12: -9008165185483570679
+      linguagems - Copia - Copia_13: -2113251643125480393
+      linguagems - Copia - Copia_14: -1948564963787712039
+      linguagems - Copia - Copia_15: 5661396389707748144
+      linguagems - Copia - Copia_16: 8738685914215650989
+      linguagems - Copia - Copia_17: -4696020323138399451
+      linguagems - Copia - Copia_18: 700120932175628002
+      linguagems - Copia - Copia_19: 6992594715684639377
+      linguagems - Copia - Copia_2: -7435866759920469733
+      linguagems - Copia - Copia_20: -478955683746594344
+      linguagems - Copia - Copia_21: 66645259570394140
+      linguagems - Copia - Copia_22: -860596679004725034
+      linguagems - Copia - Copia_23: -879775669513988572
+      linguagems - Copia - Copia_24: -5650471154664833645
+      linguagems - Copia - Copia_25: 1226547935476554684
+      linguagems - Copia - Copia_26: -6512126862443163021
+      linguagems - Copia - Copia_3: -4636596286044660172
+      linguagems - Copia - Copia_4: 3452124708222536377
+      linguagems - Copia - Copia_5: -9049134073994376242
+      linguagems - Copia - Copia_6: 7848945341131818273
+      linguagems - Copia - Copia_7: 7783101338942894432
+      linguagems - Copia - Copia_8: -6105270324046363679
+      linguagems - Copia - Copia_9: 3241517339086296563
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

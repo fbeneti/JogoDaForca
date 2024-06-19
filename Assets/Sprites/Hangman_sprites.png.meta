@@ -662,7 +662,28 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Hangman_sprites_0: 2056086096756920738
+      Hangman_sprites_1: -7565100499672300269
+      Hangman_sprites_10: -3233393281742844087
+      Hangman_sprites_11: -5301642322722796783
+      Hangman_sprites_12: -3138658014109634419
+      Hangman_sprites_13: -2580211592454654588
+      Hangman_sprites_14: 351574134380215381
+      Hangman_sprites_15: -4425591273242734693
+      Hangman_sprites_16: 4357590179931779200
+      Hangman_sprites_17: 1191177277634987083
+      Hangman_sprites_18: 9177596820924735030
+      Hangman_sprites_19: -8826932430057732616
+      Hangman_sprites_2: 2322300449987703675
+      Hangman_sprites_20: -1711415400303736587
+      Hangman_sprites_3: 908120858469283360
+      Hangman_sprites_4: 7511800692679447498
+      Hangman_sprites_5: -1269626838874702918
+      Hangman_sprites_6: 2329457611615340535
+      Hangman_sprites_7: 1830547882951933785
+      Hangman_sprites_8: -85409881111596615
+      Hangman_sprites_9: 531129227035493309
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "JogoDaForca.sln"
+    "dotnet.defaultSolution": "HangmanRestore_1506.sln"
 }

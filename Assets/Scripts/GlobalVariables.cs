@@ -24,5 +24,8 @@ public static class GlobalVariables
     public static string actualDifficulty;
     public static string actualWord;
     public static int countCategory;
+    public static string wordHint1;
+    public static string wordHint2;
+    public static string wordHint3;
     public static List<string> solvedList;
 }
